@@ -2,16 +2,10 @@ package application.controllers;
 
 	import javafx.event.ActionEvent;
 	import javafx.fxml.FXML;
-	import javafx.fxml.FXMLLoader;
-	import javafx.fxml.Initializable;
-	import javafx.scene.Node;
 	import javafx.scene.control.Button;
 	import javafx.scene.layout.Pane;
 	import javafx.scene.layout.VBox;
 
-	import java.io.IOException;
-	import java.net.URL;
-	import java.util.ResourceBundle;
 
 	public class HomeController {
 
@@ -53,23 +47,36 @@ package application.controllers;
 	   
 
 
+	    @FXML
 	    public void handleClicks(ActionEvent actionEvent) {
+	        btnCustomers.setStyle("-fx-background-color:  #05071F");
+	        btnMenus.setStyle("-fx-background-color:  #05071F");
+	        btnOverview.setStyle("-fx-background-color:  #05071F");
+	        btnOrders.setStyle("-fx-background-color:  #05071F");
+	        pnlCustomer.setStyle("-fx-background-color:  #05071F");
+	        pnlMenus.setStyle("-fx-background-color:  #05071F");
+	        pnlOverview.setStyle("-fx-background-color: #05071F");
+	        pnlOrders.setStyle("-fx-background-color:  #05071F");
+
 	        if (actionEvent.getSource() == btnCustomers) {
-	            pnlCustomer.setStyle("-fx-background-color : #1620A1");
+	            btnCustomers.setStyle("-fx-background-color: #53639F");
+	            pnlCustomer.setStyle("-fx-background-color: #02030A");
 	            pnlCustomer.toFront();
-	        }
-	        if (actionEvent.getSource() == btnMenus) {
-	            pnlMenus.setStyle("-fx-background-color : #53639F");
+	        } else if (actionEvent.getSource() == btnMenus) {
+	            btnMenus.setStyle("-fx-background-color: #53639F");
+	            pnlMenus.setStyle("-fx-background-color: #02030A");
 	            pnlMenus.toFront();
-	        }
-	        if (actionEvent.getSource() == btnOverview) {
-	            pnlOverview.setStyle("-fx-background-color : #02030A");
+	        } else if (actionEvent.getSource() == btnOverview) {
+	            btnOverview.setStyle("-fx-background-color: #53639F");
+	            pnlOverview.setStyle("-fx-background-color: #02030A");
 	            pnlOverview.toFront();
-	        }
-	        if(actionEvent.getSource()==btnOrders)
-	        {
-	            pnlOrders.setStyle("-fx-background-color : #464F67");
+	        } else if (actionEvent.getSource() == btnOrders) {
+	            btnOrders.setStyle("-fx-background-color: #53639F");
+	            pnlOrders.setStyle("-fx-background-color: #02030A");
 	            pnlOrders.toFront();
+	        
 	        }
 	    }
+
+
 	}
