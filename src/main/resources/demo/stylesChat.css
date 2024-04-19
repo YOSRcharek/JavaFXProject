@@ -1,0 +1,44 @@
+/* styles.css */
+
+/* Body background color */
+.root {
+    -fx-background-color: #f5f5f5; /* Light grey */
+}
+
+/* Label text color */
+.label {
+    -fx-text-fill: #333333; /* Dark grey */
+}
+
+/* Button background and text color */
+.button {
+    -fx-background-color: #ff69b4; /* Pink */
+    -fx-text-fill: #ffffff; /* White */
+}
+
+/* Line chart series colors */
+.chart-line-symbol {
+    -fx-background-color: #ff69b4; /* Pink */
+}
+
+/* Pie chart slice colors */
+.chart-pie-label-line {
+    -fx-stroke: #ffffff; /* White */
+}
+.chart-pie-label-line {
+    -fx-stroke: #ffffff; /* White */
+}
+.chart-pie-label {
+    -fx-text-fill: #333333; /* Dark grey */
+}
+
+/* Table view header text color */
+.table-view .column-header-background {
+    -fx-background-color: #ff69b4; /* Pink */
+    -fx-text-fill: #ffffff; /* White */
+}
+
+/* Table view cell text color */
+.table-cell {
+    -fx-text-fill: #333333; /* Dark grey */
+}
