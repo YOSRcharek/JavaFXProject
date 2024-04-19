@@ -44,7 +44,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Hyperlink layoutX="66.0" layoutY="358.0" onAction="#navigateToSignIn" text="Already have an account? Login">
+            <Hyperlink layoutX="66.0" layoutY="358.0" onAction="#navigateToSignIn" text="Already have an accounttttt? Login">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -12,7 +12,7 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/tuniCollab1", "root", "");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/tuniCollab5", "root", "");
             }
         } catch (SQLException e) {
             e.printStackTrace();
