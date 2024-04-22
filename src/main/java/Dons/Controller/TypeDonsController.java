@@ -28,11 +28,11 @@ public class TypeDonsController {
     private Button  btnOpenFormToAddType;
     @FXML
     private Button  btnOpenFormToUpdateType;
+    @FXML
+    TextField recherche;
+    @FXML
+    private ListView<Typedons> lvTypeDon;
 
-    @FXML
-    private TableView<Typedons> tvType;
-    @FXML
-    private TableColumn<Dons,String> cNom;
 
     // Instance du service TypeDonsCrud
     private final TypeDonsCrud typeDonsCrud = new TypeDonsCrud();
@@ -44,34 +44,53 @@ public class TypeDonsController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    // Méthode appelée lors du clic sur le bouton d'insertion de type
+    @FXML
+    private ObservableList<Typedons> originalTypeList;
+
     @FXML
     private void initialize() {
-        // ObservableList pour les types de dons
-        observableTypeList = FXCollections.observableArrayList();
+        // Initialiser la liste observable pour les données originales
+        originalTypeList = FXCollections.observableArrayList();
 
         // Charger les types de dons depuis la base de données
         List<Typedons> typeList = typeDonsCrud.afficherType();
-        observableTypeList.addAll(typeList);
+        originalTypeList.addAll(typeList);
 
-        // Associer les types de dons à la TableView
-        tvType.setItems(observableTypeList);
+        // Associer les types de dons à la ListView
+        lvTypeDon.setItems(originalTypeList);
 
-        // Associer les propriétés des types de dons aux colonnes de la TableView
-        cNom.setCellValueFactory(new PropertyValueFactory<>("name"));
+        // Ajouter un écouteur de changement pour le champ de recherche
+        recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Filtrer les données sur une nouvelle liste temporaire
+            ObservableList<Typedons> filteredList = filterData(newValue);
 
+            // Afficher les données filtrées dans la ListView
+            lvTypeDon.setItems(filteredList);
+        });
 
+        btnDeleteType.setOnAction(event -> handleDeleteType());
+    }
 
-        btnDeleteType.setOnAction(event ->
-            handleDeleteType()
-        );
+    private ObservableList<Typedons> filterData(String keyword) {
+        ObservableList<Typedons> filteredData = FXCollections.observableArrayList();
+
+        for (Typedons type : originalTypeList) {
+            String typeName = type.getName();
+
+            if (typeName.toLowerCase().contains(keyword.toLowerCase())) {
+                filteredData.add(type);
+            }
+        }
+
+        return filteredData;
     }
 
     @FXML
     private void refreshTable() {
-        observableTypeList.clear();
-        observableTypeList.addAll(typeDonsCrud.afficherType());
+        originalTypeList.clear();
+        originalTypeList.addAll(typeDonsCrud.afficherType());
     }
+
     public void handleGoToDons(javafx.event.ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/Dons.fxml"));
@@ -88,7 +107,7 @@ public class TypeDonsController {
 
     @FXML
     private void handleDeleteType() {
-        Typedons type = tvType.getSelectionModel().getSelectedItem();
+        Typedons type = lvTypeDon.getSelectionModel().getSelectedItem();
         if (type != null) {
             typeDonsCrud.supprimerType(type);
             showAlert("Type de don supprimé avec succès.");
@@ -141,7 +160,7 @@ public class TypeDonsController {
             TypeDonsFormController typeDonFormController = loader.getController();
 
             // Récupérer le type de don sélectionné dans la TableView
-            Typedons selectedType = tvType.getSelectionModel().getSelectedItem();
+            Typedons selectedType = lvTypeDon.getSelectionModel().getSelectedItem();
 
             // Passer le type de don sélectionné au contrôleur du formulaire
             typeDonFormController.setSelectedType(selectedType);
