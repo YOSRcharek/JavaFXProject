@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="539.0" style="-fx-background-color: #B0B5D6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dons.Controller.DonsFrontFormController">
+   <children>
+      <Pane layoutY="75.0" prefHeight="570.0" prefWidth="539.0">
+         <children>
+            <Label fx:id="nomLabel" layoutX="53.0" layoutY="102.0" prefHeight="20.0" prefWidth="119.0" text="Montant :" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="prenomLabel" layoutX="53.0" layoutY="160.0" prefHeight="20.0" prefWidth="119.0" text="Type de don :" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="telephoneLabel" layoutX="53.0" layoutY="271.0" prefHeight="20.0" prefWidth="94.0" text="Date :" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator layoutX="58.0" layoutY="510.0" opacity="0.57" prefHeight="3.0" prefWidth="423.0" />
+            <Separator layoutX="54.0" layoutY="36.0" opacity="0.53" prefHeight="3.0" prefWidth="423.0" />
+            <Button fx:id="btnInsert" layoutX="210.0" layoutY="373.0" mnemonicParsing="false" onAction="#handleInsertAndGoToListFront" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: #FFCCBC;" text="confirmer" textFill="WHITE" />
+            <TextField fx:id="tfMontant" layoutX="253.0" layoutY="93.0" prefHeight="34.0" prefWidth="274.0" style="-fx-border-color: white; -fx-background-color: #B0B5D6; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" stylesheets="@../../../../cloneProject/JavaFXProject/src/application/view/style.css" />
+            <ChoiceBox fx:id="cbTypeDon" layoutX="252.0" layoutY="153.0" prefHeight="34.0" prefWidth="274.0" style="-fx-background-color: #B0B5D6; -fx-border-radius: 20; -fx-border-color: white;" />
+            <Label fx:id="descriptionLabel1" layoutX="54.0" layoutY="217.0" prefHeight="20.0" prefWidth="108.0" text="Association :" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="nomErrorLabel" layoutX="264.0" layoutY="130.0" prefHeight="20.0" prefWidth="252.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="prenomErrorLabel" layoutX="266.0" layoutY="188.0" prefHeight="20.0" prefWidth="252.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="fonctionErrorLabel" layoutX="263.0" layoutY="241.0" prefHeight="20.0" prefWidth="252.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="telephoneErrorLabel" layoutX="263.0" layoutY="297.0" prefHeight="20.0" prefWidth="252.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="descriptionErrorLabel" layoutX="265.0" layoutY="353.0" prefHeight="20.0" prefWidth="252.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="associationErrorLabel" layoutX="262.0" layoutY="412.0" prefHeight="20.0" prefWidth="252.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="cbAssociation" layoutX="251.0" layoutY="210.0" prefHeight="34.0" prefWidth="274.0" style="-fx-background-color: #B0B5D6; -fx-border-radius: 20; -fx-border-color: white;" />
+            <DatePicker fx:id="date" layoutX="251.0" layoutY="266.0" prefHeight="25.0" prefWidth="262.0" style="-fx-background-color: #B0B5D6; -fx-border-radius: 40; -fx-background-radius: 10;" stylesheets="@../../../../cloneProject/JavaFXProject/src/application/view/style.css" />
+         </children>
+      </Pane>
+      <Label layoutX="218.0" layoutY="40.0" text="Dons" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnBack" layoutX="20.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleGoToDonsFront" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #B0B5D6;">
+         <graphic>
+            <ImageView accessibleRole="BUTTON" depthTest="DISABLE" fitHeight="27.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #B0B5D6;">
+               <image>
+                  <Image url="@images/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

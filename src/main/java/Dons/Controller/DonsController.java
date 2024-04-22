@@ -37,6 +37,8 @@ public class DonsController extends Application {
 
     @FXML
     private Button btnOpenFormToUpdate;
+    @FXML
+    private Button btnFront;
 
     @FXML
     private TableView<Dons> tvDon;
@@ -139,6 +141,22 @@ public class DonsController extends Application {
             Scene scene = new Scene(root, 1000, 500);
             scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
             Stage stage = (Stage) btnGoToTypeDon.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Page des types de don");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleGoToFront() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DonsFront.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 1000, 500);
+            scene.getStylesheets().add(getClass().getResource("/Front.css").toExternalForm());
+            Stage stage = (Stage) btnFront.getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("Page des types de don");
             stage.show();

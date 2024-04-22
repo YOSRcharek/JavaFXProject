@@ -1,4 +1,3 @@
-// DonsFormController.java
 package Dons.Controller;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -23,18 +22,7 @@ import javafx.scene.control.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
-
-public class DonsFormController {
-
-    @FXML
-    private Button btnInsert;
-
-    @FXML
-    private Button btnUpdate;
-
-    @FXML
-    private TableView<Dons> tvDon;
-
+public class DonsFrontFormController {
     @FXML
     private TextField tfMontant;
 
@@ -49,7 +37,6 @@ public class DonsFormController {
 
     private final DonsCrud donsCrud = new DonsCrud();
 
-
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
@@ -57,13 +44,11 @@ public class DonsFormController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    private Dons selectedDon; // Added field
 
     private boolean validateMontant(String montant) {
         // Vérifier si le montant est un entier positif
         return montant.matches("\\d+") && Integer.parseInt(montant) > 0;
     }
-
     private boolean validateDate(LocalDate date) {
         // Vérifier si la date n'est pas null et est aujourd'hui
         return date != null && date.equals(LocalDate.now());
@@ -91,6 +76,7 @@ public class DonsFormController {
 
 
     }
+
 
     private boolean handleInsertDon() {
         String montantStr = tfMontant.getText();
@@ -133,70 +119,6 @@ public class DonsFormController {
         return true;
     }
 
-
-    public void setSelectedDon(Dons selectedDon) {
-        this.selectedDon = selectedDon;
-        if (selectedDon != null) {
-            tfMontant.setText(String.valueOf(selectedDon.getMontant()));
-            cbAssociation.setValue(selectedDon.getAssociation_id());
-            cbTypeDon.setValue(selectedDon.getType_id());
-            // Convertir java.util.Date en java.sql.Date
-            Date sqlDate = new Date(selectedDon.getDate_mis_don().getTime());
-
-            LocalDate localDate = sqlDate.toLocalDate();
-            date.setValue(localDate);
-        }
-    }
-
-
-    private boolean handleUpdateDon() {
-        String montantStr = tfMontant.getText();
-        LocalDate selectedDate = date.getValue();
-        Association selectedAssociation = cbAssociation.getValue();
-        Typedons selectedType = cbTypeDon.getValue();
-
-        // Validation des champs
-        if (!validateMontant(montantStr)) {
-            clearFields();
-            showAlert("Montant invalide. Veuillez saisir un montant positif.");
-            return false;
-        }
-        int montant = Integer.parseInt(montantStr);
-
-        if (!validateDate(selectedDate)) {
-            clearFields();
-            showAlert("Date invalide. Veuillez sélectionner la date d'aujourd'hui.");
-            return false;
-        }
-
-        if (!validateAssociation(selectedAssociation)) {
-            clearFields();
-            showAlert("Veuillez sélectionner une association.");
-            return false;
-        }
-
-        if (!validateTypeDon(selectedType)) {
-            clearFields();
-            showAlert("Veuillez sélectionner un type de don.");
-            return false;
-        }
-
-        // Si toutes les validations passent, mettre à jour le don
-        Date sqlDate = Date.valueOf(selectedDate);
-        selectedDon.setMontant(montant);
-        selectedDon.setAssociation_id(selectedAssociation);
-        selectedDon.setType_id(selectedType);
-        selectedDon.setDate_mis_don(sqlDate);
-
-        // Update the entity in the database
-        donsCrud.modifierEntite(selectedDon);
-        showAlert("Don mis à jour avec succès.");
-        clearFields();
-        return true;
-    }
-
-
-
     private void clearFields() {
         tfMontant.clear();
         cbAssociation.getSelectionModel().clearSelection();
@@ -204,13 +126,14 @@ public class DonsFormController {
         date.setValue(null);
     }
 
+
     @FXML
-    public void handleGoToList(javafx.event.ActionEvent actionEvent) {
+    public void handleGoToListFront(javafx.event.ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/Dons.fxml"));
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/DonsFront.fxml"));
             Parent root = (Parent) loader.load();
             Scene scene = new Scene(root, 1000, 500); // Set scene size to 1000x500
-            scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/Front.css").toExternalForm());
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();  // Corrected line
             stage.setScene(scene);
             stage.setTitle("Page Dons");
@@ -221,25 +144,17 @@ public class DonsFormController {
     }
 
     @FXML
-    private void handleUpdateAndGoToList(javafx.event.ActionEvent actionEvent) {
-        if (handleUpdateDon()) {
-            handleGoToList(actionEvent);
-        }
-    }
-
-
-    @FXML
-    private void handleInsertAndGoToList(javafx.event.ActionEvent actionEvent) {
+    private void handleInsertAndGoToListFront(javafx.event.ActionEvent actionEvent) {
         if (handleInsertDon()) {
-            handleGoToList(actionEvent);
+            handleGoToListFront(actionEvent);
         }
     }
 
-    public void handleGoToDons(javafx.event.ActionEvent actionEvent) {
+    public void handleGoToDonsFront(javafx.event.ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/Dons.fxml"));
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/DonsFront.fxml"));
             Scene scene = new Scene(loader.load(), 1000, 500); // Set scene size to 1000x500
-            scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/Front.css").toExternalForm());
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("Page dons");
@@ -248,5 +163,4 @@ public class DonsFormController {
             e.printStackTrace();
         }
     }
-
 }
