@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="535.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dons.Controller.TypeDonsController">
+   <children>
+      <TableView fx:id="tvType" layoutX="423.0" layoutY="110.0" prefHeight="289.0" prefWidth="312.0">
+        <columns>
+          <TableColumn fx:id="cNom" prefWidth="199.0" text="nom du type de don" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnDeleteType" layoutX="329.0" layoutY="304.0" mnemonicParsing="false" text="supprimer" />
+      <Button fx:id="btnOpenFormToAddType" layoutX="423.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleGoToFormType" text="ouvrir form pour ajouter un typedon" />
+      <Button fx:id="btnOpenFormToUpdateType" layoutX="423.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleGoToTypeDonFormToUpdate" text="ouvrir form pour modifier typedon" />
+      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="309.0" style="-fx-background-color:  #DDE6E8;">
+         <children>
+            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/jimmy-fallon.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label text="Jimmy Fallon" textFill="#130303">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="btnBack" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleGoToDons" prefHeight="54.0" prefWidth="310.0" stylesheets="@../../../../cloneProject/JavaFXProject/src/application/view/style.css" text="Dons" textFill="#868181">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/donation.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="310.0" stylesheets="@../../../../cloneProject/JavaFXProject/src/application/view/style.css" text="Type des dons">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/food-donation.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCustomers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="315.0" stylesheets="@../../../../cloneProject/JavaFXProject/src/application/view/style.css" text="Associations" textFill="#868181">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/travailleurs.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnMenus" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="319.0" stylesheets="@../../../../cloneProject/JavaFXProject/src/application/view/style.css" text="Projets" textFill="#868181">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/file-and-folder.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnMembers" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="327.0" stylesheets="@../../../../cloneProject/JavaFXProject/src/application/view/style.css" text="Membres" textFill="#868181">
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/gens.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
