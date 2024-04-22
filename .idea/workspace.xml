@@ -4,54 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad3a2a-e762-415d-849c-4a7e224bc6ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dons/Controller/DonsFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dons/Controller/TypeDonsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dons/Controller/TypeDonsFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dons/services/ITypeDonsCrud.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dons/services/TypeDonsCrud.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Dons.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/DonsForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/783704-removebg-preview.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Design_sans_titre__2_-removebg-preview.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/accueil.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/back.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/camaraderie.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/donation.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/email.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/file-and-folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/files-and-folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/food-donation.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/gens.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/groupe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_Box_32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_GPS_Antenna_64px_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_Home_32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_Meanpath_64px_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_Open_Envelope_32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_Person_32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_Search_52px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_Sign_Out_32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_Slider__32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_Xbox_Menu_32px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_ellipsis_50px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/icons8_pin_50px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/jimmy-fallon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/lever-la-main.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/plus.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/travailleurs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/volontaire.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/typeDons.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/typeDonsForm.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="39ad3a2a-e762-415d-849c-4a7e224bc6ff" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "GestionDon",
     "last_opened_file_path": "C:/Users/walid/IdeaProjects/PiJava/src/main/resources/images",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -186,6 +139,7 @@
       <workItem from="1713472590587" duration="20442000" />
       <workItem from="1713630597857" duration="9295000" />
       <workItem from="1713644130810" duration="17912000" />
+      <workItem from="1713747719924" duration="15000" />
     </task>
     <servers />
   </component>
