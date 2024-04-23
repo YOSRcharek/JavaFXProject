@@ -5,6 +5,7 @@ import com.example.application.model.TypeEvent;
 import com.example.application.repository.EventRepo;
 import com.example.application.repository.TypeEventRepo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -41,6 +42,25 @@ public class MainEvent {
 
         // Appel de la méthode ajouter avec l'objet TypeEvent
         typeEventRepo.ajouter(typeEvent);*/
+       /* EventRepo eventRepo = new EventRepo();
+
+        // Création d'un objet Events avec des valeurs au hasard
+        Events eventToUpdate = new Events(
+                56,                           // ID de l'événement à modifier
+                "Nouveau nom d'événement",  // Nouveau nom de l'événement
+                "Nouvelle description",      // Nouvelle description
+                LocalDate.now(),            // Nouvelle date de début (aujourd'hui)
+                LocalDate.now().plusDays(7), // Nouvelle date de fin (une semaine à partir d'aujourd'hui)
+                "Nouvelle localisation",     // Nouvelle localisation
+                100,                         // Nouvelle capacité maximale
+                50,                          // Nouvelle capacité actuelle
+                "Nouvelle image",            // Nouvelle image
+                0.0f,                        // Nouvelle latitude
+                0.0f                         // Nouvelle longitude
+        );
+
+        // Appel de la méthode modifier avec l'événement à mettre à jour
+        eventRepo.modifier(eventToUpdate);*/
 
     }
 }

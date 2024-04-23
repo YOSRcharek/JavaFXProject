@@ -1,6 +1,7 @@
 package com.example.application.model;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class Events {
     private int id;
@@ -8,8 +9,8 @@ public class Events {
     // private int associationId;
     private String nomEvent;
     private String description;
-    private Date dateDebut;
-    private Date dateFin;
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
     private String localisation;
     private int capaciteMax;
     private int capaciteActuelle;
@@ -19,7 +20,35 @@ public class Events {
     private TypeEvent typeEvent;
 
 
-    public Events(int id, String nomEvent, String description, Date dateDebut, Date dateFin, String localisation, int capaciteMax, int capaciteActuelle, String image, float latitude, float longitude) {
+    public Events(int id, String nomEvent, String description, LocalDate dateDebut, LocalDate dateFin, String localisation, int capaciteMax, int capaciteActuelle, String image, float v, float v1) {
+        this.id=id;
+        this.nomEvent = nomEvent;
+        this.description = description;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.localisation = localisation;
+        this.capaciteMax = capaciteMax;
+        this.capaciteActuelle = capaciteActuelle;
+        this.image = image;
+        this.latitude = latitude;
+        this.longitude = longitude;
+
+    }
+    public Events(String nomEvent, String description, LocalDate dateDebut, LocalDate dateFin, String localisation, int capaciteMax, String image) {
+
+        this.nomEvent = nomEvent;
+        this.description = description;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.localisation = localisation;
+        this.capaciteMax = capaciteMax;
+        this.capaciteActuelle = 0;
+        this.image = image;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.typeEvent = typeEvent;
+    }
+    public Events(int id, int typeId, String nomEvent, String description, LocalDate dateDebut, LocalDate dateFin, String localisation, int capaciteMax, int capaciteActuelle, String image, float latitude, float longitude, TypeEvent typeEvent) {
         this.id = id;
         this.nomEvent = nomEvent;
         this.description = description;
@@ -34,8 +63,10 @@ public class Events {
         this.typeEvent = typeEvent;
     }
 
-    public Events(int id, int typeId, int associationId, String nomEvent, String description, Date dateDebut, Date dateFin, String localisation, int capaciteMax, int capaciteActuelle, String image, String latitude, String longitude) {
-    }
+
+
+
+
 
     public int getId() {
         return id;
@@ -77,21 +108,23 @@ public class Events {
         this.description = description;
     }
 
-    public Date getDateDebut() {
+    public LocalDate getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(LocalDate dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
+
+
 
     public String getLocalisation() {
         return localisation;
@@ -166,4 +199,5 @@ public class Events {
                 ", typeEvent=" + typeEvent +
                 '}';
     }
+
 }

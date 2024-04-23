@@ -12,6 +12,9 @@ public class TypeEvent {
         this.id = id;
         this.nom = nom;
     }
+    public TypeEvent(String nom) {
+        this.nom = nom;
+    }
 
     public int getId() {
         return id;

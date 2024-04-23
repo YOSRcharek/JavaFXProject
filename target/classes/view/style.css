@@ -40,3 +40,52 @@
 .scroll-pane > .corner {
     -fx-background-color: black;
 }
+/* style.css */
+
+.list-cell {
+    -fx-background-color: #f0f0f0; /* Couleur de fond des cellules */
+    -fx-padding: 10px; /* Espacement interne des cellules */
+    -fx-border-color: #cccccc; /* Couleur de la bordure des cellules */
+    -fx-border-width: 0 0 1px 0; /* Largeur de la bordure (bas uniquement) */
+}
+
+.list-cell:hover {
+    -fx-background-color: #e0e0e0; /* Couleur de fond des cellules au survol */
+}
+
+.list-view {
+    -fx-background-color: #ffffff; /* Couleur de fond de la ListView */
+}
+
+.list-view:focused {
+    -fx-background-color: transparent; /* Supprimez la couleur de fond lorsqu'elle est sélectionnée */
+}
+
+.list-view:focused .list-cell {
+    -fx-background-color: transparent; /* Supprimez la couleur de fond des cellules lorsqu'elles sont sélectionnées */
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.value-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+}
+
+.vbox {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+.anchor-pane {
+    -fx-background-color: #ffffff;
+}
+

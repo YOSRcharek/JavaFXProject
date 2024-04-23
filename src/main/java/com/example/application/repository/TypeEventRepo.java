@@ -3,9 +3,9 @@ package com.example.application.repository;
 import com.example.application.DatabaseConnection;
 import com.example.application.model.TypeEvent;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TypeEventRepo {
     private final Connection connection;
@@ -62,5 +62,28 @@ public class TypeEventRepo {
             System.err.println("Erreur lors de la suppression des événements associés au type d'événement : " + e.getMessage());
         }
     }
+    public List<TypeEvent> getAllTypeEvents() {
+        List<TypeEvent> typeEvents = new ArrayList<>();
+
+        // Requête SQL pour récupérer tous les types d'événements
+        String sql = "SELECT * FROM type_event";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                // Parcours des résultats et création des objets TypeEvent correspondants
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String nom = resultSet.getString("nom");
+                    TypeEvent typeEvent = new TypeEvent(id, nom);
+                    typeEvents.add(typeEvent);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la récupération des types d'événements : " + e.getMessage());
+        }
+
+        return typeEvents;
+    }
+
 
 }

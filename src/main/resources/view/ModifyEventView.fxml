@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.application.controllers.ModifyEventController">
+    <children>
+        <VBox spacing="10.0" layoutX="48.0" layoutY="64.0">
+            <Label text="Nom de l'événement" />
+            <TextField fx:id="nomEventField" prefWidth="200.0" />
+            <Label text="Description" />
+            <TextField fx:id="descriptionField" prefWidth="200.0" />
+            <Label text="Date de début" />
+            <DatePicker fx:id="dateDebutPicker" prefWidth="200.0" />
+            <Label text="Date de fin" />
+            <DatePicker fx:id="dateFinPicker" prefWidth="200.0" />
+            <Label text="Localisation" />
+            <TextField fx:id="localisationField" prefWidth="200.0" />
+            <Label text="Capacité maximale" />
+            <Spinner fx:id="capaciteMaxSpinner" prefWidth="200.0" />
+            <Label text="Latitude" />
+            <TextField fx:id="latitudeField" prefWidth="200.0" />
+            <Label text="Longitude" />
+            <TextField fx:id="longitudeField" prefWidth="200.0" />
+            <ComboBox fx:id="typeEventComboBox" />
+
+            <Label text="Image" />
+            <TextField fx:id="imageField" prefWidth="200.0" />
+
+
+            <HBox spacing="10.0">
+                <Button fx:id="modifierButton" mnemonicParsing="false" onAction="#saveModifiedEvent" text="Enregistrer" />
+                <Button mnemonicParsing="false" onAction="#cancelModification" text="Annuler" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>
