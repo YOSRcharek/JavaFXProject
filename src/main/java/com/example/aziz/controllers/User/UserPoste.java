@@ -255,7 +255,7 @@ public class UserPoste {
         deleteImageView.setOnMouseClicked(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation de suppression");
-            alert.setHeaderText("Voulez-vous vraiment supprimer cette réservation ?");
+            alert.setHeaderText("Voulez-vous vraiment supprimer cette poste ?");
             alert.setContentText("Cette action est irréversible.");
 
             Optional<ButtonType> result = alert.showAndWait();
@@ -344,6 +344,9 @@ public class UserPoste {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
+
     @FXML
     void goAddPost() throws IOException {
         Scene scenefer = ScrollePan.getScene();
@@ -356,4 +359,7 @@ public class UserPoste {
         stage.setScene(scene);
         stage.show();
     }
+
+
+
 }

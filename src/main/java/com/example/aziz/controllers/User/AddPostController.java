@@ -152,6 +152,8 @@ public class AddPostController {
         String extension = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
         return extension.equals("mp4") || extension.equals("avi") || extension.equals("mkv");
     }
+
+
     @FXML
     void ajouter(){
         checkTilte();checkQuote( );checkContent( );
