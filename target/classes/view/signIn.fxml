@@ -30,7 +30,7 @@
     <right>
         <AnchorPane prefHeight="400.0" prefWidth="300.0" BorderPane.alignment="CENTER">
             <children>
-                <Text fill="#404040" layoutX="47.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" wrappingWidth="206.24869537353516">
+                <Text fill="#404040" layoutX="47.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" wrappingWidth="206.24869537353516">
                     <font>
                         <Font name="Wingdings 3" size="27.0" />
                     </font>

@@ -65,7 +65,7 @@ public class RegisterCont {
         }
 
         // Set roles as a single string (assuming it's stored as such in the User class)
-        String roles = "[\"ROLE_USER\",\"ROLE_ADMIN\"]";
+        String roles = "[\"ROLE_USER\"]";
 
         // Create a new User object
         User newUser = new User(userEmail, userPassword, roles, true);

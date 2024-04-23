@@ -1,5 +1,5 @@
 package com.example.application.model;
-import java.util.Arrays;
+import  java.util.Arrays;
 import org.mindrot.jbcrypt.BCrypt;
 
 
@@ -68,4 +68,14 @@ public class User {
     public void setVerified(boolean verified) {
         isVerified = verified;
     }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", roles='" + roles + '\'' +
+                ", isVerified=" + isVerified +
+                '}';
+    }
+
 }

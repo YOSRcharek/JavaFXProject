@@ -12,17 +12,17 @@ public class MainUser {
         // Create a UserRepository instance
         UserRepository userRepository = new UserRepository();
 
-        // Test creating a new user
-        User newUser = new User("testssss@example.com", "password", "[\"ROLE_USER\",\"ROLE_ADMIN\"]", true);
-        boolean userCreated = userRepository.createUser(newUser);
-        System.out.println("User created: " + userCreated);
+//        // Test creating a new user
+//        User newUser = new User("testssss@example.com", "password", "[\"ROLE_USER\",\"ROLE_ADMIN\"]", true);
+//        boolean userCreated = userRepository.createUser(newUser);
+//        System.out.println("User created: " + userCreated);
 
-//        // Test getting all users
-//        List<User> allUsers = userRepository.getAllUsers();
-//        System.out.println("All users:");
-//        for (User user : allUsers) {
-//            System.out.println(user);
-//        }
+        // Test getting all users
+        List<User> allUsers = userRepository.getAllUsers();
+        System.out.println("All users:");
+        for (User user : allUsers) {
+            System.out.println(user);
+        }
 ////
 //        // Test updating an existing user (assuming there's a user with id = 1)
 //        User existingUser = userRepository.getUserById(1);
