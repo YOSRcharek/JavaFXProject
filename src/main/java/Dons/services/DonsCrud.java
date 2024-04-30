@@ -21,7 +21,7 @@ public class DonsCrud implements ICrud<Dons>{
 
     public List<Association> getAllAssociations() {
         List<Association> associations = new ArrayList<>();
-        String query = "SELECT * FROM association"; // Assurez-vous que le nom de la table est correct
+        String query = "SELECT * FROM association";
 
         try(PreparedStatement pst = cnx2.prepareStatement(query);
             ResultSet resultSet = pst.executeQuery()) {
@@ -41,7 +41,7 @@ public class DonsCrud implements ICrud<Dons>{
 
     public List<Typedons> getAllTypedons() {
         List<Typedons> typedonsList = new ArrayList<>();
-        String query = "SELECT * FROM type_dons"; // Assurez-vous que le nom de la table est correct
+        String query = "SELECT * FROM type_dons";
 
         try (PreparedStatement pst = cnx2.prepareStatement(query);
              ResultSet resultSet = pst.executeQuery()) {
@@ -108,11 +108,11 @@ public class DonsCrud implements ICrud<Dons>{
                 int associationId = resultSet.getInt("association_id");
                 Date date_mis_don = resultSet.getDate("date_mis_don");
 
-                // Récupérer les objets Typedons et Association à partir de leurs identifiants
+
                 Typedons typedons = getTypedonsById(typeId);
                 Association association = getAssociationById(associationId);
 
-                // Créer un nouvel objet Dons avec les objets récupérés
+
                 Dons dons = new Dons(id, typedons, association, montant, date_mis_don);
                 donsList.add(dons);
             }
@@ -129,13 +129,13 @@ public class DonsCrud implements ICrud<Dons>{
         try {
              PreparedStatement pst = cnx2.prepareStatement(req1) ;
 
-            // Définir les valeurs pour les colonnes montant, type_id et association_id
+
             pst.setInt(1, p.getMontant());
             pst.setInt(2, p.getType_id().getId());
             pst.setInt(3, p.getAssociation_id().getId());
 
 
-            // Vérifier si la date est nulle
+
             Date date_mis_don = p.getDate_mis_don();
             if (date_mis_don != null) {
                 pst.setDate(4, new java.sql.Date(date_mis_don.getTime()));
@@ -143,7 +143,7 @@ public class DonsCrud implements ICrud<Dons>{
                 pst.setNull(4, java.sql.Types.DATE);
             }
 
-            // Exécuter la requête
+
             cnx2.setAutoCommit(false);
             pst.executeUpdate();
             cnx2.commit();
@@ -151,7 +151,7 @@ public class DonsCrud implements ICrud<Dons>{
 
         } catch (SQLException e) {
             System.out.println("Erreur lors de l'ajout du don : " + e.getMessage());
-            e.printStackTrace(); // Afficher la trace de la pile pour déboguer
+            e.printStackTrace();
         }
     }
 
@@ -181,27 +181,26 @@ public class DonsCrud implements ICrud<Dons>{
     @Override
     public void modifierEntite(Dons don) {
         try {
-            // Préparer la requête SQL pour mettre à jour l'entité
+
             String query = "UPDATE dons SET montant = ?, type_id = ?, association_id = ?, date_mis_don = ? WHERE id = ?";
             PreparedStatement pst = cnx2.prepareStatement(query);
 
-            // Paramétrer les valeurs de la requête avec les données de l'entité
+
             pst.setInt(1, don.getMontant());
             pst.setInt(2, don.getType_id().getId());
             pst.setInt(3, don.getAssociation_id().getId());
             pst.setDate(4, new java.sql.Date(don.getDate_mis_don().getTime())); // Convertir Date en java.sql.Date
             pst.setInt(5, don.getId());
 
-            // Exécuter la requête de mise à jour
+
             pst.executeUpdate();
 
-            // Fermer le statement
             pst.close();
 
             System.out.println("Don modifié avec succès.");
         } catch (SQLException e) {
             System.out.println("Erreur lors de la modification du don : " + e.getMessage());
-            e.printStackTrace(); // Afficher la trace de la pile pour déboguer
+            e.printStackTrace();
         }
     }
 

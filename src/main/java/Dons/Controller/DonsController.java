@@ -1,4 +1,3 @@
-// DonsController.java
 package Dons.Controller;
 
 import Dons.entities.Association;
@@ -22,6 +21,14 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import javafx.scene.control.Pagination;
+import javafx.scene.control.ListView;
+import javafx.util.Callback;
+import javafx.scene.layout.VBox;
+import java.util.Comparator;
+
+
+
 
 public class DonsController extends Application {
     private ObservableList<Dons> observableDonsList;
@@ -41,19 +48,12 @@ public class DonsController extends Application {
     private Button btnFront;
 
     @FXML
-    private TableView<Dons> tvDon;
+    private Pagination pagination;
+    private final int itemsPerPage = 15;
+    private List<Dons> donsList;
 
     @FXML
-    private TableColumn<Dons, Integer> cMontant;
-
-    @FXML
-    private TableColumn<Dons, Typedons> cType;
-
-    @FXML
-    private TableColumn<Dons, Association> cAssociation;
-
-    @FXML
-    private TableColumn<Dons, Date> cDate;
+    private ListView<Dons> lvDon;
 
     private final DonsCrud donsCrud = new DonsCrud();
 
@@ -69,24 +69,48 @@ public class DonsController extends Application {
     public void initialize() {
         observableDonsList = FXCollections.observableArrayList();
 
+        donsList = donsCrud.afficherEntite();
 
-        // Charger les dons depuis la base de données
-        List<Dons> donsList = donsCrud.afficherEntite();
 
-        // Créer une liste observable pour les dons
-        observableDonsList.addAll(donsList);
+        // Configure pagination
+        setupDonPagination(donsList);
 
-        // Ajouter les dons à la TableView
-        tvDon.setItems(observableDonsList);
-
-        // Associer les propriétés des dons aux colonnes de la TableView
-        cMontant.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getMontant()).asObject());
-        cType.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getType_id()));
-        cAssociation.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getAssociation_id()));
-        cDate.setCellValueFactory(new PropertyValueFactory<>("date_mis_don"));
 
         btnDelete.setOnAction(event -> handleDeleteDon());
     }
+
+    private void setupDonPagination(List<Dons> dons) {
+        final List<Dons> finalDons = dons; // Déclarer comme effectivement final
+
+        pagination.setLayoutX(357); // Position X
+        pagination.setLayoutY(74); // Position Y
+        int pageCount = (int) Math.ceil((double) dons.size() / itemsPerPage);
+        pagination.setPageCount(pageCount);
+
+        pagination.setPageFactory(pageIndex -> {
+            int fromIndex = pageIndex * itemsPerPage;
+            int toIndex = Math.min(fromIndex + itemsPerPage, finalDons.size());
+
+            // Créer une sous-liste pour la page actuelle
+            List<Dons> subList = finalDons.subList(fromIndex, toIndex);
+
+            // Effacer la ListView et mettre à jour avec les dons de la page actuelle
+            lvDon.getItems().clear();
+            lvDon.setItems(FXCollections.observableArrayList(subList));
+
+            // Retourner la ListView mise à jour
+            return lvDon;
+        });
+    }
+
+
+    @FXML
+    private void handleSortDon() {
+
+        donsList.sort(Comparator.comparing(Dons::getMontant));
+        setupDonPagination(donsList);
+    }
+
 
     @FXML
     private void refreshTable() {
@@ -96,15 +120,19 @@ public class DonsController extends Application {
 
     @FXML
     private void handleDeleteDon() {
-        Dons don = tvDon.getSelectionModel().getSelectedItem();
+        Dons don = lvDon.getSelectionModel().getSelectedItem();
         if (don != null) {
             donsCrud.supprimerEntite(don);
             showAlert("Don supprimé avec succès.");
-            refreshTable();
+            refreshTable(); // Rafraîchir la liste des dons après la suppression
+            donsList = donsCrud.afficherEntite(); // Mettre à jour donsList après la suppression
+            setupDonPagination(donsList); // Mettre à jour la pagination avec la liste mise à jour
         } else {
             showAlert("Veuillez sélectionner un don à supprimer.");
         }
     }
+
+
 
 
     @FXML
@@ -113,14 +141,11 @@ public class DonsController extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/DonsForm.fxml"));
             Parent root = loader.load();
 
-            // Get the controller of the DonsForm
             DonsFormController donsFormController = loader.getController();
 
-            // Pass the selected donation from the TableView to DonsFormController
-            Dons selectedDon = tvDon.getSelectionModel().getSelectedItem();
+            Dons selectedDon = lvDon.getSelectionModel().getSelectedItem(); // Change here
             donsFormController.setSelectedDon(selectedDon);
 
-            // Set up the stage and scene
             Scene scene = new Scene(root, 550, 650);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -130,8 +155,6 @@ public class DonsController extends Application {
             e.printStackTrace();
         }
     }
-
-
 
     @FXML
     private void handleGoToTypeDon() {
@@ -180,8 +203,6 @@ public class DonsController extends Application {
             var6.printStackTrace();
         }
     }
-
-
 
     public static void main(String[] args) {
         launch(args);

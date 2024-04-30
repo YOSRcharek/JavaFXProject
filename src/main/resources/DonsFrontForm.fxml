@@ -26,11 +26,6 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="telephoneLabel" layoutX="53.0" layoutY="271.0" prefHeight="20.0" prefWidth="94.0" text="Date :" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <Separator layoutX="58.0" layoutY="510.0" opacity="0.57" prefHeight="3.0" prefWidth="423.0" />
             <Separator layoutX="54.0" layoutY="36.0" opacity="0.53" prefHeight="3.0" prefWidth="423.0" />
             <Button fx:id="btnInsert" layoutX="210.0" layoutY="373.0" mnemonicParsing="false" onAction="#handleInsertAndGoToListFront" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: #FFCCBC;" text="confirmer" textFill="WHITE" />

@@ -74,6 +74,8 @@ public class DonsFrontFormController {
         cbAssociation.getItems().addAll(donsCrud.getAllAssociations());
         cbAssociation.setValue(defaultAssociation);
 
+        date.setVisible(false);
+        date.setValue(LocalDate.now());
 
     }
 

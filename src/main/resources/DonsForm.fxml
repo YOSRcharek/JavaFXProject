@@ -26,15 +26,10 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="telephoneLabel" layoutX="53.0" layoutY="271.0" prefHeight="20.0" prefWidth="94.0" text="Date :" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <Separator layoutX="58.0" layoutY="510.0" opacity="0.57" prefHeight="3.0" prefWidth="423.0" />
             <Separator layoutX="54.0" layoutY="36.0" opacity="0.53" prefHeight="3.0" prefWidth="423.0" />
-            <Button fx:id="btnInsert" layoutX="124.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleInsertAndGoToList" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: #FFCCBC;" text="confirmer" textFill="WHITE" />
-            <Button fx:id="btnUpdate" layoutX="300.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleUpdateAndGoToList" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: #FFAB91;" text="modifier" textFill="WHITE" />
+            <Button fx:id="btnInsert" layoutX="197.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleInsertAndGoToList" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: #FFCCBC;" text="confirmer" textFill="WHITE" />
+            <Button fx:id="btnUpdate" layoutX="197.0" layoutY="452.0" mnemonicParsing="false" onAction="#handleUpdateAndGoToList" prefHeight="34.0" prefWidth="112.0" style="-fx-background-color: #FFAB91;" text="modifier" textFill="WHITE" />
             <TextField fx:id="tfMontant" layoutX="253.0" layoutY="93.0" prefHeight="34.0" prefWidth="274.0" style="-fx-border-color: white; -fx-background-color: #B0B5D6; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" stylesheets="@../../../../cloneProject/JavaFXProject/src/application/view/style.css" />
             <ChoiceBox fx:id="cbTypeDon" layoutX="252.0" layoutY="153.0" prefHeight="34.0" prefWidth="274.0" style="-fx-background-color: #B0B5D6; -fx-border-radius: 20; -fx-border-color: white;" />
             <Label fx:id="descriptionLabel1" layoutX="54.0" layoutY="217.0" prefHeight="20.0" prefWidth="108.0" text="Association :" textFill="WHITE">

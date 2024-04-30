@@ -1,4 +1,5 @@
 package Dons.Controller;
+
 import Dons.entities.Association;
 import Dons.entities.Dons;
 import Dons.entities.Typedons;
@@ -20,55 +21,61 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+
 public class DonsFrontController {
     private ObservableList<Dons> observableDonsList;
+    private ObservableList<Dons> originalDonsList;
     @FXML
-    private TableView<Dons> tvDon;
+    private TextField recherche;
 
     @FXML
-    private TableColumn<Dons, Integer> cMontant;
-
-    @FXML
-    private TableColumn<Dons, Typedons> cType;
-
-    @FXML
-    private TableColumn<Dons, Association> cAssociation;
-
-    @FXML
-    private TableColumn<Dons, Date> cDate;
+    private ListView<Dons> lvDon;
 
     private final DonsCrud donsCrud = new DonsCrud();
 
     @FXML
     public void initialize() {
-        observableDonsList = FXCollections.observableArrayList();
+        originalDonsList = FXCollections.observableArrayList();
 
-
-        // Charger les dons depuis la base de données
         List<Dons> donsList = donsCrud.afficherEntite();
 
-        // Créer une liste observable pour les dons
-        observableDonsList.addAll(donsList);
-
-        // Ajouter les dons à la TableView
-        tvDon.setItems(observableDonsList);
-
-        // Associer les propriétés des dons aux colonnes de la TableView
-        cMontant.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getMontant()).asObject());
-        cType.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getType_id()));
-        cAssociation.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getAssociation_id()));
-        cDate.setCellValueFactory(new PropertyValueFactory<>("date_mis_don"));
+        originalDonsList.addAll(donsList);
 
 
+        lvDon.setItems(originalDonsList);
+
+        recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+            ObservableList<Dons> filteredData = filterData(newValue);
+            lvDon.setItems(filteredData);
+        });
     }
+
+
+
+    private ObservableList<Dons> filterData(String keyword) {
+        ObservableList<Dons> filteredData = FXCollections.observableArrayList();
+
+        for (Dons don : originalDonsList) {
+            String montantString = String.valueOf(don.getMontant());
+
+            if (montantString.contains(keyword)) {
+                filteredData.add(don);
+            }
+        }
+
+        return filteredData;
+    }
+
+
+
 
     @FXML
     public void handleGoToForm(javafx.event.ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/DonsFrontForm.fxml"));
             Parent root = (Parent) loader.load();
-            Scene scene = new Scene(root, 550, 650); // Set scene size to 1000x500
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();  // Corrected line
+            Scene scene = new Scene(root, 550, 650);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
             stage.setScene(scene);
             stage.setTitle("Page form dons");
@@ -77,7 +84,6 @@ public class DonsFrontController {
             var6.printStackTrace();
         }
     }
-
 
     @FXML
     public void handleGoToBack(javafx.event.ActionEvent actionEvent) {
@@ -94,5 +100,4 @@ public class DonsFrontController {
             var6.printStackTrace();
         }
     }
-
 }

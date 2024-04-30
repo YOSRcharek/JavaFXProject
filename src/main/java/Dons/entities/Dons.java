@@ -76,12 +76,10 @@ public class Dons {
 
     @Override
     public String toString() {
-        return "Dons{" +
-                "id=" + id +
-                ", type_id=" + type_id +
-                ", association_id=" + association_id +
-                ", montant=" + montant +
-                ", date_mis_don=" + date_mis_don +
-                '}';
+        return "Montant: " + montant + "\n"
+                + "Association: " + association_id + "\n"
+                + "Type: " + type_id + "\n"
+                + "Date: " + date_mis_don;
     }
+
 }

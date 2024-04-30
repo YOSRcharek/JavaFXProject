@@ -1,73 +1,58 @@
-/* TABLES */
+/* LISTES */
 
-.table-view,
-.table-view .column-header,
-.table-view .column-header-background .filler,
-.table-view .corner {
+.list-view,
+.list-view .cell {
     -fx-background-color: #3498db; /* Bleu clair */
+    -fx-text-fill: white;
+    -fx-border-radius: 7px; /* Arrondi les coins des éléments de la liste */
+    -fx-background-radius: 7px; /* Arrondi les coins du fond des éléments de la liste */
+    -fx-padding: 5px; /* Espace intérieur des éléments de la liste */
 }
 
-.table-view .column-header-background {
-    -fx-background-color: linear-gradient(to bottom, #3498db, #85c1e9); /* Dégradé de bleu */
-    -fx-background-radius: 7px 7px 0px 0px;
-    -fx-background-insets: 0 11px 0 0;
-    -fx-padding: 0 0 5px 0;
-}
-
-.table-view .table-cell {
-    -fx-border-color: #3498db; /* Bleu clair */
-    -fx-padding: 2 0 2 10px;
-}
-
-.table-row-cell:hover {
+.list-view .cell:hover {
     -fx-background-color: #85c1e9; /* Bleu plus clair au survol */
-    -fx-text-background-color: #FFAB91;
 }
 
-.table-row-cell:odd {
+.list-view .cell:odd {
     -fx-background-color: #85c1e9; /* Bleu plus clair */
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
 }
 
-.table-row-cell:even {
-    -fx-background-color: #3498db; /* Bleu clair */
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
-}
-
-.table-view .virtual-flow .scroll-bar:vertical,
-.table-view .virtual-flow .scroll-bar:vertical .track,
-.table-view .virtual-flow .scroll-bar:vertical .track-background,
-.table-view .virtual-flow .scroll-bar:horizontal,
-.table-view .virtual-flow .scroll-bar:horizontal .track,
-.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+.list-view .cell:even {
     -fx-background-color: #3498db; /* Bleu clair */
 }
 
-.table-view .virtual-flow .scroll-bar:vertical .thumb {
+.list-view .scroll-bar:vertical,
+.list-view .scroll-bar:vertical .track,
+.list-view .scroll-bar:vertical .track-background,
+.list-view .scroll-bar:horizontal,
+.list-view .scroll-bar:horizontal .track,
+.list-view .scroll-bar:horizontal .track-background {
+    -fx-background-color: #3498db; /* Bleu clair */
+}
+
+.list-view .scroll-bar:vertical .thumb {
     -fx-background-color: linear-gradient(to bottom, #3498db, #85c1e9); /* Dégradé de bleu */
 }
 
-.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+.list-view .scroll-bar:horizontal .thumb {
     -fx-background-color: linear-gradient(to right, #3498db, #85c1e9); /* Dégradé de bleu */
 }
 
-.table-view .virtual-flow .scroll-bar .increment-button,
-.table-view .virtual-flow .scroll-bar .decrement-button {
+.list-view .scroll-bar .increment-button,
+.list-view .scroll-bar .decrement-button {
     -fx-opacity: 0;
     -fx-padding: 2;
 }
 
-/* Style for Buttons */
+/* Style pour les boutons */
 .button {
     -fx-background-color: #3498db; /* Bleu clair */
     -fx-text-fill: white;
     -fx-border-radius: 100px;
-    -fx-background-radius: 100px; /* Add this line */
+    -fx-background-radius: 100px; /* Arrondi les coins du fond du bouton */
 }
 
-/* Hover effect for Buttons */
+/* Effet au survol des boutons */
 .button:hover {
     -fx-background-color: #85c1e9; /* Bleu plus clair au survol */
 }

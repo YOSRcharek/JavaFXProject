@@ -1,5 +1,9 @@
 // DonsFormController.java
 package Dons.Controller;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
+import com.stripe.param.PaymentIntentCreateParams;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +27,10 @@ import javafx.scene.control.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
+import com.stripe.param.PaymentIntentCreateParams;
 
 public class DonsFormController {
 
@@ -32,8 +40,7 @@ public class DonsFormController {
     @FXML
     private Button btnUpdate;
 
-    @FXML
-    private TableView<Dons> tvDon;
+
 
     @FXML
     private TextField tfMontant;
@@ -60,22 +67,22 @@ public class DonsFormController {
     private Dons selectedDon; // Added field
 
     private boolean validateMontant(String montant) {
-        // Vérifier si le montant est un entier positif
+
         return montant.matches("\\d+") && Integer.parseInt(montant) > 0;
     }
 
     private boolean validateDate(LocalDate date) {
-        // Vérifier si la date n'est pas null et est aujourd'hui
+
         return date != null && date.equals(LocalDate.now());
     }
 
     private boolean validateAssociation(Association association) {
-        // Vérifier si l'association sélectionnée n'est pas null
+
         return association != null;
     }
 
     private boolean validateTypeDon(Typedons typeDon) {
-        // Vérifier si le type de don sélectionné n'est pas null
+
         return typeDon != null;
     }
 
@@ -88,46 +95,65 @@ public class DonsFormController {
         Association defaultAssociation = donsCrud.getAssociationById(1);
         cbAssociation.getItems().addAll(donsCrud.getAllAssociations());
         cbAssociation.setValue(defaultAssociation);
+        date.setVisible(false);
+        date.setValue(LocalDate.now());
 
-
+        if (selectedDon == null && btnUpdate != null) {
+            btnUpdate.setVisible(false);
+        }
     }
 
     private boolean handleInsertDon() {
         String montantStr = tfMontant.getText();
-        LocalDate selectedDate = date.getValue();
-        Association selectedAssociation = cbAssociation.getValue();
-        Typedons selectedType = cbTypeDon.getValue();
 
-        // Validation des champs
+        // Validation du montant
         if (!validateMontant(montantStr)) {
             clearFields();
             showAlert("Montant invalide. Veuillez saisir un montant positif.");
             return false;
         }
-        int montant = Integer.parseInt(montantStr);
 
+
+        // Conversion du montant en int
+        int realAmount = Integer.parseInt(montantStr);
+        int amount = Integer.parseInt(montantStr)*100;
+
+
+        // Traitement du paiement
+        processPayment(amount);
+
+        // Récupération des autres champs
+        LocalDate selectedDate = date.getValue();
+        Association selectedAssociation = cbAssociation.getValue();
+        Typedons selectedType = cbTypeDon.getValue();
+
+        // Validation de la date
         if (!validateDate(selectedDate)) {
             clearFields();
             showAlert("Date invalide. Veuillez sélectionner la date d'aujourd'hui.");
             return false;
         }
 
+        // Validation de l'association
         if (!validateAssociation(selectedAssociation)) {
             showAlert("Veuillez sélectionner une association.");
             clearFields();
             return false;
         }
 
+        // Validation du type de don
         if (!validateTypeDon(selectedType)) {
             clearFields();
             showAlert("Veuillez sélectionner un type de don.");
             return false;
         }
 
-        // Si toutes les validations passent, ajouter le don
+        // Création de l'objet Dons et ajout dans la base de données
         Date sqlDate = Date.valueOf(selectedDate);
-        Dons don = new Dons(montant, selectedType, selectedAssociation, sqlDate);
+        Dons don = new Dons(realAmount, selectedType, selectedAssociation, sqlDate);
         donsCrud.ajouterEntite(don);
+
+        // Affichage du message de succès et nettoyage des champs
         showAlert("Don ajouté avec succès.");
         clearFields();
         return true;
@@ -140,18 +166,27 @@ public class DonsFormController {
             tfMontant.setText(String.valueOf(selectedDon.getMontant()));
             cbAssociation.setValue(selectedDon.getAssociation_id());
             cbTypeDon.setValue(selectedDon.getType_id());
-            // Convertir java.util.Date en java.sql.Date
-            Date sqlDate = new Date(selectedDon.getDate_mis_don().getTime());
 
+            Date sqlDate = new Date(selectedDon.getDate_mis_don().getTime());
             LocalDate localDate = sqlDate.toLocalDate();
             date.setValue(localDate);
+
+            // Show btnUpdate and hide btnInsert if selectedDon is not null
+
+        }
+        if (btnInsert != null && btnUpdate != null) {
+
+            btnInsert.setVisible(false);
+            btnUpdate.setVisible(true);
+        }
+        else   {
+            btnInsert.setVisible(true);
+            btnUpdate.setVisible(false);
         }
     }
 
-
     private boolean handleUpdateDon() {
         String montantStr = tfMontant.getText();
-        LocalDate selectedDate = date.getValue();
         Association selectedAssociation = cbAssociation.getValue();
         Typedons selectedType = cbTypeDon.getValue();
 
@@ -162,6 +197,7 @@ public class DonsFormController {
             return false;
         }
         int montant = Integer.parseInt(montantStr);
+        LocalDate selectedDate = LocalDate.now();
 
         if (!validateDate(selectedDate)) {
             clearFields();
@@ -181,14 +217,14 @@ public class DonsFormController {
             return false;
         }
 
-        // Si toutes les validations passent, mettre à jour le don
+
         Date sqlDate = Date.valueOf(selectedDate);
         selectedDon.setMontant(montant);
         selectedDon.setAssociation_id(selectedAssociation);
         selectedDon.setType_id(selectedType);
         selectedDon.setDate_mis_don(sqlDate);
 
-        // Update the entity in the database
+
         donsCrud.modifierEntite(selectedDon);
         showAlert("Don mis à jour avec succès.");
         clearFields();
@@ -231,6 +267,7 @@ public class DonsFormController {
     @FXML
     private void handleInsertAndGoToList(javafx.event.ActionEvent actionEvent) {
         if (handleInsertDon()) {
+
             handleGoToList(actionEvent);
         }
     }
@@ -249,4 +286,24 @@ public class DonsFormController {
         }
     }
 
+    private void processPayment(long amount) {
+        try {
+            // Set your secret key here
+            Stripe.apiKey = "sk_test_51OnN2iI3dJx1TucUSLXejDmbjPPLTqFb4Q5btmlmfliYiDOHXlHrzLaq5OOCMJv9PRXDewithRQCah0lv1VXi21000LhIpIGIG";
+
+            // Create a PaymentIntent with other payment details
+            PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
+                    .setAmount(amount) // Amount in cents
+                    .setCurrency("usd")
+                    .build();
+
+            PaymentIntent intent = PaymentIntent.create(params);
+
+            // If the payment was successful, display a success message
+            System.out.println("Payment successful. PaymentIntent ID: " + intent.getId());
+        } catch (StripeException e) {
+            // If there was an error processing the payment, display the error message
+            System.out.println("Payment failed. Error: " + e.getMessage());
+        }
+    }
 }

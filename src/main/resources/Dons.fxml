@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,14 +13,6 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="1057.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dons.Controller.DonsController">
    <children>
-      <TableView fx:id="tvDon" layoutX="364.0" layoutY="63.0" prefHeight="404.0" prefWidth="511.0">
-        <columns>
-          <TableColumn fx:id="cMontant" prefWidth="75.0" text="montant" />
-            <TableColumn fx:id="cType" prefWidth="106.0" text="type de don" />
-            <TableColumn fx:id="cAssociation" prefWidth="87.0" text="association" />
-            <TableColumn fx:id="cDate" prefWidth="107.0" text="date" />
-        </columns>
-      </TableView>
       <Button fx:id="btnDelete" layoutX="719.0" layoutY="22.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="137.0" text="Supprimer" />
       <Button fx:id="btnOpenFormToAdd" layoutX="364.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleGoToForm" prefHeight="30.0" prefWidth="137.0" text="Faire un don" />
       <Button fx:id="btnOpenFormToUpdate" layoutX="551.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleGoToFormToUpdate" prefHeight="30.0" prefWidth="137.0" text="Modifier un don" />
@@ -123,6 +115,8 @@
          </children>
       </VBox>
       <Button fx:id="btnFront" layoutX="889.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleGoToFront" text="Front-Office" />
-
+      <ListView fx:id="lvDon" layoutX="357.0" layoutY="74.0" prefHeight="365.0" prefWidth="609.0" />
+      <Pagination fx:id="pagination" layoutX="357.0" layoutY="74.0" prefHeight="365.0" prefWidth="609" />
+      <Button fx:id="btnSort" layoutX="819.0" layoutY="469.0" mnemonicParsing="false" onAction="#handleSortDon" text="Trier par le montant" />
    </children>
 </AnchorPane>
