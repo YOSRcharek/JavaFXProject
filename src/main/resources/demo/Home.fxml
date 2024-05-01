@@ -252,7 +252,7 @@
                   <HBox layoutX="60.0" layoutY="95.0" prefHeight="122.0" prefWidth="991.0">
                      <children>
                         <Pane prefHeight="122.0" prefWidth="74.0" />
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="350.0"  stylesheets="@style.css">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="350.0" stylesheets="@style.css">
                            <children>
                               <VBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
                                  <children>
@@ -261,7 +261,7 @@
                                           <Font name="Cambria Bold" size="24.0" />
                                        </font>
                                     </Label>
-                                    <Label contentDisplay="RIGHT" prefHeight="36.0" prefWidth="172.0" fx:id="nbDemande" textFill="#003049">
+                                    <Label fx:id="nbDemande" contentDisplay="RIGHT" prefHeight="36.0" prefWidth="172.0" textFill="#003049">
                                        <font>
                                           <Font name="Cambria" size="29.0" />
                                        </font>
@@ -289,7 +289,7 @@
                                           <Font name="Cambria Bold" size="24.0" />
                                        </font>
                                     </Label>
-                                    <Label prefHeight="0.0" prefWidth="183.0" fx:id="nbAssociation"  textFill="#003049">
+                                    <Label fx:id="nbAssociation" prefHeight="0.0" prefWidth="183.0" textFill="#003049">
                                        <font>
                                           <Font name="Cambria" size="29.0" />
                                        </font>

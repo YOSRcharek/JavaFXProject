@@ -1,4 +1,5 @@
-package demo;// DatabaseConnection.java
+// DatabaseConnection.java
+package demo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,7 +11,7 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3308/tuniCollab1", "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/tuniCollab1", "root", "");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

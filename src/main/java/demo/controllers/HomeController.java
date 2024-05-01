@@ -17,6 +17,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import java.io.IOException;
 
 import java.util.Date;
 import java.util.List;
@@ -168,8 +171,7 @@ public class HomeController {
     private final AssociationController associationController = new AssociationController();
     private final ProjetController projetController = new ProjetController();
 
-    
-    
+
     @FXML
     public void initialize() {
     	   sideBar.setOnMousePressed(mouseEvent -> {
@@ -293,6 +295,29 @@ pieChart.setLegendVisible(false);
                 btnDons.setStyle("-fx-background-color:  #9CCBD6");
                 pnlDons.setStyle("-fx-background-color:  #EFFCFF");
                 pnlDons.toFront();
+
+                // Créer un chargeur FXML
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dons.fxml"));
+
+
+
+                try {
+                    // Charger le fichier FXML et obtenir une référence à la racine
+                    Parent root = loader.load();
+
+
+
+                    // Effacer le contenu précédent du panneau
+                    pnlDons.getChildren().clear();
+
+                    // Ajouter la racine du contenu du fichier FXML au panneau pnlMembers
+                    // Assuming pnlDons is a Pane
+                    pnlDons.getChildren().add(root);
+
+                } catch (IOException e) {
+                    e.printStackTrace(); // Gérer l'exception
+                }
+
             }
             else if (actionEvent.getSource() == btnOffres) {
                 btnOffres.setStyle("-fx-background-color:  #9CCBD6");
