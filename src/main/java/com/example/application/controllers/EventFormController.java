@@ -13,8 +13,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -43,6 +45,11 @@ public class EventFormController {
 
     @FXML
     private TextField imageField;
+    @FXML
+    private TextField latitudeField;
+
+    @FXML
+    private TextField longitudeField;
     @FXML
     private ComboBox<TypeEvent> typeEventComboBox;
 
@@ -74,12 +81,22 @@ public class EventFormController {
 
     @FXML
     void saveEvent(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif")
+        );
+        File selectedFile = fileChooser.showOpenDialog(null);
         // Récupérer les valeurs des champs
         String nomEvent = nomEventField.getText();
         String description = descriptionField.getText();
         String localisation = localisationField.getText();
-        String image = imageField.getText();
+        String image = selectedFile.getAbsolutePath();
+        float latitude = Float.parseFloat(latitudeField.getText());
+        float longitude = Float.parseFloat(longitudeField.getText());
+
         int capaciteMax = capaciteMaxSpinner.getValue();
+
 
         // Récupérer les valeurs des DatePicker
         LocalDate dateDebut = dateDebutPicker.getValue();
@@ -111,7 +128,7 @@ public class EventFormController {
             TypeEvent selectedTypeEvent = typeEventComboBox.getValue();
 
             // Créer un nouvel événement avec le type d'événement sélectionné
-            Events newEvent = new Events(nomEvent, description, dateDebut, dateFin, localisation, capaciteMax, image);
+            Events newEvent = new Events(nomEvent, description, dateDebut, dateFin, localisation, capaciteMax, image,latitude,longitude);
             newEvent.setTypeEvent(selectedTypeEvent); // Définir le type d'événement pour le nouvel événement
 
             // Ajouter l'événement à la base de données

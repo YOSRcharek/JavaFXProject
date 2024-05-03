@@ -48,7 +48,12 @@
                 <ComboBox fx:id="typeEventComboBox" promptText="Sélectionner le type d'événement"/>
 
                 <TextField fx:id="localisationField" promptText="Localisation de l'événement" style="-fx-background-color: #424242; -fx-border-color: #FFFFFF; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #FFFFFF; -fx-pref-width: 200px;" />
-                <TextField fx:id="imageField" promptText="Lien vers l'image de l'événement" style="-fx-background-color: #424242; -fx-border-color: #FFFFFF; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #FFFFFF; -fx-pref-width: 200px;" />
+
+                <TextField fx:id="latitudeField" promptText="Latitude" style="-fx-background-color: #424242; -fx-border-color: #FFFFFF; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #FFFFFF; -fx-pref-width: 200px;" />
+
+
+                <TextField fx:id="longitudeField" promptText="longitude" style="-fx-background-color: #424242; -fx-border-color: #FFFFFF; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #FFFFFF; -fx-pref-width: 200px;" />
+
                 <Button text="Enregistrer" onAction="#saveEvent" style="-fx-background-color: #009688; -fx-text-fill: #FFFFFF; -fx-pref-width: 200px;" />
             </children>
             <padding>

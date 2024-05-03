@@ -62,6 +62,19 @@ public class Events {
         this.longitude = longitude;
         this.typeEvent = typeEvent;
     }
+    public Events(String nomEvent, String description, LocalDate dateDebut, LocalDate dateFin, String localisation, int capaciteMax, String image, float latitude, float longitude) {
+        this.nomEvent = nomEvent;
+        this.description = description;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.localisation = localisation;
+        this.capaciteMax = capaciteMax;
+        this.capaciteActuelle = 0; // Vous pouvez initialiser la capacité actuelle à 0 si nécessaire
+        this.image = image;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
 
 
 

@@ -64,12 +64,58 @@
 .list-view:focused .list-cell {
     -fx-background-color: transparent; /* Supprimez la couleur de fond des cellules lorsqu'elles sont sélectionnées */
 }
-
-.label {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #333333;
+/* Styles globaux */
+.root {
+    -fx-background-color: #f0f0f0; /* Couleur de fond */
 }
+
+/* Styles spécifiques aux éléments */
+#nomLabel, #descriptionLabel {
+    -fx-font-size: 16px; /* Taille de la police */
+    -fx-text-fill: #333; /* Couleur du texte */
+}
+/* Titres en gras */
+.event-title {
+    -fx-font-weight: bold;
+}
+
+
+
+
+
+
+
+/* Arrière-plan et bordure de la carte WebView */
+#mapWebView {
+    -fx-background-color: #fff; /* Couleur de fond */
+    -fx-border-color: #ddd; /* Couleur de la bordure */
+    -fx-border-width: 2px; /* Largeur de la bordure */
+    -fx-border-radius: 5px; /* Bord arrondi */
+    -fx-pref-height: 300px; /* Hauteur préférée */
+    -fx-pref-width: 300px; /* Largeur préférée */
+}
+.card {
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #CCCCCC;
+    -fx-border-radius: 5;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+.card-details {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+
+.card-details > .bold-text {
+    -fx-font-weight: bold;
+}
+
+.card-button {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
 
 .value-label {
     -fx-font-size: 14px;

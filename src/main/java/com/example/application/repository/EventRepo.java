@@ -4,6 +4,8 @@ import com.example.application.DatabaseConnection;
 import com.example.application.model.Events;
 import com.example.application.model.TypeEvent;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -187,6 +189,32 @@ public class EventRepo {
             }
         } catch (SQLException e) {
             System.err.println("Erreur lors de la mise à jour de la capacité actuelle de l'événement : " + e.getMessage());
+        }
+    }
+    public void importerImage(int eventId, String imagePath) {
+        try {
+            // Lire le contenu de l'image sous forme de tableau d'octets
+            FileInputStream inputStream = new FileInputStream(imagePath);
+            byte[] imageBytes = inputStream.readAllBytes();
+
+            // Requête SQL pour mettre à jour l'image de l'événement dans la base de données
+            String sql = "UPDATE event SET image = ? WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setBytes(1, imageBytes); // Image sous forme de tableau d'octets
+            statement.setInt(2, eventId); // ID de l'événement à mettre à jour
+
+            // Exécuter la requête
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("L'image de l'événement a été importée avec succès !");
+            } else {
+                System.out.println("Aucun événement trouvé avec l'ID spécifié.");
+            }
+
+            // Fermer le flux d'entrée
+            inputStream.close();
+        } catch (IOException | SQLException e) {
+            System.err.println("Erreur lors de l'importation de l'image : " + e.getMessage());
         }
     }
 

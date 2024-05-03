@@ -3,22 +3,50 @@ import com.example.application.model.Events;
 import com.example.application.model.TypeEvent;
 import com.example.application.repository.EventRepo;
 import com.example.application.controllers.EventFormController;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import facebook4j.Facebook;
+import facebook4j.FacebookException;
+import facebook4j.FacebookFactory;
+import facebook4j.auth.AccessToken;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+
+
 public class DetailEventController {
+    @FXML
+    public Button pdfButton;
+    @FXML
+    private WebView mapWebView;
+
 
     @FXML
     private Label nomLabel;
@@ -49,6 +77,7 @@ public class DetailEventController {
     private Button modifierButton;
     @FXML
     private Button supprimerButton;
+
     private Events event;
 
     private EventController eventController;
@@ -85,7 +114,36 @@ public class DetailEventController {
         System.out.println("capa actu"+event.getCapaciteActuelle());
 
         imageLabel.setText(event.getImage());
+        float latitude = event.getLatitude();
+        float longitude = event.getLongitude();
+
+        // Charger la carte dans le WebView
+        loadMap(latitude, longitude);
     }
+    private void loadMap(float latitude, float longitude) {
+        WebEngine webEngine = mapWebView.getEngine();
+        String html = "<html>"
+                + "<head>"
+                + "<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet/dist/leaflet.css\" />"
+                + "<script src=\"https://unpkg.com/leaflet/dist/leaflet.js\"></script>"
+                + "</head>"
+                + "<body>"
+                + "<div id=\"map\" style=\"height: 400px;\"></div>"
+                + "<script>"
+                + "var map = L.map('map').setView([" + latitude + ", " + longitude + "], 13);"
+                + "L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {"
+                + "attribution: '© OpenStreetMap contributors'"
+                + "}).addTo(map);"
+                + "L.marker([" + latitude + ", " + longitude + "]).addTo(map)"
+                + ".bindPopup('Your event').openPopup();"
+                + "</script>"
+                + "</body>"
+                + "</html>";
+        webEngine.loadContent(html);
+    }
+
+
+
     @FXML
     private void participer() {
         EventRepo eventRepo = new EventRepo(); // Instancier EventRepo (assurez-vous que vous avez une référence à votre classe EventRepo)
@@ -167,6 +225,99 @@ public class DetailEventController {
             e.printStackTrace();
         }
     }
+  /*  @FXML
+    private void shareOnFacebook() {
+        // Configuration de Facebook4J avec les informations d'identification de l'application Facebook
+        String appId = "352106534085211";
+        String appSecret = "03e1fea24c26dcb382a100669a445f85";
+        String accessToken = "EAAFAPTDjIlsBOy1MbLZAHPqUWT4ELUjrSEb0MEJkXGm2wvykJ5mIbjAsEZASfaZCFJQSZA801vapsfSZASBEtEkZB851ZBwrGNHUFwc1iBwhFZACBo64e5CKUmi1iS2V3n0CcIDtd3fEZBNC2p8QiSyfXOwnsnpEMq0ZAxWLJWgACpe2pmwKn7gxdVKUWjdCOgNC9bo7WjM4WopA4xkfI4oBwdezsp0mr1iWJ1n8znCfklarVHaojcT1nS4f2rZAIfitVbZA6dSWwWcWxpQZD";
+
+        Facebook facebook = new FacebookFactory().getInstance();
+        facebook.setOAuthAppId(appId, appSecret);
+        facebook.setOAuthAccessToken(new AccessToken(accessToken, null));
+
+        // Message à partager sur Facebook
+        String message = "Votre message à partager sur Facebook.";
+
+        try {
+            // Poster le message sur Facebook
+            facebook.postStatusMessage(message);
+
+            // Afficher un message de confirmation à l'utilisateur
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Partage sur Facebook");
+            alert.setHeaderText(null);
+            alert.setContentText("Le message a été partagé sur Facebook avec succès !");
+            alert.showAndWait();
+        } catch (FacebookException e) {
+            e.printStackTrace();
+
+            // En cas d'erreur, afficher une alerte à l'utilisateur
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de partage");
+            alert.setHeaderText(null);
+            alert.setContentText("Une erreur s'est produite lors du partage sur Facebook.");
+            alert.showAndWait();
+        }
+    }*/
+
+    @FXML
+    public void generateAndDownloadPDF(ActionEvent event) {
+        Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        Document document = new Document();
+        try {
+            // Créer une boîte de dialogue pour sélectionner l'emplacement de sauvegarde
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Enregistrer le fichier PDF");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichiers PDF", "*.pdf"));
+            File file = fileChooser.showSaveDialog(primaryStage);
+
+            if (file != null) {
+                // Créer le fichier PDF avec l'emplacement sélectionné
+                PdfWriter.getInstance(document, new FileOutputStream(file));
+                document.open();
+
+                // Ajouter les détails de l'événement au document PDF
+                document.add(new Paragraph("Détails de l'événement"));
+
+                // Ajout du nom de l'événement
+                document.add(new Paragraph("Nom de l'événement : " + nomLabel.getText()));
+
+                // Ajout de la description de l'événement
+                document.add(new Paragraph("Description de l'événement : " + descriptionLabel.getText()));
+
+                // Ajout de la date de début de l'événement
+                document.add(new Paragraph("Date de début de l'événement : " + dateDebutLabel.getText()));
+
+                // Ajout de la date de fin de l'événement
+                document.add(new Paragraph("Date de fin de l'événement : " + dateFinLabel.getText()));
+
+                // Ajout de la localisation de l'événement
+                document.add(new Paragraph("Localisation de l'événement : " + localisationLabel.getText()));
+
+                // Ajout de la capacité maximale de l'événement
+                document.add(new Paragraph("Capacité maximale de l'événement : " + capaciteMaxLabel.getText()));
+
+                // Ajout de la capacité actuelle de l'événement
+                document.add(new Paragraph("Capacité actuelle de l'événement : " + capaciteActuelleLabel.getText()));
+
+                // Ajout du type d'événement
+                document.add(new Paragraph("Type d'événement : " + typeLabel.getText()));
+                // Ajoutez d'autres détails de l'événement ici...
+
+                document.close();
+
+                // Afficher un message de succès
+                System.out.println("Le fichier PDF a été enregistré avec succès à l'emplacement : " + file.getAbsolutePath());
+            } else {
+                System.out.println("Aucun emplacement sélectionné pour enregistrer le fichier PDF.");
+            }
+        } catch (DocumentException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

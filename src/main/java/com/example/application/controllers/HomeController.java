@@ -29,6 +29,8 @@
 			@FXML
 			public Pane pnlTypeEvents;
 			@FXML
+			public Pane pnlCalendrier;
+			@FXML
 			private VBox pnItems = null;
 			@FXML
 			private Button btnOverview;
@@ -36,6 +38,8 @@
 			private Button btnEvent;
 			@FXML
 			private Button btnAddTypeEvent;
+			@FXML
+			private Button btnCalendrier;
 
 			@FXML
 			private Button btnOrders;
@@ -149,6 +153,13 @@
 					pnlTypeEvents.setStyle("-fx-background-color : #0a0808");
 					pnlTypeEvents.getChildren().add(root);
 					pnlTypeEvents.toFront();
+				}
+				if(actionEvent.getSource() == btnCalendrier ){
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/calendrier.fxml"));
+					Parent root = loader.load();
+					pnlCalendrier.setStyle("-fx-background-color : #ffffff");
+					pnlCalendrier.getChildren().add(root);
+					pnlCalendrier.toFront();
 				}
 
 				if (actionEvent.getSource() == btnCustomers) {
