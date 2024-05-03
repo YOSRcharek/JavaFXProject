@@ -55,6 +55,11 @@ public class TypeDonsFormController {
         return true; // Si toutes les validations passent, le nom est considéré comme valide
     }
 
+    public void initialize () {
+        if (selectedType == null && btnUpdateType != null) {
+            btnUpdateType.setVisible(false);
+        }
+    }
 
     private boolean handleInsertTypeDon() {
         String typeName = tfNomType.getText();
@@ -81,6 +86,15 @@ public class TypeDonsFormController {
             if (tfNomType != null) {
                 tfNomType.setText(selectedType.getName());
             }
+        }
+        if (btnInsertType != null && btnUpdateType != null) {
+
+            btnInsertType.setVisible(false);
+            btnUpdateType.setVisible(true);
+        }
+        else   {
+            btnInsertType.setVisible(true);
+            btnUpdateType.setVisible(false);
         }
     }
 
