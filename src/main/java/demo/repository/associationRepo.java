@@ -96,7 +96,37 @@ public class associationRepo {
 	        }
 	        return associations;
 	    }
-	
+
+    public static List<Association> getAllAdresses() {
+        List<Association> associations = new ArrayList<>();
+        try (Connection connection = DatabaseConnection.getConnection()) {
+	        	/* String query = "SELECT a.* FROM association a\r\n"
+		            		+ "JOIN user u ON a.email = u.email\r\n"
+		            		+ "WHERE u.is_verified = 1 and a.status=true\r\n"
+		            		+ "AND u.roles = '[\"ROLE_ASSOCIATION\"]';";
+                        */String query = "SELECT adresse FROM association WHERE status=true;";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Association association = new Association(0, query, query, query, query, query, null, null, null,null, false);
+                association.setId(resultSet.getInt("id"));
+                association.setNom(resultSet.getString("nom"));
+                association.setDomaineActivite(resultSet.getString("domaine_activite"));
+                association.setEmail(resultSet.getString("email"));
+                association.setAdresse(resultSet.getString("adresse"));
+                association.setStatus(resultSet.getBoolean("status"));
+                association.setDescription(resultSet.getString("description"));
+                association.setTelephone(resultSet.getInt("telephone"));
+
+                associations.add(association);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return associations;
+    }
+
     public static void supprimerAssociation(int associationId) {
         try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "DELETE FROM association WHERE id = ?";

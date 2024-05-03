@@ -102,6 +102,11 @@
           <artifactId>heatmap</artifactId>
           <version>21.0.1</version>
       </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+          <version>6.0.2</version>
+      </dependency>
 
 
   </dependencies>

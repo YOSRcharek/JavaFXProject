@@ -80,7 +80,7 @@
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Button>
-                        <ImageView fx:id="profil" fitHeight="41.0" fitWidth="59.0" onMouseClicked="#nav" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="profil" fitHeight="41.0" fitWidth="59.0" onMouseClicked="#navProfil" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/jimmy-fallon.png" />
                            </image>
@@ -134,6 +134,9 @@
                </children>
             </Pane>
          </children>
+      </Pane>
+      <Pane fx:id="profilPane" layoutX="-1085.0" layoutY="90.0" prefHeight="786.0" prefWidth="3618.0">
+
       </Pane>
       </children>
    </AnchorPane>

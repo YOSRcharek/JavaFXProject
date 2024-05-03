@@ -5,18 +5,21 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="623.0" prefWidth="1599.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.profilController">
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="770.0" prefWidth="1599.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.profilController">
    <children>
+      <ScrollPane fx:id="itemMembre" hbarPolicy="NEVER" layoutX="263.0" layoutY="207.0" prefHeight="503.0" prefWidth="926.0" style="-fx-background-color: #fff;" vbarPolicy="NEVER">
+         <content>
+            <VBox fx:id="pnl_scroll1" prefHeight="303.0" prefWidth="865.0" spacing="20.0" style="-fx-background-color: #fff;" />
+         </content>
+      </ScrollPane>
       <VBox layoutX="-1.0" layoutY="116.0" prefHeight="503.0" prefWidth="252.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="4.0" AnchorPane.topAnchor="116.0">
          <children>
             <Label prefHeight="0.0" prefWidth="252.0" textFill="#171717">
@@ -151,7 +154,7 @@
       </VBox>
       <Pane layoutX="-2.0" prefHeight="145.0" prefWidth="1062.0" style="-fx-background-color: #B0B5D6;" styleClass="head-background" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="183.0" fitWidth="1602.0" layoutX="-2.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="183.0" fitWidth="1606.0" layoutX="-2.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/header.png" />
                </image>
@@ -166,52 +169,6 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <VBox alignment="CENTER" layoutX="-1.0" layoutY="19.0" prefHeight="52.0" prefWidth="1602.0" spacing="10" stylesheets="@login.css">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="21.0" prefWidth="1602.0" spacing="10" style="-fx-spacing: 100;">
-                     <children>
-                        <HBox prefHeight="42.0" prefWidth="244.0" spacing="10" />
-                        <HBox prefHeight="42.0" prefWidth="493.0" spacing="10" style="-fx-spacing: 15;">
-                           <children>
-                              <Label prefHeight="45.0" prefWidth="122.0" styleClass="menu-item" text="Home" textFill="#ffeded">
-                                 <font>
-                                    <Font name="Times New Roman" size="17.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="45.0" prefWidth="118.0" styleClass="menu-item" text="Blog" textFill="#ffeded">
-                                 <font>
-                                    <Font name="Times New Roman" size="17.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="44.0" prefWidth="127.0" styleClass="menu-item" text="Services" textFill="#ffeded">
-                                 <font>
-                                    <Font name="Times New Roman" size="17.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="42.0" prefWidth="107.0" styleClass="menu-item" text="About" textFill="#ffeded">
-                                 <font>
-                                    <Font name="Times New Roman" size="17.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="42.0" prefWidth="346.0" spacing="10" />
-                        <Label prefHeight="32.0" prefWidth="35.0" style="-fx-background-color: #ffeded; -fx-background-radius: 50;" textFill="#fffefe">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fx:id="profil" fitHeight="45.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/group_226847.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
          </children>
       </Pane>
       <Pane layoutX="71.0" layoutY="44.0" prefHeight="131.0" prefWidth="142.0" style="-fx-background-color: #fff; -fx-background-radius: 50;">
@@ -232,250 +189,6 @@
 
             </VBox>
             </content>
-      </ScrollPane>
-      <ScrollPane fx:id="itemMembre" hbarPolicy="NEVER" layoutX="262.0" layoutY="195.0" prefHeight="351.0" prefWidth="918.0" style="-fx-background-color: #fff;" vbarPolicy="NEVER">
-         <content>
-            <VBox fx:id="pnl_scroll1" prefHeight="404.0" prefWidth="1023.0" spacing="20.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Pane prefHeight="338.0" prefWidth="896.0" style="-fx-background-color: #fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);">
-                     <children>
-                        <ImageView fitHeight="70.0" fitWidth="76.0" layoutX="41.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/groupe.png" />
-                           </image>
-                        </ImageView>
-                        <Separator layoutX="41.0" layoutY="94.0" prefHeight="0.0" prefWidth="763.0" />
-                        <Label layoutX="123.0" layoutY="18.0" text="Quote in progress" textFill="#866de1">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="51.0" layoutY="113.0" text="CLIENT" textFill="#aeacac">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="51.0" layoutY="186.0" text="LOCATION" textFill="#aeacac">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="279.0" layoutY="113.0" text="CLIENT PAYS" textFill="#aeacac">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="279.0" layoutY="186.0" text="COMMISSION" textFill="#aeacac">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="58.0" layoutY="139.0" text="Brad Pitt" textFill="#4d4c4c">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="287.0" layoutY="139.0" text="\$1000" textFill="#4d4c4c">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="287.0" layoutY="211.0" text="Between $190 and $270" textFill="#4d4c4c">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="58.0" layoutY="211.0" text="London" textFill="#4d4c4c">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="576.0" layoutY="113.0" text="OPERATIONS" textFill="#aeacac">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="576.0" layoutY="139.0" prefHeight="19.0" prefWidth="44.0" style="-fx-background-color: #FFAB91;" text="Toggle" textFill="#fffefe">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="623.0" layoutY="139.0" style="-fx-background-color: #aeacac;" text="Monty" textFill="#fffefe">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="576.0" layoutY="165.0" prefHeight="19.0" prefWidth="58.0" style="-fx-background-color: #FFCCBC;" text="Software" textFill="#fffefe">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Pane layoutY="269.0" prefHeight="70.0" prefWidth="904.0" style="-fx-background-color: #F0F0F0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);">
-                           <children>
-                              <Label layoutX="61.0" layoutY="26.0" text="Drapo returns you $3000 and $1000 for all the deals" textFill="#504df2">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Label layoutX="614.0" layoutY="12.0" text="Date Created" textFill="#866de1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="614.0" layoutY="34.0" text="16" textFill="#ffab91">
-                           <font>
-                              <Font name="System Bold" size="36.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="663.0" layoutY="42.0" text="APR" textFill="#3a1c9d" />
-                        <Label layoutX="663.0" layoutY="60.0" text="2018" textFill="#aeacac" />
-                        <Separator layoutX="708.0" layoutY="19.0" orientation="VERTICAL" prefHeight="64.0" prefWidth="0.0" />
-                        <Label layoutX="725.0" layoutY="13.0" text="Desired Start" textFill="#866de1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="725.0" layoutY="33.0" text="25" textFill="#ffab91">
-                           <font>
-                              <Font name="System Bold" size="36.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="774.0" layoutY="41.0" text="AUG" textFill="#3a1c9d" />
-                        <Label layoutX="774.0" layoutY="59.0" text="2018" textFill="#aeacac" />
-                        <Label layoutX="123.0" layoutY="51.0" text="Ref: 20178" textFill="#b2b0b0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <effect>
-                        <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
-                     </effect>
-                  </Pane>
-                  <Pane prefHeight="338.0" prefWidth="896.0" style="-fx-background-color: #fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);">
-                     <children>
-                        <ImageView fitHeight="70.0" fitWidth="76.0" layoutX="41.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/groupe.png" />
-                           </image>
-                        </ImageView>
-                        <Separator layoutX="41.0" layoutY="94.0" prefHeight="0.0" prefWidth="763.0" />
-                        <Label layoutX="123.0" layoutY="18.0" text="Quote in progress" textFill="#866de1">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="51.0" layoutY="113.0" text="CLIENT" textFill="#aeacac">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="51.0" layoutY="186.0" text="LOCATION" textFill="#aeacac">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="279.0" layoutY="113.0" text="CLIENT PAYS" textFill="#aeacac">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="279.0" layoutY="186.0" text="COMMISSION" textFill="#aeacac">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="58.0" layoutY="139.0" text="Brad Pitt" textFill="#4d4c4c">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="287.0" layoutY="139.0" text="\$1000" textFill="#4d4c4c">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="287.0" layoutY="211.0" text="Between $190 and $270" textFill="#4d4c4c">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="58.0" layoutY="211.0" text="London" textFill="#4d4c4c">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="576.0" layoutY="113.0" text="OPERATIONS" textFill="#aeacac">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="576.0" layoutY="139.0" prefHeight="19.0" prefWidth="44.0" style="-fx-background-color: #FFAB91;" text="Toggle" textFill="#fffefe">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="623.0" layoutY="139.0" style="-fx-background-color: #aeacac;" text="Monty" textFill="#fffefe">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="576.0" layoutY="165.0" prefHeight="19.0" prefWidth="58.0" style="-fx-background-color: #FFCCBC;" text="Software" textFill="#fffefe">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
-                        <Pane layoutY="269.0" prefHeight="70.0" prefWidth="904.0" style="-fx-background-color: #F0F0F0; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);">
-                           <children>
-                              <Label layoutX="61.0" layoutY="26.0" text="Drapo returns you $3000 and $1000 for all the deals" textFill="#504df2">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Label layoutX="614.0" layoutY="12.0" text="Date Created" textFill="#866de1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="614.0" layoutY="34.0" text="16" textFill="#ffab91">
-                           <font>
-                              <Font name="System Bold" size="36.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="663.0" layoutY="42.0" text="APR" textFill="#3a1c9d" />
-                        <Label layoutX="663.0" layoutY="60.0" text="2018" textFill="#aeacac" />
-                        <Separator layoutX="708.0" layoutY="19.0" orientation="VERTICAL" prefHeight="64.0" prefWidth="0.0" />
-                        <Label layoutX="725.0" layoutY="13.0" text="Desired Start" textFill="#866de1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="725.0" layoutY="33.0" text="25" textFill="#ffab91">
-                           <font>
-                              <Font name="System Bold" size="36.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="774.0" layoutY="41.0" text="AUG" textFill="#3a1c9d" />
-                        <Label layoutX="774.0" layoutY="59.0" text="2018" textFill="#aeacac" />
-                        <Label layoutX="123.0" layoutY="51.0" text="Ref: 20178" textFill="#b2b0b0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <effect>
-                        <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
-                     </effect>
-                  </Pane>
-
-               </children>
-            </VBox>
-
-         </content>
       </ScrollPane>
    </children>
 </AnchorPane>

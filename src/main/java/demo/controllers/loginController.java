@@ -2,6 +2,10 @@ package demo.controllers;
 
 import demo.Main;
 import demo.model.Article;
+import demo.model.Association;
+import demo.model.Membre;
+import demo.repository.associationRepo;
+import demo.repository.memberRepo;
 import demo.service.NewsAPIService;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
@@ -29,6 +33,15 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import netscape.javascript.JSObject;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.net.URLEncoder;
 public class loginController {
 
     @FXML
@@ -37,6 +50,8 @@ public class loginController {
     private ImageView imageView2;
     @FXML
     private Pane connect;
+    @FXML
+    private Pane profilPane;
     @FXML
     private Pane newsPane;
     @FXML
@@ -54,6 +69,11 @@ public class loginController {
     @FXML
     private Pane pane2;
     @FXML
+    private WebView map;
+    private WebEngine webEngine;
+    private boolean mapLoaded = false;
+
+    @FXML
     public void initialize() {
         Home.setVisible(true);
     }
@@ -68,6 +88,7 @@ public class loginController {
    @FXML
    private void navHome(MouseEvent event) throws IOException {
         newsPane.setVisible(false);
+       profilPane.setVisible(false);
         inscrire.setVisible(false);
         Associations.setVisible(false);
         Home.setVisible(true);
@@ -76,37 +97,70 @@ public class loginController {
     }
 
 
-   @FXML
-   private void navAsso(MouseEvent event) throws IOException {
+    @FXML
+    private void navProfil(MouseEvent event) throws IOException {
+        newsPane.setVisible(false);
+        profilPane.setVisible(true);
+        inscrire.setVisible(false);
+        Associations.setVisible(false);
+        Home.setVisible(false);
+        connect.setVisible(false);
+        profilPane.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../profil.fxml"));
+        Node node = loader.load();
+        node.setLayoutX(1080);
+        node.setLayoutY(30);
+        profilPane.getChildren().add(node);
+    }
+
+    @FXML
+    private void navAsso(MouseEvent event) throws IOException {
+    if (!mapLoaded) {
+        profilPane.setVisible(false);
         newsPane.setVisible(false);
         inscrire.setVisible(false);
         Associations.setVisible(true);
         Home.setVisible(false);
-       connect.setVisible(false);
-       Associations.getChildren().clear();
+        connect.setVisible(false);
+        Associations.getChildren().clear();
 
-       splitPane.setOrientation(Orientation.HORIZONTAL);
-       splitPane.setDividerPosition(0, 0.5);
+        splitPane.setOrientation(Orientation.HORIZONTAL);
+        splitPane.setDividerPosition(0, 0.5);
 
-       WebView webView = new WebView();
-       WebEngine webEngine = webView.getEngine();
-       webEngine.load("file:///C:/Users/yosry/eclipse-workspace/IDE_2024/demo/src/main/resources/demo/map.html");
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
 
-       webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
-           if (newState == Worker.State.SUCCEEDED) {
-               webEngine.executeScript("ajouterMarqueurJS(36.850015154741065, 10.216590673622838);");
+        webEngine.load(getClass().getResource("../map.html").toExternalForm());
 
+        webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
 
-           }
-       });
-       pane2.getChildren().add(webView);
-       Associations.getChildren().add(splitPane);
+            if (newState == Worker.State.SUCCEEDED) {
+               List<Association> Adresses =associationRepo.getAssociations();
+               for (Association association : Adresses){
+                String[] latLng = getAddressLatLng(association.getAdresse());
+                if (latLng[0] != null && latLng[1] != null) {
+                    System.out.println("Latitude: " + latLng[0] + ", Longitude: " + latLng[1]);
+                    JSObject window = (JSObject) webEngine.executeScript("window");
+                    window.call("updateMapEvent", latLng[0], latLng[1]);
+                } else {
+                    System.out.println("Coordonnées introuvables pour cette adresse.");
+                }
+                mapLoaded = true;
+            }}
+        });
+        pane2.getChildren().add(webView);
+        loadAssoc();
+
+        Associations.getChildren().add(splitPane);
+
     }
+}
 
-   @FXML
+    @FXML
    private void navNews(MouseEvent event) {
        // Effacer le contenu actuel de newsPane
        newsPane.setVisible(true);
+        profilPane.setVisible(false);
        inscrire.setVisible(false);
        Associations.setVisible(false);
        Home.setVisible(false);
@@ -168,6 +222,7 @@ public class loginController {
        Home.setVisible(false);
        connect.setVisible(false);
        inscrire.setVisible(true);
+       profilPane.setVisible(false);
        inscrire.getChildren().clear();
 
        BackgroundImage backgroundImage = new BackgroundImage(imageView2.snapshot(null, null),
@@ -191,6 +246,7 @@ public class loginController {
         Home.setVisible(false);
         inscrire.setVisible(false);
         connect.setVisible(true);
+        profilPane.setVisible(false);
         connect.getChildren().clear();
 
         BackgroundImage backgroundImage = new BackgroundImage(imageView2.snapshot(null, null),
@@ -208,7 +264,74 @@ public class loginController {
         connect.getChildren().add(node);
     }
 
+    public static String[] getAddressLatLng(String address) {
+        String[] latLng = new String[2];
+        try {
+            // Encodez l'adresse pour l'inclure dans l'URL
+            String encodedAddress = URLEncoder.encode(address, "UTF-8");
 
+            // Construisez l'URL de la requête
+            String url = "https://nominatim.openstreetmap.org/search?format=json&q=" + encodedAddress;
+
+            // Créez un client HTTP
+            HttpClient httpClient = HttpClients.createDefault();
+
+            // Créez une requête HTTP GET
+            HttpGet request = new HttpGet(url);
+
+            // Envoyez la requête et obtenez la réponse
+            org.apache.http.HttpResponse response = httpClient.execute(request);
+
+            // Analysez la réponse JSON
+            String jsonResponse = EntityUtils.toString(response.getEntity());
+            JSONArray results = new JSONArray(jsonResponse);
+            if (results.length() > 0) {
+                JSONObject result = results.getJSONObject(0);
+                latLng[0] = result.getString("lat");
+                latLng[1] = result.getString("lon");
+            } else {
+                System.out.println("Aucune coordonnée trouvée pour cette adresse.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return latLng;
+    }
+    private void loadAssoc() {
+        pane1.getChildren().clear();
+
+        List<Association> associations = associationRepo.getAssociations();
+
+        for (Association association : associations) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../associationsItem.fxml"));
+                Node node = loader.load();
+                node.setLayoutX(50);
+                node.setLayoutY(30);
+                Label nom = (Label) node.lookup("#nomAssoc");
+                Label domaine = (Label) node.lookup("#domaine");
+                Label telephoneLabel = (Label) node.lookup("#telephone");
+                Label descrip = (Label) node.lookup("#descrip");
+                Label emailLabel = (Label) node.lookup("#email");
+                Label adresseLabel = (Label) node.lookup("#adresse");
+                nom.setText(association.getNom());
+                domaine.setText(String.valueOf(association.getDomaineActivite()));
+                telephoneLabel.setText(String.valueOf(association.getTelephone()));
+                emailLabel.setText(association.getEmail());
+                adresseLabel.setText(association.getAdresse());
+                descrip.setText(association.getDescription());
+                ScrollPane sp = new ScrollPane();
+                sp.setContent(node);
+                sp.setFitToWidth(true);
+                sp.setFitToHeight(true);
+
+                pane1.getChildren().add(sp);
+
+            } catch (IOException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }
 
 

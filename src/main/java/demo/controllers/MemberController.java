@@ -358,6 +358,179 @@ public class MemberController {
     }
 
 
+    private static void refreshMainScene2(Stage primaryStage) {
+        try {
+            Parent root = FXMLLoader.load(AssociationController.class.getResource("../test.fxml"));
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void modifier2(Membre membre, Stage primaryStage) {
+
+        if (primaryStage == null) {
+            System.out.println("Erreur : primaryStage est null.");
+            return;
+        }
+
+        try {
+            Parent root = FXMLLoader.load(MemberController.class.getResource("../update.fxml"));
+            primaryStage.setScene(new Scene(root));
+            Label nomLabel = (Label) root.lookup("#nomLabel");
+            Label prenomLabel = (Label) root.lookup("#prenomLabel");
+            Label fonctionLabel = (Label) root.lookup("#fonctionLabel");
+
+            Label telephoneLabel = (Label) root.lookup("#telephoneLabel");
+            Label emailLabel = (Label) root.lookup("#descriptionLabel");
+            Button cancel = (Button) root.lookup("#cancel");
+            Button update = (Button) root.lookup("#update");
+
+            Pane Pane = (Pane) root.lookup("#Pane");
+
+            TextField nom = (TextField) root.lookup("#nom");
+            TextField prenom = (TextField) root.lookup("#prenom");
+            ComboBox<String> fonction = (ComboBox<String>) root.lookup("#fonction");
+
+            fonction.getItems().addAll("Volontaire", "Assistant","Coordinateur des événements","Traducteur","Gestionnaire des bénévoles");
+
+
+            TextField telephone = (TextField) root.lookup("#telephone");
+            TextField email = (TextField) root.lookup("#description");
+
+            nomLabel.setText("Nom : ");
+            prenomLabel.setText("Prenom : ");
+            fonctionLabel.setText("Fonction : ");
+            telephoneLabel.setText("Telephone : ");
+            emailLabel.setText("email : ");
+
+            nom.setText(membre.getNomMembre());
+            prenom.setText(membre.getPrenomMembre());
+            telephone.setText(membre.getTelephone());
+            email.setText(membre.getEmailMembre());
+            fonction.setValue(membre.getFonction());
+
+            Label nomErrorLabel = (Label) root.lookup("#nomErrorLabel");
+            Label prenomErrorLabel = (Label) root.lookup("#prenomErrorLabel");
+            Label fonctionErrorLabel = (Label) root.lookup("#fonctionErrorLabel");
+            Label telephoneErrorLabel = (Label) root.lookup("#telephoneErrorLabel");
+            Label emailErrorLabel = (Label) root.lookup("#descriptionErrorLabel");
+
+            update.setOnAction(event -> {
+                String nomVar = nom.getText();
+                String prenomVar = prenom.getText();
+                String fonctionVar = fonction.getValue();
+                String emailVar = email.getText();
+                String telephoneVar = telephone.getText();
+
+                nomErrorLabel.setText("");
+                prenomErrorLabel.setText("");
+                fonctionErrorLabel.setText("");
+                telephoneErrorLabel.setText("");
+                emailErrorLabel.setText("");
+
+                if (nomVar.isEmpty() || prenomVar.isEmpty() || fonctionVar.isEmpty() || emailVar.isEmpty() || telephoneVar.isEmpty()) {
+                    nomErrorLabel.setText("Veuillez remplir tous les champs.");
+                }
+
+                if (nomVar.length() < 3) {
+                    nomErrorLabel.setText("Le nom doit comporter au moins 3 caractères.");
+                }
+
+                if (!nomVar.matches("[a-zA-Z]+")) {
+                    nomErrorLabel.setText("Le nom ne peut contenir que des lettres.");
+                }
+
+                if (fonctionVar.length() < 3) {
+                    fonctionErrorLabel.setText("L'adresse doit comporter au moins 3 caractères.");
+                }
+
+                if (!telephoneVar.matches("\\d{8}")) {
+                    telephoneErrorLabel.setText("Le numéro de téléphone doit comporter exactement 8 chiffres.");
+                }
+                if (!telephoneVar.matches("\\d+")) {
+                    telephoneErrorLabel.setText("Le numéro de téléphone ne peut contenir que des chiffres.");
+                }
+
+                if (!nomErrorLabel.getText().isEmpty() || !prenomErrorLabel.getText().isEmpty() ||
+                        !fonctionErrorLabel.getText().isEmpty() || !telephoneErrorLabel.getText().isEmpty() ||
+                        !emailErrorLabel.getText().isEmpty()) {
+                    return;
+                }
+
+                // Traitement normal si aucune erreur
+                memberRepo.modifierMembre(membre.getId(), nomVar,prenomVar, fonctionVar, telephoneVar, emailVar);
+
+
+
+                // Fermer la fenêtre après la mise à jour
+                primaryStage.close();
+                refreshMainScene2(primaryStage);
+            });
+
+
+
+            cancel.setOnAction(event -> {
+                primaryStage.close();
+            });
+
+            root.setOnMousePressed(event -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+            root.setOnMouseDragged(event -> {
+                primaryStage.setX(event.getScreenX() - x);
+                primaryStage.setY(event.getScreenY() - y);
+            });
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void supprimer2(Membre membre,Stage primaryStage) {
+
+
+        if (primaryStage == null) {
+            System.out.println("Erreur : primaryStage est null.");
+            return;
+        }
+
+        try {
+            Parent root = FXMLLoader.load(ProjetController.class.getResource("../Settings.fxml"));
+            primaryStage.setScene(new Scene(root));
+            Label nomLabel = (Label) root.lookup("#nomLabel");
+
+            Button cancel = (Button) root.lookup("#cancel");
+            Button delete = (Button) root.lookup("#delete");
+            nomLabel.setText("Êtes-vous sûr de vouloir supprimer ce Membre ? ");
+            delete.setOnAction(event -> {
+                memberRepo.supprimerMembre(membre.getId());
+                primaryStage.close();
+                refreshMainScene2(primaryStage);
+            });
+            cancel.setOnAction(event -> {
+                primaryStage.close();
+            });
+
+            root.setOnMousePressed(event -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+            root.setOnMouseDragged(event -> {
+                primaryStage.setX(event.getScreenX() - x);
+                primaryStage.setY(event.getScreenY() - y);
+            });
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+
+    }
 
 	 
 	}

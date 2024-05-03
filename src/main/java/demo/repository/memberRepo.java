@@ -9,6 +9,7 @@ import java.util.List;
 
 import demo.DatabaseConnection;
 import demo.model.Membre;
+import demo.model.Projet;
 
 public class memberRepo {
 
@@ -86,4 +87,29 @@ public class memberRepo {
 	    	    e.printStackTrace();
 	    	}
 
-	    }}
+	    }
+
+	public static List<Membre> getMembersProfil() {
+		List<Membre> membres = new ArrayList<>();
+		try (Connection connection = DatabaseConnection.getConnection()) {
+			String query = "SELECT * FROM membre where association_id=8;";
+			PreparedStatement statement = connection.prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				Membre membre = new Membre(0, query, query, null, null, null, 0);
+				membre.setId(resultSet.getInt("id"));
+				membre.setNomMembre(resultSet.getString("nom_membre"));
+				membre.setPrenomMembre(resultSet.getString("prenom_membre"));
+				membre.setFonction(resultSet.getString("fonction"));
+				membre.setTelephone(resultSet.getString("telephone"));
+				membre.setEmailMembre(resultSet.getString("email_membre"));
+				membre.setIdAssociation(resultSet.getInt("association_id"));
+				membres.add(membre);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return membres;
+	}
+}

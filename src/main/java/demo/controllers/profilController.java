@@ -13,21 +13,14 @@ import demo.model.Association;
 import demo.model.Membre;
 import demo.model.Projet;
 import demo.repository.associationRepo;
+import demo.repository.memberRepo;
 import demo.repository.projetRepo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -38,11 +31,11 @@ import javafx.stage.Stage;
  */
 public class profilController {
 
-    @FXML
-    private Label label;
 
     @FXML
     private VBox pnl_scroll;
+    @FXML
+    private VBox pnl_scroll1;
 
     @FXML
     private ScrollPane itemProjet;
@@ -58,8 +51,11 @@ public class profilController {
     @FXML
     private Label domaineAssoc;
     @FXML
-    private Label nomProjet;
+    private Label nomMembre;
 
+
+    private final ProjetController projetController = new ProjetController();
+    private final MemberController memberController = new MemberController();
     @FXML
     private void handleButtonAction(ActionEvent actionEvent) {
         if (actionEvent.getSource() == projets) {
@@ -73,11 +69,13 @@ public class profilController {
             projets.setStyle("-fx-background-color:  white");
             itemMembre.toFront();
         }
+
     }
 
     public void initialize() {
         loadAssociation();
         loadProject();
+        loadMember();
         itemProjet.toFront();
         projets.setStyle("-fx-background-color:  #DDE6E8");
     }
@@ -117,7 +115,9 @@ public class profilController {
                 Label idLabel = (Label) node.lookup("#id");
                 Label descripLabel = (Label) node.lookup("#descrip");
                 Label statusLabel = (Label) node.lookup("#status");
-
+                Label detailLabel = (Label) node.lookup("#details");
+                Label modifierLabel = (Label) node.lookup("#modifier");
+                Label supprimerLabel = (Label) node.lookup("#supprimer");
                 nomProjetLabel.setText(projet.getNomProjet());
                 idLabel.setText(String.valueOf(projet.getId()));
                 descripLabel.setText(projet.getDescription());
@@ -132,10 +132,67 @@ public class profilController {
 
                 yearDebutLabel.setText(String.valueOf(projet.getDateDebut().toLocalDate().getYear()));
                 yearFinLabel.setText(String.valueOf(projet.getDateFin().toLocalDate().getYear()));
+
+                detailLabel.setOnMouseClicked(event -> {
+                    Stage primaryStage = new Stage();
+                    projetController.detail(projet,primaryStage);
+                });
+                modifierLabel.setOnMouseClicked(event -> {
+                    Stage primaryStage = new Stage();
+                    projetController.modifier2(projet,primaryStage);
+                });
+                supprimerLabel.setOnMouseClicked(event -> {
+                    Stage primaryStage = new Stage();
+                    projetController.supprimer2(projet,primaryStage);
+                });
+
                 pnl_scroll.getChildren().add(node);
             } catch (IOException ex) {
                 Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
+
+    private void loadMember() {
+        pnl_scroll1.getChildren().clear();
+        List<Membre> membres = memberRepo.getMembersProfil();
+
+        for (Membre membre : membres) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../profilMember.fxml"));
+                Node node = loader.load();
+                Label nomMembreLabel = (Label) node.lookup("#nomMembre");
+                Label idLabel = (Label) node.lookup("#id");
+                Label prenomMembreLabel = (Label) node.lookup("#prenomMembre");
+                Label telephoneLabel = (Label) node.lookup("#telephone");
+                Label fonctionLabel = (Label) node.lookup("#fonction");
+                Label emailLabel = (Label) node.lookup("#email");
+                Label detailLabel = (Label) node.lookup("#details");
+                Label modifierLabel = (Label) node.lookup("#modifier");
+                Label supprimerLabel = (Label) node.lookup("#supprimer");
+                nomMembreLabel.setText(membre.getNomMembre());
+                idLabel.setText(String.valueOf(membre.getId()));
+                prenomMembreLabel.setText(membre.getPrenomMembre());
+                telephoneLabel.setText(membre.getTelephone());
+                emailLabel.setText(membre.getEmailMembre());
+                fonctionLabel.setText(membre.getFonction());
+                detailLabel.setOnMouseClicked(event -> {
+                    Stage primaryStage = new Stage();
+                    memberController.detail(membre,primaryStage);
+                });
+                modifierLabel.setOnMouseClicked(event -> {
+                    Stage primaryStage = new Stage();
+                    memberController.modifier2(membre,primaryStage);
+                });
+                supprimerLabel.setOnMouseClicked(event -> {
+                    Stage primaryStage = new Stage();
+                    memberController.supprimer2(membre,primaryStage);
+                });
+                pnl_scroll1.getChildren().add(node);
+            } catch (IOException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+    }
+
+}
