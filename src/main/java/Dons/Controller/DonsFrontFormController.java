@@ -24,6 +24,10 @@ import java.sql.Date;
 import java.time.LocalDate;
 public class DonsFrontFormController {
     @FXML
+    private Button btnBack;
+    @FXML
+    private Button btnInsert;
+    @FXML
     private TextField tfMontant;
 
     @FXML
@@ -131,18 +135,8 @@ public class DonsFrontFormController {
 
     @FXML
     public void handleGoToListFront(javafx.event.ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/DonsFront.fxml"));
-            Parent root = (Parent) loader.load();
-            Scene scene = new Scene(root, 1000, 500); // Set scene size to 1000x500
-            scene.getStylesheets().add(getClass().getResource("/Front.css").toExternalForm());
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();  // Corrected line
-            stage.setScene(scene);
-            stage.setTitle("Page Dons");
-            stage.show();
-        } catch (IOException var6) {
-            var6.printStackTrace();
-        }
+        Stage stage = (Stage) btnInsert.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -153,16 +147,7 @@ public class DonsFrontFormController {
     }
 
     public void handleGoToDonsFront(javafx.event.ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/DonsFront.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 500); // Set scene size to 1000x500
-            scene.getStylesheets().add(getClass().getResource("/Front.css").toExternalForm());
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Page dons");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
     }
 }

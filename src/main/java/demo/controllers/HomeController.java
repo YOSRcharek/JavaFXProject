@@ -50,6 +50,8 @@ public class HomeController {
 
     @FXML
     private Pane pnlDons;
+    @FXML
+    private Pane pnlTypeDons;
 
     @FXML
     private Pane pnlEvents;
@@ -64,6 +66,8 @@ public class HomeController {
 
     @FXML
     private Button btnDons;
+    @FXML
+    private Button btnTypeDons;
     @FXML
     private Button btnOverview;
 
@@ -253,6 +257,7 @@ pieChart.setLegendVisible(false);
 	    btnOrders.setStyle("-fx-background-color:    #DDE6E8");
 	    btnMembers.setStyle("-fx-background-color:    #DDE6E8");
 	    btnDons.setStyle("-fx-background-color: #DDE6E8 ");
+        btnTypeDons.setStyle("-fx-background-color: #DDE6E8 ");
         btnEvents.setStyle("-fx-background-color: #DDE6E8 ");
         btnOffres.setStyle("-fx-background-color: #DDE6E8");
 		    if (actionEvent.getSource() == btnCustomers) {
@@ -291,34 +296,33 @@ pieChart.setLegendVisible(false);
                 pnlEvents.toFront();
 
             }
+            else if (actionEvent.getSource() == btnTypeDons) {
+                btnTypeDons.setStyle("-fx-background-color:  #9CCBD6");
+                pnlTypeDons.setStyle("-fx-background-color:  #EFFCFF");
+                pnlTypeDons.toFront();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/typeDons.fxml"));
+                try {
+                    Parent root = loader.load();
+                    pnlTypeDons.getChildren().clear();
+                    pnlTypeDons.getChildren().add(root);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             else if (actionEvent.getSource() == btnDons) {
                 btnDons.setStyle("-fx-background-color:  #9CCBD6");
                 pnlDons.setStyle("-fx-background-color:  #EFFCFF");
                 pnlDons.toFront();
-
-                // Créer un chargeur FXML
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dons.fxml"));
-
-
-
                 try {
-                    // Charger le fichier FXML et obtenir une référence à la racine
                     Parent root = loader.load();
-
-
-
-                    // Effacer le contenu précédent du panneau
                     pnlDons.getChildren().clear();
-
-                    // Ajouter la racine du contenu du fichier FXML au panneau pnlMembers
-                    // Assuming pnlDons is a Pane
                     pnlDons.getChildren().add(root);
-
                 } catch (IOException e) {
-                    e.printStackTrace(); // Gérer l'exception
+                    e.printStackTrace();
                 }
-
             }
+
             else if (actionEvent.getSource() == btnOffres) {
                 btnOffres.setStyle("-fx-background-color:  #9CCBD6");
                 pnlOffres.setStyle("-fx-background-color:  #EFFCFF");

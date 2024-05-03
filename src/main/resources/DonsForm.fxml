@@ -76,7 +76,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btnBack" layoutX="20.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleGoToDons" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #B0B5D6;">
+      <Button fx:id="btnBack" layoutX="20.0" layoutY="34.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #B0B5D6;">
          <graphic>
             <ImageView accessibleRole="BUTTON" depthTest="DISABLE" fitHeight="27.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #B0B5D6;">
                <image>

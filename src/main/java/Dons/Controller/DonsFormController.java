@@ -40,7 +40,8 @@ public class DonsFormController {
     @FXML
     private Button btnUpdate;
 
-
+    @FXML
+    private Button btnBack;
 
     @FXML
     private TextField tfMontant;
@@ -56,7 +57,11 @@ public class DonsFormController {
 
     private final DonsCrud donsCrud = new DonsCrud();
 
+    private DonsController donsController; // Add a field to store the instance of DonsController
 
+    public void setDonsController(DonsController donsController) {
+        this.donsController = donsController;
+    }
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information");
@@ -242,24 +247,47 @@ public class DonsFormController {
 
     @FXML
     public void handleGoToList(javafx.event.ActionEvent actionEvent) {
+
         try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/Dons.fxml"));
+            // Fermer toutes les fenêtres ouvertes
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Stage[] stages = Stage.getWindows().toArray(new Stage[0]);
+            for (Stage stage : stages) {
+                if (stage != currentStage) {
+                    stage.close();
+                }
+            }
+
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/demo/Home.fxml"));
             Parent root = (Parent) loader.load();
-            Scene scene = new Scene(root, 1000, 500); // Set scene size to 1000x500
-            scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();  // Corrected line
-            stage.setScene(scene);
-            stage.setTitle("Page Dons");
-            stage.show();
+            Scene scene = new Scene(root, 1700, 800);
+
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.setTitle("");
+            newStage.show();
         } catch (IOException var6) {
             var6.printStackTrace();
         }
+
     }
+
+    @FXML
+    public void handleGoToListUpdate(javafx.event.ActionEvent actionEvent) {
+
+
+            Stage stage = (Stage) btnUpdate.getScene().getWindow();
+            stage.close();
+
+
+    }
+
+
 
     @FXML
     private void handleUpdateAndGoToList(javafx.event.ActionEvent actionEvent) {
         if (handleUpdateDon()) {
-            handleGoToList(actionEvent);
+            handleGoToListUpdate(actionEvent);
         }
     }
 
@@ -272,11 +300,11 @@ public class DonsFormController {
         }
     }
 
-    public void handleGoToDons(javafx.event.ActionEvent actionEvent) {
+    public void handleGoToHome(javafx.event.ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/Dons.fxml"));
-            Scene scene = new Scene(loader.load(), 1000, 500); // Set scene size to 1000x500
-            scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/demo/Home.fxml"));
+            Scene scene = new Scene(loader.load(), 1700, 800); // Set scene size to 1000x500
+            scene.getStylesheets().add(getClass().getResource("/demo/style.css").toExternalForm());
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("Page dons");
@@ -284,6 +312,11 @@ public class DonsFormController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void closeWindow() {
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
     }
 
     private void processPayment(long amount) {

@@ -167,11 +167,11 @@ public class TypeDonsController {
 
             // Configurer la scène et la fenêtre
             Scene scene = new Scene(root, 550, 400);
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Stage newStage = new Stage();  // Créer une nouvelle fenêtre
+            newStage.setScene(scene);
             scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-            stage.setScene(scene);
-            stage.setTitle("Modifier un type de don");
-            stage.show();
+            newStage.setTitle("Modifier un type de don");
+            newStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -183,14 +183,15 @@ public class TypeDonsController {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/typeDonsForm.fxml"));
             Parent root = (Parent) loader.load();
             Scene scene = new Scene(root, 550, 400); // Set scene size to 1000x500
+            Stage newStage = new Stage();  // Créer une nouvelle fenêtre
+            newStage.setScene(scene);
             scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();  // Corrected line
-            stage.setScene(scene);
-            stage.setTitle("Page form des types");
-            stage.show();
+            newStage.setTitle("Page form type dons");
+            newStage.show();
         } catch (IOException var6) {
             var6.printStackTrace();
         }
     }
+
 
 }

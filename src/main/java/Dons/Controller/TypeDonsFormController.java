@@ -22,6 +22,8 @@ public class TypeDonsFormController {
     @FXML
     private Button btnUpdateType;
     @FXML
+    private Button btnBack;
+    @FXML
     private TextField tfNomType;
     private Typedons selectedType;
     private final TypeDonsCrud typeDonsCrud = new TypeDonsCrud();
@@ -55,6 +57,11 @@ public class TypeDonsFormController {
         return true; // Si toutes les validations passent, le nom est considéré comme valide
     }
 
+    public void initialize () {
+        if (selectedType == null && btnUpdateType != null) {
+            btnUpdateType.setVisible(false);
+        }
+    }
 
     private boolean handleInsertTypeDon() {
         String typeName = tfNomType.getText();
@@ -81,6 +88,15 @@ public class TypeDonsFormController {
             if (tfNomType != null) {
                 tfNomType.setText(selectedType.getName());
             }
+        }
+        if (btnInsertType != null && btnUpdateType != null) {
+
+            btnInsertType.setVisible(false);
+            btnUpdateType.setVisible(true);
+        }
+        else   {
+            btnInsertType.setVisible(true);
+            btnUpdateType.setVisible(false);
         }
     }
 
@@ -112,26 +128,41 @@ public class TypeDonsFormController {
 
 
     @FXML
-    public void handleGoToListType (javafx.event.ActionEvent actionEvent) {
+    public void handleGoToListType(javafx.event.ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/typeDons.fxml"));
-            Parent root = (Parent) loader.load();
-            Scene scene = new Scene(root, 1000, 500); // Set scene size to 1000x500
+            // Fermer toutes les fenêtres ouvertes
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Stage[] stages = Stage.getWindows().toArray(new Stage[0]);
+            for (Stage stage : stages) {
+                if (stage != currentStage) {
+                    stage.close();
+                }
+            }
 
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();  // Corrected line
-            scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-            stage.setScene(scene);
-            stage.setTitle("Page type des dons");
-            stage.show();
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/demo/Home.fxml"));
+            Parent root = (Parent) loader.load();
+            Scene scene = new Scene(root, 1700, 800);
+
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.setTitle("Page type des dons");
+            newStage.show();
         } catch (IOException var6) {
             var6.printStackTrace();
         }
     }
 
     @FXML
+    public void handleGoToListTypeUpdate(javafx.event.ActionEvent actionEvent) {
+        Stage stage = (Stage) btnUpdateType.getScene().getWindow();
+        stage.close();
+    }
+
+
+    @FXML
     private void handleUpdateAndGoToListType(javafx.event.ActionEvent actionEvent) {
       if  (handleUpdateType()) {
-          handleGoToListType(actionEvent);
+          handleGoToListTypeUpdate(actionEvent);
       }
     }
 
@@ -144,18 +175,8 @@ public class TypeDonsFormController {
 
     @FXML
     private void handleGoToTypeDon(javafx.event.ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/typeDons.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root, 1000, 500);
-            scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Page des types de don");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        stage.close();
     }
 
     private void clearFields() {

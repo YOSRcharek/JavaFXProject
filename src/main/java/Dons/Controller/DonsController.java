@@ -113,7 +113,7 @@ public class DonsController extends Application {
 
 
     @FXML
-    private void refreshTable() {
+    public void refreshTable() {
         observableDonsList.clear();
         observableDonsList.addAll(donsCrud.afficherEntite());
     }
@@ -140,17 +140,17 @@ public class DonsController extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/DonsForm.fxml"));
             Parent root = loader.load();
-
+            Scene scene = new Scene(root, 550, 650);
             DonsFormController donsFormController = loader.getController();
 
             Dons selectedDon = lvDon.getSelectionModel().getSelectedItem(); // Change here
             donsFormController.setSelectedDon(selectedDon);
 
-            Scene scene = new Scene(root, 550, 650);
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Modifier un don");
-            stage.show();
+
+            Stage newStage = new Stage();  // Créer une nouvelle fenêtre
+            newStage.setScene(scene);
+            newStage.setTitle("Modifier un don");
+            newStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -194,15 +194,18 @@ public class DonsController extends Application {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/DonsForm.fxml"));
             Parent root = (Parent) loader.load();
             Scene scene = new Scene(root, 550, 650); // Set scene size to 1000x500
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();  // Corrected line
+            DonsFormController formController = loader.getController();
+            formController.setDonsController(this); // Pass the instance of DonsController to DonsFormController
+            Stage newStage = new Stage();  // Créer une nouvelle fenêtre
+            newStage.setScene(scene);
             scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-            stage.setScene(scene);
-            stage.setTitle("Page form dons");
-            stage.show();
+            newStage.setTitle("Page form dons");
+            newStage.show();
         } catch (IOException var6) {
             var6.printStackTrace();
         }
     }
+
 
     public static void main(String[] args) {
         launch(args);

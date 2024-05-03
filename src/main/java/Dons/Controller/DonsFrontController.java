@@ -75,11 +75,11 @@ public class DonsFrontController {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/DonsFrontForm.fxml"));
             Parent root = (Parent) loader.load();
             Scene scene = new Scene(root, 550, 650);
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-            stage.setScene(scene);
-            stage.setTitle("Page form dons");
-            stage.show();
+            Stage newStage = new Stage();  // Créer une nouvelle fenêtre
+            newStage.setScene(scene);
+            newStage.setTitle("Page form dons");
+            newStage.show();
         } catch (IOException var6) {
             var6.printStackTrace();
         }
@@ -88,11 +88,10 @@ public class DonsFrontController {
     @FXML
     public void handleGoToBack(javafx.event.ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/Dons.fxml"));
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/demo/Home.fxml"));
             Parent root = (Parent) loader.load();
-            Scene scene = new Scene(root, 1000, 500); // Set scene size to 1000x500
+            Scene scene = new Scene(root, 1700, 800); // Set scene size to 1000x500
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();  // Corrected line
-            scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
             stage.setScene(scene);
             stage.setTitle("Page form dons");
             stage.show();
