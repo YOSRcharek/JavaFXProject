@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DataBase {
-    private String url = "jdbc:mysql://localhost:3306/blog";
+    private String url = "jdbc:mysql://localhost:3306/tunicollab4";
     private String login = "root";
     private String pwd = "";
     private Connection connection;
@@ -29,6 +29,14 @@ public class DataBase {
         return instance;
     }
 
+/*
+    public static synchronized DataBase getInstance() {
+        if (instance == null) {
+            instance = new DataBase();
+        }
+        return instance;
+    }
+    */
     public Connection getConnection() {
         return this.connection;
     }
