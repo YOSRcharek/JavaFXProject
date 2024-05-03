@@ -82,6 +82,9 @@ public class AddPostController {
             checkContent.setVisible(true);
             return false;
         }}
+
+
+
     @FXML
     void addimg(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();

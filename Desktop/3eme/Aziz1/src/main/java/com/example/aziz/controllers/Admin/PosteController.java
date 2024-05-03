@@ -29,8 +29,12 @@ public class PosteController {
         TableColumn<Post, Date> createdatCol = new TableColumn<>("Created At");
         createdatCol.setCellValueFactory(new PropertyValueFactory<>("createdat"));
 
+
+
         TableColumn<Post, String> titleCol = new TableColumn<>("Title");
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+
+
 
         TableColumn<Post, String> contentCol = new TableColumn<>("Content");
         contentCol.setCellValueFactory(new PropertyValueFactory<>("content"));
