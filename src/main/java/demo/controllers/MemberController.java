@@ -94,6 +94,7 @@ public class MemberController {
             Label nomLabel = (Label) root.lookup("#nomLabel");
             Label prenomLabel = (Label) root.lookup("#prenomLabel");
             Label fonctionLabel = (Label) root.lookup("#fonctionLabel");
+
             Label telephoneLabel = (Label) root.lookup("#telephoneLabel");
             Label emailLabel = (Label) root.lookup("#descriptionLabel");
             Button cancel = (Button) root.lookup("#cancel");
@@ -103,21 +104,25 @@ public class MemberController {
 
             TextField nom = (TextField) root.lookup("#nom");
             TextField prenom = (TextField) root.lookup("#prenom");
-            TextField fonction = (TextField) root.lookup("#fonction");
+            ComboBox<String> fonction = (ComboBox<String>) root.lookup("#fonction");
+
+            fonction.getItems().addAll("Volontaire", "Assistant","Coordinateur des événements","Traducteur","Gestionnaire des bénévoles");
+
+
             TextField telephone = (TextField) root.lookup("#telephone");
             TextField email = (TextField) root.lookup("#description");
 
             nomLabel.setText("Nom : ");
-            prenomLabel.setText("Domaine : ");
-            fonctionLabel.setText("Adresse : ");
+            prenomLabel.setText("Prenom : ");
+            fonctionLabel.setText("Fonction : ");
             telephoneLabel.setText("Telephone : ");
             emailLabel.setText("email : ");
 
             nom.setText(membre.getNomMembre());
             prenom.setText(membre.getPrenomMembre());
-            fonction.setText(membre.getFonction());
             telephone.setText(membre.getTelephone());
             email.setText(membre.getEmailMembre());
+            fonction.setValue(membre.getFonction());
 
             Label nomErrorLabel = (Label) root.lookup("#nomErrorLabel");
             Label prenomErrorLabel = (Label) root.lookup("#prenomErrorLabel");
@@ -128,7 +133,7 @@ public class MemberController {
             update.setOnAction(event -> {
                 String nomVar = nom.getText();
                 String prenomVar = prenom.getText();
-                String fonctionVar = fonction.getText();
+                String fonctionVar = fonction.getValue();
                 String emailVar = email.getText();
                 String telephoneVar = telephone.getText();
 
@@ -258,7 +263,9 @@ public class MemberController {
             
             TextField nom = (TextField) root.lookup("#nom");
             TextField prenom = (TextField) root.lookup("#prenom");
-            TextField fonction = (TextField) root.lookup("#fonction");
+           // TextField fonction = (TextField) root.lookup("#fonction");
+            ComboBox<String> fonction = (ComboBox<String>) root.lookup("#fonction");
+            fonction.getItems().addAll("Volontaire", "Assistant","Coordinateur des événements","Traducteur","Gestionnaire des bénévoles");
             TextField telephone = (TextField) root.lookup("#telephone");
             TextField email = (TextField) root.lookup("#description");
             
@@ -294,7 +301,7 @@ public class MemberController {
                 String prenomVar = prenom.getText();
                 String emailVar = email.getText();
 
-                String fonctionVar = fonction.getText();
+                String fonctionVar = fonction.getValue();
                 String telephoneVar = telephone.getText();
 
                   if (nomVar.isEmpty() || prenomVar.isEmpty()|| fonctionVar.isEmpty() || emailVar.isEmpty() || telephoneVar.isEmpty()) {

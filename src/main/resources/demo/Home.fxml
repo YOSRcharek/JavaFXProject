@@ -39,7 +39,7 @@
                            <Font name="Cambria Bold" size="32.0" />
                        </font>
                    </Label>
-                   <Button fx:id="ajouterButton2" layoutX="1100.0" layoutY="80.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" style="-fx-border-color: #FFAB91; -fx-border-radius: 20; -fx-background-color: #FFCCBC; -fx-background-radius: 20;" stylesheets="@style.css" text="Ajouter nouveau " textFill="WHITE">
+                   <Button fx:id="ajouterButton2"  layoutX="1100.0" layoutY="80.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="151.0" style="-fx-border-color: #FFAB91; -fx-border-radius: 20; -fx-background-color: #FFCCBC; -fx-background-radius: 20;" stylesheets="@style.css" text="Ajouter nouveau " textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="27.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                            <image>

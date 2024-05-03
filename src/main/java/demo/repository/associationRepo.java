@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class associationRepo {
-    private Connection connection;
+    private static Connection connection;
 
     public associationRepo() {
         connection = DatabaseConnection.getConnection();
@@ -197,6 +197,43 @@ public class associationRepo {
         return count;
     }
 
+    public static Association getOneAssociation() {
+        Association association = null;
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "SELECT * FROM association WHERE id = 8;";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
 
+            if (resultSet.next()) {
+                association = new Association();
+                association.setId(resultSet.getInt("id"));
+                association.setNom(resultSet.getString("nom"));
+                association.setDomaineActivite(resultSet.getString("domaine_activite"));
+                association.setEmail(resultSet.getString("email"));
+                association.setAdresse(resultSet.getString("adresse"));
+                association.setStatus(resultSet.getBoolean("status"));
+                association.setDescription(resultSet.getString("description"));
+                association.setTelephone(resultSet.getInt("telephone"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return association;
+    }
+    public static boolean connect(String email, String password) throws SQLException {
+        String query = "SELECT * FROM users WHERE email = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, email);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+
+                    String storedPassword = resultSet.getString("password");
+
+                    return storedPassword.equals(password);
+                }
+            }
+        }
+        return false;
+    }
 }
 

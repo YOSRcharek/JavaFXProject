@@ -178,7 +178,14 @@
 {
     -fx-background-color: linear-gradient(to left,#795AF3 ,#3929E0);
 }
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
 
+.scroll-pane .scroll-bar {
+    -fx-opacity: 0;
+    -fx-background-color: transparent;
+}
 .default-color0.chart-series-line { -fx-stroke: #9ccbd6; }
 .default-color1.chart-series-line { -fx-stroke: #003049; }
 .default-color2.chart-series-line { -fx-stroke:  #FFCCBC; }

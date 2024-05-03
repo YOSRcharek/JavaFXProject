@@ -85,5 +85,32 @@ public class projetRepo {
 	    	    e.printStackTrace();
 	    	}
 
-	    }}
+	    }
+
+	public static List<Projet> getProjetsProfil() {
+		List<Projet> projets = new ArrayList<>();
+		try (Connection connection = DatabaseConnection.getConnection()) {
+			String query = "SELECT * FROM projet where association_id=8;";
+			PreparedStatement statement = connection.prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				Projet projet = new Projet(0, query, query, null, null, null, 0);
+				projet.setId(resultSet.getInt("id"));
+				projet.setNomProjet(resultSet.getString("nom_projet"));
+				projet.setDateFin(resultSet.getDate("date_fin"));
+				projet.setDateDebut(resultSet.getDate("date_debut"));
+				projet.setStatus(resultSet.getString("status"));
+				projet.setDescription(resultSet.getString("description"));
+				projet.setIdAssociation(resultSet.getInt("association_id"));
+				projets.add(projet);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return projets;
+	}
+
+
+}
 

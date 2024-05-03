@@ -34,6 +34,10 @@ public class Association {
 		this.adresse=adresse;
 	}
 
+	public Association() {
+
+	}
+
 	public String getNom() {
         return nom;
     }

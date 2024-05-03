@@ -6,6 +6,7 @@ import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -234,6 +235,24 @@ public class SignUpAssoController implements Initializable {
             associationRepo.ajouterAssociation(nomValue,domaineValue, emailValue ,passwordValue,documentBlob, addressValue, descriptionValue, tel);
             mailService.sendConfirmationEmail(emailValue);
             System.out.println("Inscription réussie !");
+
+
+            // Réinitialiser les champs de texte
+            emailErrorLabel.setText("");
+            passwordErrorLabel.setText("");
+            nomErrorLabel.setText("");
+            domaineErrorLabel.setText("");
+            addressErrorLabel.setText("");
+            telephoneErrorLabel.setText("");
+            descriptionErrorLabel.setText("");
+            documentErrorLabel.setText("");
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Inscription réussie");
+            alert.setHeaderText(null);
+            alert.setContentText("Votre inscription a été effectuée avec succès. Veuillez vérifier votre email pour la confirmation.");
+            alert.showAndWait();
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SerialException e) {

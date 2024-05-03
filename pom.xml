@@ -92,6 +92,18 @@
           <artifactId>jakarta.mail</artifactId>
           <version>1.6.4</version>
       </dependency>
+      <dependency>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+          <version>20220320</version>
+      </dependency>
+      <dependency>
+          <groupId>eu.hansolo.fx</groupId>
+          <artifactId>heatmap</artifactId>
+          <version>21.0.1</version>
+      </dependency>
+
+
   </dependencies>
 
   <build>

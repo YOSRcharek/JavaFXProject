@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="539.0" style="-fx-background-color: #B0B5D6;"  xmlns:fx="http://javafx.com/fxml" fx:controller="demo.controllers.MemberController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="539.0" style="-fx-background-color: #B0B5D6;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="demo.controllers.MemberController">
    <children>
       <Pane fx:id="Pane" layoutY="75.0" prefHeight="570.0" prefWidth="539.0">
          <children>
@@ -47,7 +48,7 @@
            
             <TextField fx:id="nom" layoutX="253.0" layoutY="93.0" prefHeight="34.0" prefWidth="281.0" style="-fx-border-color: white; -fx-background-color: #B0B5D6; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" stylesheets="@style.css" />
             <TextField fx:id="prenom" layoutX="253.0" layoutY="153.0" prefHeight="34.0" prefWidth="281.0" style="-fx-border-color: white; -fx-background-color: #B0B5D6; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" stylesheets="@style.css" />
-            <TextField fx:id="fonction" layoutX="253.0" layoutY="211.0" prefHeight="34.0" prefWidth="281.0" style="-fx-border-color: white; -fx-background-color: #B0B5D6; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" stylesheets="@style.css" />
+            <ComboBox fx:id="fonction" layoutX="254.0" layoutY="212.0" prefHeight="34.0" prefWidth="274.0" style="-fx-background-color: #B0B5D6; -fx-border-radius: 20; -fx-border-color: white;" />
             <TextField fx:id="telephone" layoutX="253.0" layoutY="267.0" prefHeight="34.0" prefWidth="281.0" style="-fx-border-color: white; -fx-background-color: #B0B5D6; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" stylesheets="@style.css" />
             <TextField fx:id="description" layoutX="253.0" layoutY="322.0" prefHeight="34.0" prefWidth="281.0" style="-fx-border-color: white; -fx-background-color: #B0B5D6; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" stylesheets="@style.css" />
             <Label fx:id="nomErrorLabel" layoutX="270.0" layoutY="130.0" prefHeight="20.0" prefWidth="252.0" text="" textFill="WHITE">
