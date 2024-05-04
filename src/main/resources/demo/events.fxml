@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.application.controllers.EventController">
+    <children>
+        <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <VBox spacing="5.0">
+                    <HBox alignment="CENTER" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+                        <Button text="Précédent" onAction="#previousPage"/>
+                        <Label fx:id="currentPageLabel" />
+                        <Button text="Suivant" onAction="#nextPage"/>
+                    </HBox>
+                    <TextField fx:id="searchField" onKeyReleased="#rechercherEvenements" promptText="Rechercher un événement" />
+                    <Button fx:id="triAlphabetiqueButton" onAction="#trierParOrdreAlphabetique" text="Trier par ordre alphabétique" />
+
+
+
+                    <ListView fx:id="eventListView" prefHeight="600.0" prefWidth="950.0" stylesheets="@style.css" />
+
+               <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>
