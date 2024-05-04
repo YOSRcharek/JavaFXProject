@@ -149,7 +149,7 @@
                         <Font size="48.0" />
                     </font>
                 </Label>
-                <Label layoutX="227.0" layoutY="103.0" text="Fonction" textFill="WHITE">
+                <Label layoutX="227.0" layoutY="103.0" text="user"  fx:id="nameLabel" textFill="WHITE">
                     <font>
                         <Font size="13.0" />
                     </font>

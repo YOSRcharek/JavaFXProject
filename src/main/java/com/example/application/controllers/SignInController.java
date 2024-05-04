@@ -23,6 +23,7 @@ public class SignInController {
     private Button signInButton;
 
     private UserRepository userRepository;
+    private static User authenticatedUser; // Store the authenticated user
 
     public SignInController() {
         this.userRepository = new UserRepository();
@@ -34,7 +35,7 @@ public class SignInController {
         String userPassword = passwordField.getText();
 
         // Attempt to authenticate the user
-        User authenticatedUser = userRepository.authenticateUser(userEmail, userPassword);
+        authenticatedUser = userRepository.authenticateUser(userEmail, userPassword);
 
         if (authenticatedUser != null) {
             // Authentication successful
@@ -54,9 +55,7 @@ public class SignInController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-            }
-            else {
+            } else {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/profile.fxml"));
                     Parent root = loader.load();
@@ -67,11 +66,14 @@ public class SignInController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
         } else {
             // Authentication failed, handle the error (e.g., show an error message)
             System.out.println("Authentication failed. Please check your credentials.");
         }
+    }
+
+    public static User getAuthenticatedUser() {
+        return authenticatedUser;
     }
 }

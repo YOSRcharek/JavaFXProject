@@ -12,6 +12,7 @@ com/example/application/Main.class
 com/example/application/GUIStarter.class
 com/example/application/controllers/HomeController.class
 com/example/application/model/TypeEvent.class
+com/example/application/EmailService.class
 com/example/application/controllers/SignInController.class
 com/example/application/model/Association.class
 com/example/application/DatabaseConnection.class

@@ -2,6 +2,8 @@ package com.example.application;
 
 import com.example.application.model.User;
 import com.example.application.repository.UserRepository;
+import com.example.application.services.SendMail;
+
 import java.util.List;
 
 import java.util.Arrays;
@@ -23,6 +25,15 @@ public class MainUser {
         for (User user : allUsers) {
             System.out.println(user);
         }
+        String recipient = "amirchaari629@gmail.com.com";
+
+        String subject = "Test Email";
+        String body = "This is a test email sent from Java.";
+
+        // Replace these with your actual email credentials
+
+
+        SendMail.sendMail(recipient, subject, body);
 ////
 //        // Test updating an existing user (assuming there's a user with id = 1)
 //        User existingUser = userRepository.getUserById(1);

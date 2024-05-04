@@ -42,27 +42,7 @@
         }
 
 
-    //    public boolean authenticateUser(String email, String password) {
-    //        String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
-    //
-    //        try {
-    //            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-    //            preparedStatement.setString(1, email);
-    //            preparedStatement.setString(2, password);
-    //
-    //            ResultSet resultSet = preparedStatement.executeQuery();
-    //
-    //            boolean userExists = resultSet.next();
-    //
-    //            preparedStatement.close();
-    //            resultSet.close();
-    //
-    //            return userExists;
-    //        } catch (SQLException e) {
-    //            e.printStackTrace();
-    //            return false;
-    //        }
-    //    }
+
 
         public User authenticateUser(String email, String password) {
             String sql = "SELECT id, email, password, roles, is_verified FROM user WHERE email = ?";
@@ -80,10 +60,14 @@
                     String roles = resultSet.getString("roles");
                     boolean isVerified = resultSet.getBoolean("is_verified");
 
-                    if (BCrypt.checkpw(password, hashedPassword)) {
-                        User authenticatedUser = new User(userEmail, hashedPassword, roles, isVerified);
-                        authenticatedUser.setId(id);
-                        return authenticatedUser;
+                    if (isVerified) {
+
+
+                        if (BCrypt.checkpw(password, hashedPassword)) {
+                            User authenticatedUser = new User(userEmail, hashedPassword, roles, isVerified);
+                            authenticatedUser.setId(id);
+                            return authenticatedUser;
+                        }
                     }
                 }
 
@@ -142,6 +126,11 @@
             }
         }
 
+
+
+
+
+
         // Method to retrieve a user by ID
         public User getUserById(int userId) {
             String sql = "SELECT * FROM user WHERE id=?";
@@ -171,6 +160,37 @@
 
             return null;
         }
+
+
+        public User getUserByEmail(String email) {
+            String sql = "SELECT * FROM user WHERE email = ?";
+
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, email);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    User user = new User();
+                    user.setId(resultSet.getInt("id"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setRoles(resultSet.getString("roles")); // Retrieve roles directly as JSON string
+                    user.setVerified(resultSet.getBoolean("is_verified"));
+
+                    preparedStatement.close();
+                    resultSet.close();
+
+                    return user;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
 
         // Method to retrieve all users
         public List<User> getAllUsers() {

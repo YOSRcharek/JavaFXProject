@@ -10,7 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.application.controllers.RegisterCont">
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.application.controllers.RegisterCont">
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="261.0" style="-fx-background-color: #404040;" BorderPane.alignment="CENTER">
          <children>
@@ -39,6 +41,12 @@
             <TextField fx:id="email" layoutX="49.0" layoutY="186.0" prefHeight="25.0" prefWidth="202.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
             <PasswordField fx:id="password" layoutX="49.0" layoutY="219.0" prefHeight="25.0" prefWidth="202.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
             <PasswordField fx:id="confirmPassword" layoutX="49.0" layoutY="254.0" prefHeight="25.0" prefWidth="202.0" promptText="Confirm Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="verificationCodeField" visible="false" promptText="verify your code here" />
+            <Button fx:id="verifyButton" text="Verify" visible="false" onAction="#verify" layoutX="49.0" layoutY="302.0" prefHeight="32.0" prefWidth="76.0" style="-fx-background-color: #404040; -fx-background-radius: 0px; -fx-text-fill: WHITE;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <Button fx:id="registerButton" layoutX="112.0" layoutY="302.0" mnemonicParsing="false" onAction="#register" prefHeight="32.0" prefWidth="76.0" style="-fx-background-color: #404040; -fx-background-radius: 0px;" text="Submit" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -49,7 +57,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Hyperlink>
+            <VBox xmlns="http://javafx.com/javafx"
+                  xmlns:fx="http://javafx.com/fxml"
+                  prefWidth="180" prefHeight="300">
 
+               <!-- Add WebView for the chatbot -->
+               <WebView fx:id="chatbotWebView" prefWidth="160" prefHeight="280" />
+
+            </VBox>
          </children>
       </AnchorPane>
    </right>

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.example.application.model.User;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.event.ActionEvent;
@@ -43,6 +44,15 @@ public class profilController {
     @FXML
     private JFXButton membres;
 
+
+    @FXML
+
+    private Label nameLabel;
+
+
+
+
+
     @FXML
     private void handleButtonAction(ActionEvent actionEvent) {
 
@@ -62,6 +72,15 @@ public class profilController {
     public void initialize() {
         itemProjet.toFront();
         projets.setStyle("-fx-background-color:  #DDE6E8");
+
+        User authenticatedUser = SignInController.getAuthenticatedUser();
+        if (authenticatedUser != null) {
+            nameLabel.setText(authenticatedUser.getEmail());
+        }
+//        System.out.println("Authenticated user email: " + authenticatedUser.getEmail());
+
+
+
     }
 
 
