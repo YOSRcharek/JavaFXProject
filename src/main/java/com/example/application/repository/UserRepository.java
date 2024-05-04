@@ -84,17 +84,14 @@
 
         // Method to update an existing user
         public boolean updateUser(User user) {
-            String sql = "UPDATE user SET email=?, password=?, roles=?, is_verified=? WHERE id=?";
+            String sql = "UPDATE user SET email=?, roles=?, is_verified=? WHERE id=?";
 
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setString(1, user.getEmail());
-                user.setPassword(user.getPassword()); // Hash the password before storing
-                preparedStatement.setString(2, user.getPassword());
-
-                preparedStatement.setString(3, user.getRoles()); // Store roles directly as JSON string
-                preparedStatement.setBoolean(4, user.isVerified());
-                preparedStatement.setInt(5, user.getId());
+                preparedStatement.setString(2, user.getRoles()); // Store roles directly as JSON string
+                preparedStatement.setBoolean(3, user.isVerified());
+                preparedStatement.setInt(4, user.getId());
 
                 int rowsUpdated = preparedStatement.executeUpdate();
 
@@ -106,6 +103,7 @@
                 return false;
             }
         }
+
 
         // Method to delete an existing user by ID
         public boolean deleteUser(int userId) {

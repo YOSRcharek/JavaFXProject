@@ -1,12 +1,15 @@
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/MainEvent.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/GUIStarter.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/model/Events.java
+/Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/controllers/ForgetPasswordController.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/repository/EventRepo.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/repository/UserRepository.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/model/User.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/model/Association.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/controllers/HomeController.java
+/Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/EmailService.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/controllers/SignInController.java
+/Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/services/SendMail.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/controllers/RegisterCont.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/repository/associationRepo.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/controllers/profilController.java
@@ -17,3 +20,4 @@
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/controllers/Controller.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/DatabaseConnection.java
 /Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/Main.java
+/Users/chaari/yosr version pi/JavaFXProject/src/main/java/com/example/application/services/mailService.java

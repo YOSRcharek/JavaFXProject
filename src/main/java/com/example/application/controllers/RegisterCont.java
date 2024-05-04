@@ -129,7 +129,7 @@ public class RegisterCont {
 
         // Compare entered code with generated code
         if (enteredVerificationCode.equals(verificationCode)) {
-            // Find the user by email (assuming you have a method in UserRepository for this)
+            // Find the user by email
             User user = userRepository.getUserByEmail(email.getText());
 
             if (user != null) {
@@ -138,6 +138,7 @@ public class RegisterCont {
                 // Save the updated user information to the database
                 boolean updated = userRepository.updateUser(user);
                 if (updated) {
+                    // Show success message
                     showAlertConfirmaion("Verification Successful", "Your account has been verified successfully!");
                     navigateToSignIn(); // Navigate to the sign-in screen
                 } else {
@@ -149,6 +150,7 @@ public class RegisterCont {
         } else {
             showAlert("Verification Failed", "Invalid verification code. Please try again.");
         }
+
     }
 
     private String generateRandomCode() {

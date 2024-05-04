@@ -3,11 +3,17 @@ com/example/application/repository/TypeEventRepo.class
 com/example/application/model/Events.class
 com/example/application/repository/associationRepo.class
 com/example/application/repository/EventRepo.class
+com/example/application/controllers/ForgetPasswordController.class
+com/example/application/services/mailService$2.class
+com/example/application/services/SendMail.class
+com/example/application/services/mailService.class
 com/example/application/MainEvent.class
+com/example/application/services/mailService$3.class
 com/example/application/controllers/RegisterCont.class
 com/example/application/repository/UserRepository.class
 com/example/application/model/User.class
 com/example/application/MainUser.class
+com/example/application/services/SendMail$1.class
 com/example/application/Main.class
 com/example/application/GUIStarter.class
 com/example/application/controllers/HomeController.class
@@ -16,4 +22,5 @@ com/example/application/EmailService.class
 com/example/application/controllers/SignInController.class
 com/example/application/model/Association.class
 com/example/application/DatabaseConnection.class
+com/example/application/services/mailService$1.class
 com/example/application/controllers/profilController.class

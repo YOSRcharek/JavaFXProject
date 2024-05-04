@@ -73,6 +73,21 @@ public class SignInController {
         }
     }
 
+    @FXML
+    private void forgetPassword() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ForgetPassword.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) signInButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static User getAuthenticatedUser() {
         return authenticatedUser;
     }
