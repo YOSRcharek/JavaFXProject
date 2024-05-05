@@ -1,4 +1,8 @@
 package Dons.Controller;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
+import com.stripe.param.PaymentIntentCreateParams;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +23,7 @@ import Dons.entities.Typedons;
 import Dons.services.DonsCrud;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.controlsfx.control.Notifications;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -82,50 +87,61 @@ public class DonsFrontFormController {
 
     private boolean handleInsertDon() {
         String montantStr = tfMontant.getText();
+
+        // Validation du montant
+        if (!validateMontant(montantStr)) {
+            clearFields();
+            Notifications.create().title("Done").text("Montant invalide. Veuillez saisir un montant positif.").showConfirm();
+            return false;
+        }
+
+
+        // Conversion du montant en int
+        int realAmount = Integer.parseInt(montantStr);
+        int amount = Integer.parseInt(montantStr)*100;
+
+
+        // Traitement du paiement
+        processPayment(amount);
+
+        // Récupération des autres champs
         LocalDate selectedDate = date.getValue();
         Association selectedAssociation = cbAssociation.getValue();
         Typedons selectedType = cbTypeDon.getValue();
 
-        // Validation des champs
-        if (!validateMontant(montantStr)) {
-            clearFields();
-            showAlert("Montant invalide. Veuillez saisir un montant positif.");
-            return false;
-        }
-        int montant = Integer.parseInt(montantStr);
 
-        if (!validateDate(selectedDate)) {
-            clearFields();
-            showAlert("Date invalide. Veuillez sélectionner la date d'aujourd'hui.");
-            return false;
-        }
 
+        // Validation de l'association
         if (!validateAssociation(selectedAssociation)) {
-            showAlert("Veuillez sélectionner une association.");
+            Notifications.create().title("Done").text("Veuillez sélectionner une association.").showConfirm();
             clearFields();
             return false;
         }
 
+        // Validation du type de don
         if (!validateTypeDon(selectedType)) {
             clearFields();
-            showAlert("Veuillez sélectionner un type de don.");
+            Notifications.create().title("Done").text("Veuillez sélectionner un type de don.").showConfirm();
             return false;
         }
 
-        // Si toutes les validations passent, ajouter le don
+        // Création de l'objet Dons et ajout dans la base de données
         Date sqlDate = Date.valueOf(selectedDate);
-        Dons don = new Dons(montant, selectedType, selectedAssociation, sqlDate);
+        Dons don = new Dons(realAmount, selectedType, selectedAssociation, sqlDate);
         donsCrud.ajouterEntite(don);
-        showAlert("Don ajouté avec succès.");
+
+        // Affichage du message de succès et nettoyage des champs
+        Notifications.create().title("Done").text("ajout avec succés").showConfirm();
         clearFields();
+
         return true;
+
     }
 
     private void clearFields() {
         tfMontant.clear();
         cbAssociation.getSelectionModel().clearSelection();
         cbTypeDon.getSelectionModel().clearSelection();
-        date.setValue(null);
     }
 
 
@@ -165,4 +181,28 @@ public class DonsFrontFormController {
             e.printStackTrace();
         }
     }
+
+
+    private void processPayment(long amount) {
+        try {
+            // Set your secret key here
+            Stripe.apiKey = "sk_test_51OnN2iI3dJx1TucUSLXejDmbjPPLTqFb4Q5btmlmfliYiDOHXlHrzLaq5OOCMJv9PRXDewithRQCah0lv1VXi21000LhIpIGIG";
+
+            // Create a PaymentIntent with other payment details
+            PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
+                    .setAmount(amount) // Amount in cents
+                    .setCurrency("usd")
+                    .build();
+
+            PaymentIntent intent = PaymentIntent.create(params);
+
+            // If the payment was successful, display a success message
+            System.out.println("Payment successful. PaymentIntent ID: " + intent.getId());
+        } catch (StripeException e) {
+            // If there was an error processing the payment, display the error message
+            System.out.println("Payment failed. Error: " + e.getMessage());
+        }
+    }
+
+
 }

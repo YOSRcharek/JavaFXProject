@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import org.controlsfx.control.Notifications;
 
 public class TypeDonsFormController {
 
@@ -36,19 +37,20 @@ public class TypeDonsFormController {
     private boolean validateTypeName(String typeName) {
         // Vérifie si le nom n'est pas vide
         if (typeName.isEmpty()) {
-            showAlert("Nom du type de don est requis");
+            Notifications.create().title("Done").text("Nom du type de don est requis").showConfirm();
+
             return false;
         }
 
         // Vérifie si le nom contient uniquement des lettres
         if (!typeName.matches("[a-zA-Z]+")) {
-            showAlert("Nom du type de don ne doit pas contenir des chieffres");
+            Notifications.create().title("Done").text("Nom du type de don ne doit pas contenir des chieffres").showConfirm();
             return false;
         }
 
         // Vérifie si le nom a une longueur entre 3 et 15 caractères
         if (typeName.length() < 3 || typeName.length() > 15) {
-            showAlert("Nom du type de don doit contenir entre 3 et 15 lettres");
+            Notifications.create().title("Done").text("Nom du type de don doit contenir entre 3 et 15 lettres").showConfirm();
             return false;
         }
 
@@ -73,7 +75,7 @@ public class TypeDonsFormController {
         // Si la validation passe, ajouter le type de don
         Typedons newType = new Typedons(0, typeName);
         typeDonsCrud.ajouterType(newType);
-        showAlert("Type de don ajouté avec succès.");
+        Notifications.create().title("Done").text("Type de don ajouté avec succès.").showConfirm();
         clearFields();
         return true;
     }
@@ -111,14 +113,14 @@ public class TypeDonsFormController {
 
                 selectedType.setName(newName);
                 typeDonsCrud.modifierType(selectedType);
-                showAlert("Type de don mis à jour avec succès.");
+                Notifications.create().title("Done").text("Type de don mis à jour avec succès.").showConfirm();
                 clearFields();
                 return true;
             } else {
-                showAlert("Veuillez entrer un nouveau nom pour le type de don.");
+                Notifications.create().title("Done").text("Veuillez entrer un nouveau nom pour le type de don.").showConfirm();
             }
         } else {
-            showAlert("Veuillez sélectionner un type de don à mettre à jour.");
+            Notifications.create().title("Done").text("Veuillez sélectionner un type de don à mettre à jour.").showConfirm();
         }
         return false;
     }

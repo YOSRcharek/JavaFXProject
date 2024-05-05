@@ -26,12 +26,22 @@ import javafx.scene.control.ListView;
 import javafx.util.Callback;
 import javafx.scene.layout.VBox;
 import java.util.Comparator;
-
+import org.controlsfx.control.Notifications;
+import java.util.logging.Logger;
+import java.awt.Desktop;
+import java.net.URI;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.PieChart;
+import java.util.Map;
+import java.util.HashMap;
 
 
 
 public class DonsController extends Application {
     private ObservableList<Dons> observableDonsList;
+
 
     @FXML
     private Button btnDelete;
@@ -56,6 +66,7 @@ public class DonsController extends Application {
     private ListView<Dons> lvDon;
 
     private final DonsCrud donsCrud = new DonsCrud();
+    private static final Logger logger = Logger.getLogger(DonsController.class.getName());
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -123,12 +134,12 @@ public class DonsController extends Application {
         Dons don = lvDon.getSelectionModel().getSelectedItem();
         if (don != null) {
             donsCrud.supprimerEntite(don);
-            showAlert("Don supprimé avec succès.");
+            Notifications.create().title("Done").text("Don supprimé avec succès.").showConfirm();
             refreshTable(); // Rafraîchir la liste des dons après la suppression
             donsList = donsCrud.afficherEntite(); // Mettre à jour donsList après la suppression
             setupDonPagination(donsList); // Mettre à jour la pagination avec la liste mise à jour
         } else {
-            showAlert("Veuillez sélectionner un don à supprimer.");
+            Notifications.create().title("Done").text("Veuillez sélectionner un don à supprimer.").showConfirm();
         }
     }
 
@@ -203,6 +214,102 @@ public class DonsController extends Application {
             var6.printStackTrace();
         }
     }
+
+
+    @FXML
+    void gotofacebook(javafx.event.ActionEvent actionEvent) {
+        try {
+            String facebookUrl = "https://www.facebook.com/profile.php?id=61555736206742";
+            openWebpage(facebookUrl);
+        } catch (Exception e) {
+            logger.severe("An error occurred while opening Facebook profile page: " + e.getMessage());
+        }
+    }
+
+    private void openWebpage(String url) {
+        try {
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void handleShowChart() {
+        // Créez les axes X et Y pour le graphique
+        final NumberAxis xAxis = new NumberAxis();
+        final NumberAxis yAxis = new NumberAxis();
+
+        // Définissez les libellés des axes
+        xAxis.setLabel("Date");
+        yAxis.setLabel("Montant");
+
+        // Créez le graphique
+        final LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
+        lineChart.setTitle("Évolution des montants");
+
+        // Ajoutez les données au graphique
+        XYChart.Series<Number, Number> series = new XYChart.Series<>();
+        // Remplacez data par votre liste de données réelle
+        for (int i = 0; i < donsList.size(); i++) {
+            series.getData().add(new XYChart.Data<>(i, donsList.get(i).getMontant()));
+        }
+
+        // Ajoutez la série de données au graphique
+        lineChart.getData().add(series);
+
+        // Créez une nouvelle fenêtre pour afficher le graphique
+        Stage chartStage = new Stage();
+        chartStage.setTitle("Évolution des montants");
+        chartStage.setScene(new Scene(lineChart, 800, 600));
+        chartStage.show();
+    }
+
+    @FXML
+    private void handleShowPieChart() {
+        // Créer une carte pour stocker les montants par association
+        Map<String, Double> associationAmountMap = new HashMap<>();
+
+        // Calculer le total des montants
+        double totalMontant = 0.0;
+        for (Dons don : donsList) {
+            Association association = don.getAssociation_id();
+            if (association != null) {
+                String associationName = association.getName();
+                double montant = don.getMontant();
+                // Ajouter le montant au total pour cette association
+                associationAmountMap.merge(associationName, montant, Double::sum);
+                // Ajouter le montant au total général
+                totalMontant += montant;
+            }
+        }
+
+        // Créer une liste de sections de pie chart
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+        // Créer une copie finale de la variable totalMontant
+        final double finalTotalMontant = totalMontant;
+
+        // Ajouter les montants de chaque association à la liste
+        associationAmountMap.forEach((associationName, montant) -> {
+            // Calculer le pourcentage de ce montant par rapport au total
+            double percentage = (montant / finalTotalMontant) * 100;
+            // Ajouter les données de section avec le nom de l'association et le pourcentage
+            pieChartData.add(new PieChart.Data(associationName + " (" + String.format("%.2f", percentage) + "%)", montant));
+        });
+
+        // Créer le pie chart
+        PieChart pieChart = new PieChart(pieChartData);
+        pieChart.setTitle("Répartition des montants par association");
+
+        // Créer une nouvelle fenêtre pour afficher le pie chart
+        Stage chartStage = new Stage();
+        chartStage.setTitle("Répartition des montants par association");
+        chartStage.setScene(new Scene(pieChart, 800, 600));
+        chartStage.show();
+    }
+
 
     public static void main(String[] args) {
         launch(args);

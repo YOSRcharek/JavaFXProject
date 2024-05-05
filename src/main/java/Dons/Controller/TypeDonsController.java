@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.*;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 public class TypeDonsController {
     @FXML
     private ObservableList<Typedons> observableTypeList;
@@ -110,10 +111,10 @@ public class TypeDonsController {
         Typedons type = lvTypeDon.getSelectionModel().getSelectedItem();
         if (type != null) {
             typeDonsCrud.supprimerType(type);
-            showAlert("Type de don supprimé avec succès.");
+            Notifications.create().title("Done").text("Type de don supprimé avec succès.").showConfirm();
             refreshTable();
         } else {
-            showAlert("Veuillez sélectionner un type de don à supprimer.");
+            Notifications.create().title("Done").text("Veuillez sélectionner un type de don à supprimer.").showConfirm();
         }
     }
 

@@ -24,7 +24,7 @@ import Dons.entities.Typedons;
 import Dons.services.DonsCrud;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
+import org.controlsfx.control.Notifications;
 import java.sql.Date;
 import java.time.LocalDate;
 import com.stripe.Stripe;
@@ -109,7 +109,7 @@ public class DonsFormController {
         // Validation du montant
         if (!validateMontant(montantStr)) {
             clearFields();
-            showAlert("Montant invalide. Veuillez saisir un montant positif.");
+            Notifications.create().title("Done").text("Montant invalide. Veuillez saisir un montant positif.").showConfirm();
             return false;
         }
 
@@ -127,16 +127,11 @@ public class DonsFormController {
         Association selectedAssociation = cbAssociation.getValue();
         Typedons selectedType = cbTypeDon.getValue();
 
-        // Validation de la date
-        if (!validateDate(selectedDate)) {
-            clearFields();
-            showAlert("Date invalide. Veuillez sélectionner la date d'aujourd'hui.");
-            return false;
-        }
+
 
         // Validation de l'association
         if (!validateAssociation(selectedAssociation)) {
-            showAlert("Veuillez sélectionner une association.");
+            Notifications.create().title("Done").text("Veuillez sélectionner une association.").showConfirm();
             clearFields();
             return false;
         }
@@ -144,7 +139,7 @@ public class DonsFormController {
         // Validation du type de don
         if (!validateTypeDon(selectedType)) {
             clearFields();
-            showAlert("Veuillez sélectionner un type de don.");
+            Notifications.create().title("Done").text("Veuillez sélectionner un type de don.").showConfirm();
             return false;
         }
 
@@ -154,9 +149,11 @@ public class DonsFormController {
         donsCrud.ajouterEntite(don);
 
         // Affichage du message de succès et nettoyage des champs
-        showAlert("Don ajouté avec succès.");
+        Notifications.create().title("Done").text("ajout avec succés").showConfirm();
         clearFields();
+
         return true;
+
     }
 
 
@@ -193,7 +190,7 @@ public class DonsFormController {
         // Validation des champs
         if (!validateMontant(montantStr)) {
             clearFields();
-            showAlert("Montant invalide. Veuillez saisir un montant positif.");
+            Notifications.create().title("Done").text("Montant invalide. Veuillez saisir un montant positif.").showConfirm();
             return false;
         }
         int montant = Integer.parseInt(montantStr);
@@ -201,19 +198,19 @@ public class DonsFormController {
 
         if (!validateDate(selectedDate)) {
             clearFields();
-            showAlert("Date invalide. Veuillez sélectionner la date d'aujourd'hui.");
+            Notifications.create().title("Done").text("Date invalide. Veuillez sélectionner la date d'aujourd'hui.").showConfirm();
             return false;
         }
 
         if (!validateAssociation(selectedAssociation)) {
             clearFields();
-            showAlert("Veuillez sélectionner une association.");
+            Notifications.create().title("Done").text("Veuillez sélectionner une association.").showConfirm();
             return false;
         }
 
         if (!validateTypeDon(selectedType)) {
             clearFields();
-            showAlert("Veuillez sélectionner un type de don.");
+            Notifications.create().title("Done").text("Veuillez sélectionner un type de don.").showConfirm();
             return false;
         }
 
@@ -226,7 +223,7 @@ public class DonsFormController {
 
 
         donsCrud.modifierEntite(selectedDon);
-        showAlert("Don mis à jour avec succès.");
+        Notifications.create().title("Done").text("Don mis à jour avec succès.").showConfirm();
         clearFields();
         return true;
     }
@@ -237,7 +234,7 @@ public class DonsFormController {
         tfMontant.clear();
         cbAssociation.getSelectionModel().clearSelection();
         cbTypeDon.getSelectionModel().clearSelection();
-        date.setValue(null);
+
     }
 
     @FXML
