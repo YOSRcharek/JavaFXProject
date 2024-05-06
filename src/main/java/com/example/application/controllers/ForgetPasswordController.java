@@ -126,6 +126,10 @@ private  static String userEmaill;
     @FXML
     private void resetPassword() {
         String newPassword = newPasswordField.getText();
+        if (newPassword.length() < 8) {
+            showAlert("Invalid Password", "Password must be at least 8 characters long.");
+            return;
+        }
 
         // Check if the email exists in the database
         boolean passwordUpdated = userRepository.updatePassword(userEmaill, newPassword);

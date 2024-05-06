@@ -146,6 +146,7 @@
 
                              <Button fx:id="btnUpdate" onAction="#handleUpdateConfirm" text="Update" />
                          </HBox>
+                        <TextField fx:id="searchemail" promptText="Enter Email" />
 
                          <!-- Table View -->
                         <!-- Table View -->

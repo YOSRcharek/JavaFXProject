@@ -3,6 +3,7 @@ package com.example.application.controllers;
 import com.example.application.model.User;
 import com.example.application.repository.UserRepository;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,8 @@ public class HomeController {
 
 	@FXML
 	private TextField txtEmail;
+	@FXML
+	private TextField searchemail;
 
 	@FXML
 	private CheckBox chkVerified;
@@ -89,6 +92,31 @@ public class HomeController {
 	}
 
 	public void initialize() {
+
+
+		// Populate the table with data from UserRepository
+		List<User> userList = userRepository.getAllUsers();
+		userTable.getItems().addAll(userList);
+
+		// Set up a filtered list to filter based on email
+		FilteredList<User> filteredList = new FilteredList<>(userTable.getItems());
+
+		// Bind the filtered list to the TableView
+		userTable.setItems(filteredList);
+
+		// Add listener to the text field to filter based on email
+		txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredList.setPredicate(user -> {
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				// Filter based on email
+				String lowerCaseFilter = newValue.toLowerCase();
+				return user.getEmail().toLowerCase().contains(lowerCaseFilter);
+			});
+		});
+
+
 //		actionsColumn.setCellValueFactory(cellData -> new SimpleStringProperty("Actions"));
 
 
@@ -106,9 +134,9 @@ public class HomeController {
 		emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 		verifiedColumn.setCellValueFactory(new PropertyValueFactory<>("verified"));
 //
-		// Populate the table with data from UserRepository
-		List<User> userList = userRepository.getAllUsers();
-		userTable.getItems().addAll(userList);
+//		// Populate the table with data from UserRepository
+//		List<User> userList = userRepository.getAllUsers();
+//		userTable.getItems().addAll(userList);
 
 	}
 
