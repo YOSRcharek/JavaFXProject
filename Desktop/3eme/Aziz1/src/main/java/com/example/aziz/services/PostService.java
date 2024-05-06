@@ -137,4 +137,16 @@ public class PostService implements IService<Post>{
         }
         return posts;
     }
+
+    /** 2  ***/
+    @Override
+    public void updateVisibility(int postId, boolean isVisible) throws SQLException {
+        String req = "UPDATE post SET visible = ? WHERE id = ?";
+        PreparedStatement os = connection.prepareStatement(req);
+        os.setInt(1, isVisible ? 1 : 0); // Convert boolean to integer (1 for true, 0 for false)
+        os.setInt(2, postId);
+        os.executeUpdate();
+        System.out.println("Post visibility updated successfully");
+    }
+   /*****/
 }

@@ -110,4 +110,9 @@ public class CommentService implements IService<Comment> {
         }
         return comments;
     }
+
+    @Override
+    public void updateVisibility(int postId, boolean isVisible) throws SQLException {
+
+    }
 }

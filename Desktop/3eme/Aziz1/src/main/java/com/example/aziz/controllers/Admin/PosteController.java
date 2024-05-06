@@ -47,6 +47,55 @@ public class PosteController {
         TableColumn<Post, Integer> ratingCol = new TableColumn<>("Rating");
         ratingCol.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
+
+/**********************************************************************************************/
+        TableColumn<Post, Void> visCol = new TableColumn<>("Visibility");
+        visCol.setCellFactory(param -> new TableCell<>() {
+            private final Button button = new Button();
+
+            {
+                button.setOnAction(event -> {
+                    Post post = getTableView().getItems().get(getIndex());
+                    // Toggle visibility status
+                    post.toggleVisibility();
+                    // Update button text and style
+                    updateButton(post.isVisible());
+                    // Optionally, you can update the database here with the new visibility status
+                    // postService.updateVisibility(post.getId(), post.isVisible());
+                    try {
+                        postService.updateVisibility(post.getId(), post.isVisible());
+                        System.out.println("Visibility status updated successfully!");
+                    } catch (SQLException e) {
+                        showErrorAlert("Error updating visibility status: " + e.getMessage());
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    Post post = getTableView().getItems().get(getIndex());
+                    updateButton(post.isVisible());
+                    setGraphic(button);
+                }
+            }
+
+            // Method to update button text and style based on visibility status
+            private void updateButton(boolean isVisible) {
+                if (isVisible) {
+                    button.setText("Visible");
+                    button.setStyle("-fx-background-color: green; -fx-text-fill: white;");
+                } else {
+                   button.setText("Invisible");
+                    button.setStyle("-fx-background-color: red; -fx-text-fill: white;");
+                }
+            }
+        });
+/******************************************************************************************************/
+
         TableColumn<Post, Void> repondreCol = new TableColumn<>("Comennts");
         repondreCol.setCellFactory(param -> new TableCell<>() {
             private final Button button = new Button("Comennts");
@@ -74,6 +123,7 @@ public class PosteController {
                     }
 
                 });
+
             }
 
             @Override
@@ -88,7 +138,7 @@ public class PosteController {
         });
 
 
-        tableView.getColumns().addAll(titleCol, contentCol, quoteCol, createdatCol, ratingCol,repondreCol);
+        tableView.getColumns().addAll(titleCol, contentCol, quoteCol, createdatCol, ratingCol,repondreCol,visCol);
 
         try {
             tableView.getItems().addAll(postService.getAll());

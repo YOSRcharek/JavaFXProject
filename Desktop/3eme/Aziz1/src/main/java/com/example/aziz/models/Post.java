@@ -73,7 +73,7 @@ public class Post {
     }
 
     public void setVisible(int visible) {
-        this.visible = visible;
+        this.visible =visible;
     }
 
     public String getImage() {
@@ -124,5 +124,11 @@ public class Post {
                 ", quote='" + quote + '\'' +
                 '}';
     }
+    public boolean isVisible() {
+        return visible == 1;
+    }
 
+    public void toggleVisibility() {
+        visible = (visible == 1) ? 0 : 1;
+    }
 }

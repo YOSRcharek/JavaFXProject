@@ -11,6 +11,8 @@ public interface IService<T>{
     public T getOneById(int id) throws SQLException;
     public List<T> getAll() throws SQLException;
     public List<T> getByIdUser(int id)throws SQLException;
+    /**  1 * */
+    public void updateVisibility(int postId, boolean isVisible) throws SQLException;
 
 }
 
