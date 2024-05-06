@@ -46,7 +46,7 @@ public class SignInController {
             if (roles.contains("ROLE_ADMIN")) {
                 // Load the home page FXML file
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Home.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Home.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) signInButton.getScene().getWindow();
@@ -55,9 +55,20 @@ public class SignInController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else {
+            } else if (roles.contains("ROLE_ASSOCIATION")) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/profile.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../profil.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) signInButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../test.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) signInButton.getScene().getWindow();
@@ -67,6 +78,7 @@ public class SignInController {
                     e.printStackTrace();
                 }
             }
+
         } else {
             // Authentication failed, handle the error (e.g., show an error message)
             System.out.println("Authentication failed. Please check your credentials.");
@@ -76,11 +88,23 @@ public class SignInController {
     @FXML
     private void forgetPassword() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ForgetPassword.fxml"));
+
+
+
+
+
+
+
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ForgetPassword.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) signInButton.getScene().getWindow();
-            stage.setScene(scene);
+//            Scene scene = new Scene(root);
+//            Stage stage = (Stage) signInButton.getScene().getWindow();
+//            stage.setScene(scene);
+//            stage.show();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Forget password");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

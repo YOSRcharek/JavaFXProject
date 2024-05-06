@@ -37,6 +37,8 @@ public class RegisterCont {
     private Button registerButton;
 
 
+
+
     @FXML
     private TextField captchaTextField;
     @FXML
@@ -44,8 +46,7 @@ public class RegisterCont {
 
     @FXML
     private Button verifyButton; // Add this field
-    @FXML
-    private WebView chatbotWebView;
+
 
     @FXML
     private ImageView captchaImageView; // Add ImageView to display CAPTCHA image
@@ -223,7 +224,7 @@ private String captchavercode;
     private void navigateToSignIn() {
         try {
             // Load the sign-in FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SignIn.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../SignIn.fxml"));
             Parent root = loader.load();
 
             // Set up the stage

@@ -71,7 +71,11 @@ public class HomeController {
     @FXML
     private Pane pnlOffres;
     @FXML
+    private Pane pnlBlog;
+    @FXML
     private Button btnEvents;
+    @FXML
+    private Button btnBlog;
 
     @FXML
     private Button btnOffres;
@@ -115,8 +119,13 @@ public class HomeController {
     @FXML
     private Button btnUsers;
 
+
+
     @FXML
     private TextField txtEmail;
+
+    @FXML
+    private Label name;
     @FXML
     private TextField searchemail;
 
@@ -237,7 +246,11 @@ public class HomeController {
                stage.setY(mouseEvent.getScreenY() - y);
            });
 
-    	
+        User authenticatedUser = SignInController.getAuthenticatedUser();
+        if (authenticatedUser != null) {
+            name.setText(authenticatedUser.getEmail());
+        }
+//        System.out.println("Authenticated user email: " + authenticatedUser.getEmail());
 
          XYChart.Series series1 = new XYChart.Series();
 
@@ -288,32 +301,33 @@ public class HomeController {
           pieChart.setLabelsVisible(false);
 
           //amir
-        List<User> userList =  userRepository.getAllUsers();
+//        List<User> userList =  userRepository.getAllUsers();
+//        userTable.getItems().addAll(userList);
+//
+//        // Set up a filtered list to filter based on email
+//        FilteredList<User> filteredList = new FilteredList<>(userTable.getItems());
+//
+//        // Bind the filtered list to the TableView
+//        userTable.setItems(filteredList);
+//
+//        // Add listener to the text field to filter based on email
+//        txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
+//            filteredList.setPredicate(user -> {
+//                if (newValue == null || newValue.isEmpty()) {
+//                    return true;
+//                }
+//                // Filter based on email
+//                String lowerCaseFilter = newValue.toLowerCase();
+//                return user.getEmail().toLowerCase().contains(lowerCaseFilter);
+//            });
+//        });
+//
+//        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        emailColumnAmir.setCellValueFactory(new PropertyValueFactory<>("email"));
+//        verifiedColumn.setCellValueFactory(new PropertyValueFactory<>("verified"));
+
+        List<User> userList = userRepository.getAllUsers();
         userTable.getItems().addAll(userList);
-
-        // Set up a filtered list to filter based on email
-        FilteredList<User> filteredList = new FilteredList<>(userTable.getItems());
-
-        // Bind the filtered list to the TableView
-        userTable.setItems(filteredList);
-
-        // Add listener to the text field to filter based on email
-        txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(user -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                // Filter based on email
-                String lowerCaseFilter = newValue.toLowerCase();
-                return user.getEmail().toLowerCase().contains(lowerCaseFilter);
-            });
-        });
-
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        emailColumnAmir.setCellValueFactory(new PropertyValueFactory<>("email"));
-        verifiedColumn.setCellValueFactory(new PropertyValueFactory<>("verified"));
-
-
 
 
 
@@ -336,6 +350,7 @@ public class HomeController {
         btnEvents.setStyle("-fx-background-color: #DDE6E8 ");
         btnOffres.setStyle("-fx-background-color: #DDE6E8");
         btnUsers.setStyle("-fx-background-color : #DDE6E8");
+        btnBlog.setStyle("-fx-background-color : #DDE6E8");
 		    if (actionEvent.getSource() == btnCustomers) {
 		        btnCustomers.setStyle("-fx-background-color:  #9CCBD6");
 		        pnlCustomer.setStyle("-fx-background-color: #EFFCFF");
@@ -373,8 +388,9 @@ public class HomeController {
                 pnlEvents.toFront();
 
             }else if (actionEvent.getSource() == btnUsers) {
-            pnlUsers.setStyle("-fx-background-color : #53639F");
-            pnlUsers.toFront();
+            pnlUsers.setStyle("-fx-background-color : #EFFCFF");
+                btnUsers.setStyle("-fx-background-color:  #9CCBD6");
+                pnlUsers.toFront();
             }
 
             else if (actionEvent.getSource() == btnTypeDons) {
@@ -402,11 +418,32 @@ public class HomeController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }else if (actionEvent.getSource() == btnBlog) {
+                btnBlog.setStyle("-fx-background-color:  #9CCBD6");
+                pnlBlog.setStyle("-fx-background-color:  #EFFCFF");
+                pnlBlog.toFront();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Admin/Comment.fxml"));
+                try {
+                    Parent root = loader.load();
+                    pnlBlog.getChildren().clear();
+                    pnlBlog.getChildren().add(root);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-
             else if (actionEvent.getSource() == btnOffres) {
                 btnOffres.setStyle("-fx-background-color:  #9CCBD6");
                 pnlOffres.setStyle("-fx-background-color:  #EFFCFF");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../datailsService.fxml"));
+                try {
+                    Parent root = loader.load();
+                    pnlOffres.getChildren().clear();
+                    root.setLayoutX(360);
+                    root.setLayoutY(120);
+                    pnlOffres.getChildren().add(root);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 pnlOffres.toFront();
             }
             else if (actionEvent.getSource()==btnOverview){
@@ -742,7 +779,8 @@ public class HomeController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../events.fxml"));
             Node node = loader.load();
-
+            node.setLayoutX(260);
+            node.setLayoutY(100);
 
             pnlEvents.getChildren().add(node);
         } catch (IOException ex) {

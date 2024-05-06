@@ -63,7 +63,7 @@ private  static String userEmaill;
 
             // Navigate to the resetpassword.fxml page
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/resetpassword.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../resetpassword.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) emailField.getScene().getWindow();

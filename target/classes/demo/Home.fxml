@@ -34,6 +34,7 @@
    <children>
       <StackPane layoutX="257.0" prefHeight="830.0" prefWidth="1260.0" style="-fx-background-color: #02030A;">
          <children>
+            <Pane fx:id="pnlBlog" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;" />
              <Pane fx:id="pnlUsers" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css">
                  <children>
                      <VBox alignment="CENTER" layoutX="419.0" layoutY="150.0" spacing="10" stylesheets="@application.css">
@@ -288,9 +289,6 @@
              <Pane fx:id="pnlDons" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;">
              </Pane>
              <Pane fx:id="pnlTypeDons" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;" />
-
-             <Pane fx:id="pnlOffres" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;">
-             </Pane>
              
                                                     
             <Pane fx:id="pnlOverview" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;">
@@ -631,6 +629,9 @@
                   </HBox>
                </children>
          </Pane>
+
+             <Pane fx:id="pnlOffres" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;">
+             </Pane>
          </children>
       </StackPane>
       <Accordion layoutX="309.0" layoutY="-3.0" prefHeight="55.0" prefWidth="1293.0" style="-fx-background-color: #DDE6E8;" styleClass="shadowed-accordion" stylesheets="@style.css" />
@@ -639,8 +640,8 @@
             <Image url="@images/jimmy-fallon.png" />
          </image>
       </ImageView>
-      <Label layoutX="1294.0" layoutY="9.0" prefHeight="23.0" prefWidth="124.0" text="Jimmy@Fallon.com" textFill="#100000" />
-      <VBox alignment="TOP_CENTER" prefHeight="872.0" prefWidth="309.0" style="-fx-background-color:  #DDE6E8;" AnchorPane.bottomAnchor="-6.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="name" layoutX="1294.0" layoutY="9.0" prefHeight="23.0" prefWidth="124.0" text="Jimmy@Fallon.com" textFill="#100000" />
+      <VBox alignment="TOP_CENTER" prefHeight="866.0" prefWidth="310.0" style="-fx-background-color:  #DDE6E8;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -818,6 +819,22 @@
                   <ImageView fx:id="users" fitHeight="27.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/gens.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Separator prefWidth="200.0" />
+            <Button fx:id="btnBlog" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="54.0" prefWidth="327.0" stylesheets="@style.css" text="Blog" textFill="#868181">
+               <graphic>
+                  <ImageView fx:id="users1" fitHeight="27.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/blog.png" />
                      </image>
                   </ImageView>
                </graphic>

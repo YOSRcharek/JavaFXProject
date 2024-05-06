@@ -61,6 +61,8 @@ public class loginController {
     @FXML
     private Pane newsPane;
     @FXML
+    private Pane donsPane;
+    @FXML
     private Pane Home;
     @FXML
     private Pane inscrire;
@@ -90,6 +92,10 @@ public class loginController {
     private HBox hboxSearch;
     @FXML
     private VBox root;
+
+
+    @FXML
+    private WebView chatBotWebView;
     private final ObservableList<Association> associationsList = FXCollections.observableArrayList();
     @FXML
     ListView<Association> associationsListView = new ListView<>();
@@ -118,7 +124,7 @@ public class loginController {
                 associationsListView.setVisible(false);
             }
         });
-
+        chatBotWebView.getEngine().load("https://console.dialogflow.com/api-client/demo/embedded/3b6bf03e-8a2c-40a5-8b63-03aba37653d5");
         searchBtn.setOnAction(event -> {
             Association selectedAssociation = associationsListView.getSelectionModel().getSelectedItem();
             if (selectedAssociation != null) {
@@ -159,7 +165,7 @@ public class loginController {
         Associations.setVisible(false);
         Home.setVisible(true);
        connect.setVisible(false);
-
+        donsPane.setVisible(false);
 
    }
     public List<Association> getAssociations(String searchTerm) {
@@ -183,6 +189,7 @@ public class loginController {
         Associations.setVisible(false);
         Home.setVisible(false);
         connect.setVisible(false);
+        donsPane.setVisible(false);
         profilPane.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../profil.fxml"));
         Node node = loader.load();
@@ -200,7 +207,7 @@ public class loginController {
         Home.setVisible(false);
         connect.setVisible(false);
         Associations.getChildren().clear();
-
+        donsPane.setVisible(false);
         splitPane.setOrientation(Orientation.HORIZONTAL);
         splitPane.setDividerPosition(0, 0.5);
 
@@ -276,7 +283,7 @@ public class loginController {
        Home.setVisible(false);
        connect.setVisible(false);
        newsPane.getChildren().clear();
-
+        donsPane.setVisible(false);
        // Récupérer les articles de news à partir du service de news
        NewsAPIService newsService = new NewsAPIService();
        List<Article> articles = newsService.getAssociationNews();
@@ -334,7 +341,7 @@ public class loginController {
        inscrire.setVisible(true);
        profilPane.setVisible(false);
        inscrire.getChildren().clear();
-
+       donsPane.setVisible(false);
        BackgroundImage backgroundImage = new BackgroundImage(imageView2.snapshot(null, null),
                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
@@ -358,7 +365,7 @@ public class loginController {
         connect.setVisible(true);
         profilPane.setVisible(false);
         connect.getChildren().clear();
-
+        donsPane.setVisible(false);
         BackgroundImage backgroundImage = new BackgroundImage(imageView2.snapshot(null, null),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
@@ -430,6 +437,20 @@ public class loginController {
     }
 
 
+    public void navDons(MouseEvent mouseEvent) throws IOException {
+        newsPane.setVisible(false);
+        profilPane.setVisible(false);
+        inscrire.setVisible(false);
+        Associations.setVisible(false);
+        Home.setVisible(false);
+        connect.setVisible(false);
+        donsPane.setVisible(true);
+        donsPane.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../DonsFront.fxml"));
+        Node node = loader.load();
+        donsPane.getChildren().add(node);
+
+    }
 }
 
 

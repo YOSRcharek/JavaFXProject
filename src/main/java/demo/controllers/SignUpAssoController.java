@@ -1,4 +1,5 @@
 package demo.controllers;
+import demo.model.User;
 import demo.repository.associationRepo;
 import demo.repository.projetRepo;
 import demo.service.mailService;
@@ -22,6 +23,7 @@ import netscape.javascript.JSObject;
 
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
+import demo.repository.UserRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,10 +35,14 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import demo.model.User;
 
 
 public class SignUpAssoController implements Initializable {
 
+
+        @FXML
+    private WebView chatbotWebView;
     @FXML
     private WebView webView;
     @FXML
@@ -75,6 +81,13 @@ public class SignUpAssoController implements Initializable {
     private  Label telephoneErrorLabel;
     @FXML
     private  Label documentErrorLabel;
+
+    private UserRepository userRepository;
+
+    public SignUpAssoController() {
+        this.userRepository = new UserRepository();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         emailErrorLabel.setText("");
@@ -235,8 +248,10 @@ public class SignUpAssoController implements Initializable {
             associationRepo.ajouterAssociation(nomValue,domaineValue, emailValue ,passwordValue,documentBlob, addressValue, descriptionValue, tel);
             mailService.sendConfirmationEmail(emailValue);
             System.out.println("Inscription réussie !");
-
-
+            String roles = "[\"ROLE_ASSOCIATION\"]";
+            // Create a new User object
+            User newUser = new User(emailValue, passwordValue, roles, false);
+            userRepository.createUser(newUser);
             // Réinitialiser les champs de texte
             emailErrorLabel.setText("");
             passwordErrorLabel.setText("");

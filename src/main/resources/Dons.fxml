@@ -28,5 +28,8 @@
             </VBox>
          </center>
       </BorderPane>
+      <Button fx:id="btnChart" layoutX="293.0" layoutY="570.0" mnemonicParsing="false" onAction="#handleShowChart" text="chart" />
+      <Button fx:id="btnPieChart" layoutX="366.0" layoutY="570.0" mnemonicParsing="false" onAction="#handleShowPieChart" text="pie-chart" />
+      <Button fx:id="btnFacebook" layoutX="184.0" layoutY="570.0" mnemonicParsing="false" onAction="#gotofacebook" text="facebook" />
    </children>
 </AnchorPane>
