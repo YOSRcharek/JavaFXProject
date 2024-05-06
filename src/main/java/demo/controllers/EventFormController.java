@@ -1,9 +1,9 @@
-package com.example.application.controllers;
+package demo.controllers;
 
-import com.example.application.model.Events;
-import com.example.application.model.TypeEvent;
-import com.example.application.repository.EventRepo;
-import com.example.application.repository.TypeEventRepo;
+import demo.model.Events;
+import demo.model.TypeEvent;
+import demo.repository.EventRepo;
+import demo.repository.TypeEventRepo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

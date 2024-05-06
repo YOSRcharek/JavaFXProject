@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="559.0" style="-fx-background-color: transparant; -fx-background-radius: 20; -fx-border-radius: 20;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.SignUpAssoController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="74.0" prefWidth="559.0" spacing="5.0" style="-fx-background-color: transparant;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Create account" wrappingWidth="231.82373046875">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <HBox alignment="CENTER" prefHeight="15.0" prefWidth="559.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sub-title" text="Alredy have account?">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Hyperlink text="Sign in">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="45.0" layoutY="101.0" prefHeight="619.0" prefWidth="469.0" spacing="10.0" style="-fx-background-color: transparant;" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0">
+         <children>
+            <TextField fx:id="email" maxHeight="57.0" maxWidth="440.0" prefHeight="45.0" prefWidth="408.0" promptText="E-mail" styleClass="text-field">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label fx:id="emailErrorLabel" prefHeight="10.0" prefWidth="440.0" textFill="darkred" />
+            <TextField fx:id="password" maxHeight="57.0" maxWidth="440.0" prefHeight="43.0" prefWidth="440.0" promptText="Password" styleClass="text-field">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label fx:id="passwordErrorLabel" prefHeight="5.0" prefWidth="408.0" textFill="darkred" />
+            <HBox alignment="CENTER" prefHeight="43.0" prefWidth="498.0" spacing="5.0">
+               <children>
+                  <TextField fx:id="nom" maxHeight="55.0" maxWidth="220.0" prefHeight="36.0" prefWidth="220.0" promptText="Name" styleClass="text-field" HBox.hgrow="SOMETIMES">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="domaine" maxHeight="58.0" maxWidth="220.0" prefHeight="52.0" prefWidth="220.0" promptText="Domaine" styleClass="text-field" HBox.hgrow="SOMETIMES">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+
+                                                   </children>
+            </HBox>
+            <Label fx:id="domaineErrorLabel" prefHeight="12.0" prefWidth="408.0" textFill="darkred" />
+            <Label fx:id="nomErrorLabel" prefHeight="7.0" prefWidth="408.0" textFill="darkred" />
+
+                                                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="498.0" spacing="5.0">
+               <children>
+                  <TextField fx:id="filePathField" maxHeight="50.0" maxWidth="308.0" prefHeight="43.0" prefWidth="222.0" promptText="Document" styleClass="text-field" HBox.hgrow="SOMETIMES">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+
+                                                      <Button fx:id="fileChoose" maxHeight="45.0" maxWidth="130.0" mnemonicParsing="false" onAction="#chooseFile" prefHeight="22.0" prefWidth="154.0" style="-fx-background-color: #cfba91;" text="Choose File">
+                     <font>
+                        <Font name="Arial Narrow" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <Label fx:id="documentErrorLabel" prefHeight="13.0" prefWidth="428.0" textFill="darkred" />
+          <HBox alignment="CENTER" prefHeight="34.0" prefWidth="498.0" spacing="5.0">
+               <children>
+                  <TextField fx:id="addressInput" maxHeight="53.0" maxWidth="308.0" prefHeight="40.0" prefWidth="236.0" promptText="Adresse" styleClass="text-field" HBox.hgrow="SOMETIMES">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="addressChoose" maxHeight="46.0" maxWidth="157.0" mnemonicParsing="false" onAction="#addressChoose" prefHeight="46.0" prefWidth="130.0" style="-fx-background-color: #cfba91;" text="Choose Adress" textFill="#cfba91">
+                     <font>
+                        <Font name="Arial Narrow" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <Label fx:id="addressErrorLabel" prefHeight="9.0" prefWidth="408.0" textFill="darkred" />
+
+                                                <HBox alignment="CENTER" prefHeight="61.0" prefWidth="408.0" spacing="5.0">
+               <children>
+                  <TextField fx:id="telephone" maxHeight="46.0" maxWidth="220.0" prefHeight="23.0" prefWidth="220.0" promptText="Telephone" styleClass="text-field" HBox.hgrow="SOMETIMES">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="description" maxHeight="119.0" maxWidth="440.0" prefHeight="119.0" prefWidth="222.0" promptText="Description" styleClass="text-field">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label fx:id="telephoneErrorLabel" prefHeight="11.0" prefWidth="408.0" textFill="darkred" />
+            <Label fx:id="descriptionErrorLabel" prefHeight="11.0" prefWidth="408.0" textFill="darkred" />
+
+                                                <Button fx:id="btnSignUp" maxHeight="62.0" maxWidth="436.0" mnemonicParsing="false" onAction="#inscrire" prefHeight="47.0" prefWidth="426.0" style="-fx-background-color: #cfba91;" text="Sign Up" textFill="#cfba91">
+               <font>
+                  <Font name="Arial Narrow" size="12.0" />
+               </font>
+            </Button>
+            <HBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="498.0" />
+         </children>
+         <padding>
+            <Insets left="30.0" right="30.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

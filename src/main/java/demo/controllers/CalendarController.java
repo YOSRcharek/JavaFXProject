@@ -1,8 +1,7 @@
-package com.example.application.controllers;
+package demo.controllers;
 
-import com.example.application.controllers.CalendarActivity;
-import com.example.application.model.Events;
-import com.example.application.repository.EventRepo;
+import demo.model.Events;
+import demo.repository.EventRepo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

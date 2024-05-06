@@ -1,4 +1,4 @@
-package com.example.application.model;
+package demo.model;
 
 public class TypeEvent {
     private int id;

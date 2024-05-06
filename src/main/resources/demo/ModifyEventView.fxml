@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.application.controllers.ModifyEventController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.ModifyEventController">
     <children>
         <VBox spacing="10.0" layoutX="48.0" layoutY="64.0">
             <Label text="Nom de l'événement" />

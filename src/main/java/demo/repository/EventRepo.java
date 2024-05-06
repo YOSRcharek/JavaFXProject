@@ -1,8 +1,10 @@
-package com.example.application.repository;
+package demo.repository;
 
-import com.example.application.DatabaseConnection;
-import com.example.application.model.Events;
-import com.example.application.model.TypeEvent;
+
+
+import demo.DatabaseConnection;
+import demo.model.Events;
+import demo.model.TypeEvent;
 
 import java.io.FileInputStream;
 import java.io.IOException;

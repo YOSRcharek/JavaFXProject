@@ -13,7 +13,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ComboBox?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.application.controllers.EventFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.EventFormController">
     <children>
         <VBox alignment="CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #2E2E2E;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" spacing="10">
             <children>
@@ -22,25 +22,19 @@
                 <TextField fx:id="descriptionField" promptText="Description de l'événement" style="-fx-background-color: #424242; -fx-border-color: #FFFFFF; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #FFFFFF; -fx-pref-width: 200px;" />
                 <HBox>
                     <ImageView fitWidth="12" fitHeight="12">
-                        <image>
-                            <Image url="@images/calendar-days-solid.png"/>
-                        </image>
+
                     </ImageView>
                     <DatePicker fx:id="dateDebutPicker" promptText="Date de début" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #FFFFFF; -fx-pref-width: 150px;" />
                 </HBox>
                 <HBox>
                     <ImageView fitWidth="12" fitHeight="12">
-                        <image>
-                            <Image url="@images/calendar-days-solid.png"/>
-                        </image>
+
                     </ImageView>
                     <DatePicker fx:id="dateFinPicker" promptText="Date de fin" style="-fx-background-color: #424242; -fx-border-color: #FFFFFF; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #FFFFFF; -fx-pref-width: 150px;" />
                 </HBox>
                 <HBox>
                     <ImageView fitWidth="12" fitHeight="12">
-                        <image>
-                            <Image url="@images/person-solid.png"/>
-                        </image>
+
                     </ImageView>
                     <Spinner fx:id="capaciteMaxSpinner" promptText="Capacité maximale" style="-fx-background-color: #424242; -fx-border-color: #FFFFFF; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: #FFFFFF; -fx-pref-width: 150px;" />
 

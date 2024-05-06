@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="399.0" prefWidth="949.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="29.0" layoutY="22.0" prefHeight="338.0" prefWidth="896.0" style="-fx-background-color: #fff;">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="76.0" layoutX="41.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/group_8105522.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="41.0" layoutY="94.0" prefHeight="0.0" prefWidth="763.0" />
+            <Label fx:id="nomMembre" layoutX="123.0" layoutY="18.0" prefHeight="27.0" prefWidth="82.0" text="prenom" textFill="#866de1">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+
+            <Label layoutX="56.0" layoutY="129.0" text="Email" textFill="#aeacac">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="259.0" layoutY="129.0" prefHeight="20.0" prefWidth="86.0" text="Telephone" textFill="#aeacac">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="email" layoutX="52.0" layoutY="167.0" prefHeight="19.0" prefWidth="175.0" text="Brad Pitt" textFill="#4d4c4c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="telephone" layoutX="255.0" layoutY="159.0" prefHeight="35.0" prefWidth="139.0" text="London" textFill="#4d4c4c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="576.0" layoutY="113.0" text="OPERATIONS" textFill="#aeacac">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="details" layoutX="576.0" layoutY="139.0" prefHeight="19.0" prefWidth="58.0" style="-fx-background-color: #ffab91;" text="Details" textFill="#fffefe">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="modifier" layoutX="623.0" layoutY="139.0" prefHeight="19.0" prefWidth="58.0" style="-fx-background-color: #1ca2a9;" text="Modifier" textAlignment="CENTER" textFill="#fffefe">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="supprimer" layoutX="576.0" layoutY="165.0" prefHeight="19.0" prefWidth="67.0" style="-fx-background-color: #FFCCBC;" text="Supprimer" textFill="#fffefe">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Pane layoutY="269.0" prefHeight="70.0" prefWidth="896.0" style="-fx-background-color: #F0F0F0;">
+               <children>
+                  <Label layoutX="61.0" layoutY="26.0" text="Drapo returns you $3000 and $1000 for all the deals" textFill="#1ca2a9">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Separator layoutX="649.0" layoutY="18.0" orientation="VERTICAL" prefHeight="64.0" prefWidth="0.0" />
+            <Label layoutX="676.0" layoutY="22.0" prefHeight="20.0" prefWidth="98.0" text="Fonction" textFill="#1ca2a9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="fonction" layoutX="674.0" layoutY="46.0" prefHeight="27.0" prefWidth="139.0" text="volontaire" textFill="#ffab91">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="127.0" layoutY="51.0" text="Ref :" textFill="#ffab91">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="id" layoutX="159.0" layoutY="51.0" prefHeight="20.0" prefWidth="67.0" text="0" textFill="#ffab91">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="prenomMembre" layoutX="207.0" layoutY="19.0" prefHeight="27.0" prefWidth="98.0" text="nom" textFill="#866de1">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>

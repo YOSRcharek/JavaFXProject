@@ -1,8 +1,8 @@
-package com.example.application.controllers;
+package demo.controllers;
 
-import com.example.application.model.Events;
-import com.example.application.repository.EventRepo;
-import com.example.application.repository.TypeEventRepo;
+
+import demo.model.Events;
+import demo.repository.EventRepo;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -75,8 +75,7 @@ public class EventController {
 
         // Configurer la ListView pour utiliser un modèle de cellule personnalisé
         eventListView.setCellFactory(param -> new ListCell<Events>() {
-            @Override
-            protected void updateItem(Events event, boolean empty) {
+            @Override protected void updateItem(Events event, boolean empty) {
                 super.updateItem(event, empty);
                 if (empty || event == null) {
                     setText(null);
@@ -178,7 +177,7 @@ public class EventController {
     private void afficherDetails(Events event) {
         try {
             // Charger la vue des détails de l'événement depuis le fichier FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetailEvent.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../DetailEvent.fxml"));
             Parent root = loader.load();
 
             // Obtenir le contrôleur associé à la vue des détails de l'événement

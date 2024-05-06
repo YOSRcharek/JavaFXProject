@@ -1,10 +1,9 @@
-package com.example.application.controllers;
-import com.example.application.model.Events;
-import com.example.application.model.TypeEvent;
-import com.example.application.repository.EventRepo;
-import com.example.application.controllers.EventFormController;
+package demo.controllers;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import demo.model.Events;
+import demo.model.TypeEvent;
+import demo.repository.EventRepo;
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
@@ -177,7 +176,7 @@ public class DetailEventController {
 
         Stage currentStage = (Stage) supprimerButton.getScene().getWindow(); // Fermer la fenêtre des détails de l'événement
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/events.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../events.fxml"));
             Parent root = loader.load();
             EventController eventsController = loader.getController();
             eventsController.refreshEventList();
@@ -202,7 +201,7 @@ public class DetailEventController {
     private void modifierEvenement() {
         try {
             // Charger le fichier FXML de la fenêtre de modification d'événement
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ModifyEventView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ModifyEventView.fxml"));
             Parent root = loader.load();
 
             // Récupérer le contrôleur de la fenêtre de modification d'événement

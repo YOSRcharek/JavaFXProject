@@ -1,7 +1,9 @@
-package com.example.application.repository;
+package demo.repository;
 
-import com.example.application.DatabaseConnection;
-import com.example.application.model.TypeEvent;
+
+
+import demo.DatabaseConnection;
+import demo.model.TypeEvent;
 
 import java.sql.*;
 import java.util.ArrayList;

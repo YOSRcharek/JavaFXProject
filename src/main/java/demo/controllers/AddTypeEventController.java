@@ -1,7 +1,8 @@
-package com.example.application.controllers;
+package demo.controllers;
 
-import com.example.application.model.TypeEvent;
-import com.example.application.repository.TypeEventRepo;
+
+import demo.model.TypeEvent;
+import demo.repository.TypeEventRepo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
