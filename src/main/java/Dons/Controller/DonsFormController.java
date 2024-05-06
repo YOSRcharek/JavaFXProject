@@ -242,7 +242,7 @@ public class DonsFormController {
         tfMontant.clear();
         cbAssociation.getSelectionModel().clearSelection();
         cbTypeDon.getSelectionModel().clearSelection();
-        date.setValue(null);
+
     }
 
     @FXML

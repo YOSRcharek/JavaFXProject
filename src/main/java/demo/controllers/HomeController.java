@@ -130,7 +130,10 @@ public class HomeController {
 
     @FXML
     private TableColumn<Association, Void> supprimerColumn;
-
+    @FXML
+    private Pane pnlTypeDons;
+    @FXML
+    private Button btnTypeDons;
     @FXML
     private TableColumn<Association, Void> modifierColumn;
     public TableColumn<Projet, String> nameProjetColumn;
@@ -298,11 +301,34 @@ public class HomeController {
                 pnlEvents.toFront();
 
             }
+
+            else if (actionEvent.getSource() == btnTypeDons) {
+                btnTypeDons.setStyle("-fx-background-color:  #9CCBD6");
+                pnlTypeDons.setStyle("-fx-background-color:  #EFFCFF");
+                pnlTypeDons.toFront();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/typeDons.fxml"));
+                try {
+                    Parent root = loader.load();
+                    pnlTypeDons.getChildren().clear();
+                    pnlTypeDons.getChildren().add(root);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             else if (actionEvent.getSource() == btnDons) {
                 btnDons.setStyle("-fx-background-color:  #9CCBD6");
                 pnlDons.setStyle("-fx-background-color:  #EFFCFF");
                 pnlDons.toFront();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dons.fxml"));
+                try {
+                    Parent root = loader.load();
+                    pnlDons.getChildren().clear();
+                    pnlDons.getChildren().add(root);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+
             else if (actionEvent.getSource() == btnOffres) {
                 btnOffres.setStyle("-fx-background-color:  #9CCBD6");
                 pnlOffres.setStyle("-fx-background-color:  #EFFCFF");
