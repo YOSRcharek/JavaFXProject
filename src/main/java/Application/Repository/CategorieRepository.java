@@ -1,8 +1,8 @@
-package Repository;
+package Application.Repository;
 
-import Model.Categorie;
-import Database.Databaseconnection;
-import Model.Service;
+import Application.Model.Association;
+import Application.Model.Categorie;
+import Application.Database.Databaseconnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -30,7 +30,20 @@ public class CategorieRepository implements Icategorie<Categorie> {
         }
     }
 
+    @Override
+    public Association getassocaitionbyid(int id) {
+        return null;
+    }
 
+    @Override
+    public <T2> List<T2> getAllassociation() {
+        return null;
+    }
+
+    @Override
+    public Association getAssociationById(int id) {
+        return null;
+    }
 
 
     @Override
@@ -88,6 +101,23 @@ public class CategorieRepository implements Icategorie<Categorie> {
 
         return (List<T>) categories;
     }
+    public List<String> getAllNomCategories() {
+        List<String> categories = new ArrayList<>();
+        String sql = "SELECT nom_categorie FROM categorie";
+
+        try (PreparedStatement preparedStatement = cnx.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+
+                categories.add(resultSet.getString("nom_categorie"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return  categories;
+    }
 
     @Override
     public Categorie getbyid(int id) {
@@ -99,6 +129,26 @@ public class CategorieRepository implements Icategorie<Categorie> {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
+                    String nom_categorie = resultSet.getString("nom_categorie");
+                    categorie = new Categorie(id, nom_categorie);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return categorie;
+    }
+    public Categorie getbyNom(String  cat) {
+        String sql = "SELECT * FROM categorie WHERE nom_categorie = ?";
+        Categorie categorie = null;
+
+        try (PreparedStatement preparedStatement = cnx.prepareStatement(sql)) {
+            preparedStatement.setString(1, cat);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int id = resultSet.getInt("id");
                     String nom_categorie = resultSet.getString("nom_categorie");
                     categorie = new Categorie(id, nom_categorie);
                 }

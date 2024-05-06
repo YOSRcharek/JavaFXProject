@@ -1,9 +1,10 @@
-module crud {
-	exports Repository;
-	exports test;
-	exports Database;
-	exports Model;
+module Application {
+	exports Application.Repository;
+
+	exports Application.Database;
+	exports Application.Model;
 	exports Application.Controllers;
+	exports Application;
 
 	requires java.sql;
 	requires javafx.base;
@@ -11,4 +12,10 @@ module crud {
 	requires javafx.fxml;
 	requires javafx.graphics;
 	opens Application.Controllers;
+	opens Application to javafx.fxml;
+
+
+
+
+
 }

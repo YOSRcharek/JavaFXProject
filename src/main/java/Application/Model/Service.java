@@ -1,14 +1,17 @@
-package Model;
+package Application.Model;
 
 public class Service {
     private int id;
     private String nom_service;
     private String description;
     private boolean disponibilite;
-    private int categorie_id;
-    private int commentaire_id;
+    private Categorie categorie_id;
+    private Commentaire commentaire_id;
 
-    public Service( int categorie_id,  int association_id, int commentaire_id,String nom_service,String description,boolean disponibilite) {
+    private Association association_id;
+
+    public Service(int id, String nom_service, String description, boolean disponibilite, Categorie categorie_id, Commentaire commentaire_id, Association association_id) {
+        this.id = id;
         this.nom_service = nom_service;
         this.description = description;
         this.disponibilite = disponibilite;
@@ -17,23 +20,20 @@ public class Service {
         this.association_id = association_id;
     }
 
-    private int association_id;
-    public Service(int id, String nom_service, String description, boolean disponibilite, int categorie_id, int commntaire_id, int association_id) {
-        this.id = id;
-        this.nom_service = nom_service;
-        this.description = description;
-        this.disponibilite = disponibilite;
-        this.categorie_id = categorie_id;
-        this.commentaire_id = commntaire_id;
-        this.association_id = association_id;
-    }
+
     public Service(String nom_service, String description, boolean disponibilite) {
         this.nom_service = nom_service;
         this.description = description;
         this.disponibilite = disponibilite;
     }
 
-    public Service(String nomService, String description, boolean disponibilite, boolean categorieId, int commentaireId) {
+    public Service(String nom_service, String description, boolean disponibilite, Categorie categorie_id, Commentaire commentaire_id, Association association_id) {
+        this.nom_service = nom_service;
+        this.description = description;
+        this.disponibilite = disponibilite;
+        this.categorie_id = categorie_id;
+        this.commentaire_id = commentaire_id;
+        this.association_id = association_id;
     }
 
     public Service(int id, String nomService, String description, boolean disponibilite, int categorieId, int commentaireId) {
@@ -41,6 +41,15 @@ public class Service {
 
     public Service() {
 
+    }
+
+    public Service(int id, String nomService, String description, boolean disponibilite) {
+    }
+
+    public Service(String text) {
+    }
+
+    public Service(String nomService, String description, boolean disponible, Categorie cat, Association ass) {
     }
 
     public int getId() {
@@ -72,32 +81,33 @@ public class Service {
     }
 
     public void setDisponibilite(boolean disponibilite) {
-        this.disponibilite= disponibilite;
+        this.disponibilite = disponibilite;
     }
 
-    public int getCategorie_id() {
+    public Categorie getCategorie_id() {
         return categorie_id;
     }
 
-    public void setCategorie_id(int categorie_id) {
+    public void setCategorie_id(Categorie categorie_id) {
         this.categorie_id = categorie_id;
     }
 
-    public int getCommentaire_id() {
+    public Commentaire getCommentaire_id() {
         return commentaire_id;
     }
 
-    public void setCommentaire_id(int commntaire_id) {
+    public void setCommentaire_id(Commentaire commntaire_id) {
         this.commentaire_id = commntaire_id;
     }
 
-    public int getAssociation_id() {
+    public Association getAssociation_id() {
         return association_id;
     }
 
-    public void setAssociation_id(int association_id) {
+    public void setAssociation_id(Association association_id) {
         this.association_id = association_id;
     }
+
     @Override
     public String toString() {
         return "Service{" +
@@ -111,7 +121,7 @@ public class Service {
                 '}';
     }
 
-    public boolean getDisponibilite() {
+    public static boolean getDisponibilite() {
         return false;
     }
 
@@ -120,9 +130,7 @@ public class Service {
     }
 
 
-
-
-    public Object getNom_categorie() {
+    public static Object getNom_categorie() {
         return null;
     }
 
@@ -135,6 +143,6 @@ public class Service {
     public String getNomCategorie() {
         return null;
     }
+
+
 }
-
-

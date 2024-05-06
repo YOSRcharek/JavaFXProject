@@ -1,5 +1,5 @@
 // DatabaseConnection.java
-package Database;
+package Application.Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

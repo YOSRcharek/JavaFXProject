@@ -1,7 +1,7 @@
 package Application.Controllers;
 import javafx.scene.control.*;
-import Model.Categorie;
-import Repository.CategorieRepository;
+import Application.Model.Categorie;
+import Application.Repository.CategorieRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
