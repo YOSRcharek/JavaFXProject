@@ -38,7 +38,11 @@ public class Association {
 
 	}
 
-	public String getNom() {
+    public Association(int anInt, String string, String string1) {
+
+    }
+
+    public String getNom() {
         return nom;
     }
 

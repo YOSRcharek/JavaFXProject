@@ -260,5 +260,91 @@ public class associationRepo {
         }
         return false;
     }
+    public Association getassocaitionbyid(int id) {
+        return null;
+    }
+
+    public <T> List<T> getAllassociation() {
+        List<Association> associations = new ArrayList<>();
+        String sql = "SELECT * FROM association";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nom = resultSet.getString("nom");
+                String domaine_activite = resultSet.getString("domaine_activite");
+                String adresse = resultSet.getString("adresse");
+                String email = resultSet.getString("email");
+                String description = resultSet.getString("description");
+                int telephone = resultSet.getInt("telephone");
+                String password = resultSet.getString("password");
+                Date date_demande = resultSet.getDate("date_demande");
+                Blob document = resultSet.getBlob("document");
+                boolean status = resultSet.getBoolean("status");
+
+                Association association = new Association(id, nom, password, domaine_activite, adresse, email, description, telephone, date_demande, document, status);
+                associations.add(association);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return (List<T>) associations;
+    }
+
+
+    public List<String> getAllNomAssociations() {
+        List<String> associations = new ArrayList<>();
+        String sql = "SELECT nom FROM association";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String nomAssociation = resultSet.getString("nom");
+                associations.add(nomAssociation);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return associations;
+    }
+
+
+    public Association getAssociationByNom(String nomAssociation) {
+        String sql = "SELECT * FROM association WHERE nom = ?";
+        Association association = null;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, nomAssociation);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String nom = resultSet.getString("nom");
+                    String domaine_activite = resultSet.getString("domaine_activite");
+                    String adresse = resultSet.getString("adresse");
+                    String email = resultSet.getString("email");
+                    String description = resultSet.getString("description");
+                    int telephone = resultSet.getInt("telephone");
+                    String password = resultSet.getString("password");
+                    Date date_demande = resultSet.getDate("date_demande");
+                    Blob document = resultSet.getBlob("document");
+                    boolean status = resultSet.getBoolean("status");
+
+                    association = new Association(id, nom, password, domaine_activite, adresse, email, description, telephone, date_demande, document, status);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return association;
+    }
+
+
 }
 

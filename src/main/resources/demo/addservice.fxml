@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="0" maxWidth="0" minHeight="423.0" minWidth="-Infinity" prefHeight="423.0" prefWidth="658.0" style="-fx-background-color: #B0B5D6;" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.AjouterService">
+    <children>
+        <Pane layoutX="14.0" prefHeight="597.0" prefWidth="600.0">
+            <children>
+                <Label layoutX="199.0" layoutY="54.0" prefHeight="46.0" prefWidth="178.0" text="ajouter un service" textFill="WHITE">
+                    <font>
+                        <Font size="22.0" />
+                    </font>
+                </Label>
+                <Label layoutX="40.0" layoutY="145.0" text="nom du service:" textFill="WHITE" />
+                <Label layoutX="45.0" layoutY="188.0" text="decription:" textFill="WHITE" />
+                <Label layoutX="43.0" layoutY="236.0" text="association:" textFill="WHITE" />
+                <Label layoutX="46.0" layoutY="317.0" prefHeight="17.0" prefWidth="54.0" text="categorie:" textFill="WHITE" />
+                <Label layoutX="38.0" layoutY="377.0" text="commentaire:" textFill="WHITE" />
+                <Label layoutX="40.0" layoutY="428.0" text="disponibilité:" textFill="#fcfcfc" />
+                <TextField fx:id="txtnomservice" layoutX="177.0" layoutY="141.0" onAction="#handleTextFieldChange" prefHeight="25.0" prefWidth="223.0" />
+                <TextField fx:id="txtdescription" layoutX="177.0" layoutY="193.0" onAction="#handleTextFieldChange" prefHeight="25.0" prefWidth="223.0" />
+                <Separator layoutX="182.0" layoutY="112.0" prefHeight="4.0" prefWidth="236.0" />
+                <Separator layoutX="200.0" layoutY="472.0" prefWidth="200.0" />
+                <ComboBox layoutX="177.0" layoutY="241.0" prefHeight="25.0" prefWidth="211.0" />
+                <ComboBox layoutX="177.0" layoutY="313.0" prefHeight="25.0" prefWidth="211.0" />
+                <ComboBox layoutX="183.0" layoutY="373.0" prefHeight="25.0" prefWidth="211.0" />
+                <ComboBox layoutX="183.0" layoutY="424.0" prefHeight="25.0" prefWidth="211.0" />
+                <Button fx:id="addservice" layoutX="325.0" layoutY="513.0" mnemonicParsing="false" onAction="#addservice" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: #FFAB91;" text="ajouter" textFill="WHITE" />
+                <Button fx:id="annuler" layoutX="168.0" layoutY="516.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #FFCCBC;" text="annuler" textFill="WHITE" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
