@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="377.0" prefWidth="776.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="29.0" layoutY="22.0" prefHeight="337.0" prefWidth="715.0" style="-fx-background-color: #fff;">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="76.0" layoutX="41.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/groupe.png" />
+               </image>
+            </ImageView>
+            <Separator layoutX="2.0" layoutY="94.0" prefHeight="4.0" prefWidth="704.0" />
+            <Label fx:id="nomAssoc" layoutX="129.0" layoutY="18.0" prefHeight="27.0" prefWidth="157.0" text="Associations" textFill="#866de1">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="56.0" layoutY="129.0" prefHeight="20.0" prefWidth="58.0" text="Email" textFill="#aeacac">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="377.0" layoutY="130.0" prefHeight="20.0" prefWidth="86.0" text="Adresse" textFill="#aeacac">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="email" layoutX="53.0" layoutY="169.0" prefHeight="19.0" prefWidth="71.0" text="Brad Pitt" textFill="#4d4c4c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="adresse" layoutX="377.0" layoutY="162.0" prefHeight="35.0" prefWidth="201.0" text="London" textFill="#4d4c4c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="576.0" layoutY="113.0" text="OPERATIONS" textFill="#aeacac">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="details" layoutX="576.0" layoutY="139.0" prefHeight="19.0" prefWidth="58.0" style="-fx-background-color: #ffab91;" text="Profil" textFill="#fffefe">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="modifier" layoutX="623.0" layoutY="139.0" prefHeight="19.0" prefWidth="58.0" style="-fx-background-color: #1ca2a9;" text="Modifier" textAlignment="CENTER" textFill="#fffefe">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Pane layoutY="269.0" prefHeight="70.0" prefWidth="715.0" style="-fx-background-color: #F0F0F0;">
+               <children>
+                  <Label layoutX="61.0" layoutY="26.0" prefHeight="19.0" prefWidth="215.0" text="See More ..." textFill="#1ca2a9">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="614.0" layoutY="12.0" text="Date Debut" textFill="#1ca2a9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="dateDebut" layoutX="614.0" layoutY="34.0" text="16" textFill="#ffab91">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="monthDebut" layoutX="663.0" layoutY="42.0" text="APR" textFill="#1ca2a9fa" />
+            <Label fx:id="yearDebut" layoutX="663.0" layoutY="60.0" text="2018" textFill="#aeacac" />
+            <Label layoutX="127.0" layoutY="51.0" prefHeight="20.0" prefWidth="67.0" text="Domaine :" textFill="#ffab91">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="domaine" layoutX="199.0" layoutY="51.0" prefHeight="20.0" prefWidth="67.0" text="education" textFill="#ffab91">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="199.0" layoutY="129.0" prefHeight="20.0" prefWidth="86.0" text="Telephone" textFill="#aeacac">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="telephone" layoutX="202.0" layoutY="171.0" prefHeight="19.0" prefWidth="71.0" text="1222222" textFill="#4d4c4c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="211.0" prefHeight="20.0" prefWidth="86.0" text="Description" textFill="#aeacac">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="descrip" layoutX="143.0" layoutY="208.0" prefHeight="53.0" prefWidth="349.0" text="Brad Pitt" textFill="#4d4c4c">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>

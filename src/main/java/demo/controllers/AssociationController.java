@@ -189,7 +189,7 @@ public class AssociationController {
         }
 
         try {
-            Parent root = FXMLLoader.load(AssociationController.class.getResource("../update.fxml"));
+            Parent root = FXMLLoader.load(AssociationController.class.getResource("../updateAsso.fxml"));
             primaryStage.setScene(new Scene(root));
             Label nomLabel = (Label) root.lookup("#nomLabel");
             Label prenomLabel = (Label) root.lookup("#prenomLabel");
@@ -269,7 +269,7 @@ public class AssociationController {
 
                 // Traitement normal si aucune erreur
                 associationRepo.modifierAssociation(association.getId(), nomVar, fonctionVar, domaine, descriptionVar, Integer.parseInt(telephoneVar));
-                refreshMainScene(primaryStage);
+
                 // Effacer les champs de texte après la mise à jour
                 nom.setText("");
                 prenom.setText("");
@@ -279,6 +279,7 @@ public class AssociationController {
 
                 // Fermer la fenêtre après la mise à jour
                 primaryStage.close();
+                refreshMainScene(primaryStage);
             });
 
 

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="539.0" style="-fx-background-color: #B0B5D6;"  xmlns:fx="http://javafx.com/fxml" fx:controller="demo.controllers.MemberController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="539.0" style="-fx-background-color: #B0B5D6;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="demo.controllers.MemberController">
    <children>
       <Pane layoutY="75.0" prefHeight="570.0" prefWidth="539.0">
          <children>
@@ -80,9 +80,9 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="fonction" layoutX="254.0" layoutY="207.0" prefHeight="34.0" prefWidth="274.0" style="-fx-border-color: white; -fx-background-color: #B0B5D6; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" stylesheets="@style.css" />
             <TextField fx:id="telephone" layoutX="253.0" layoutY="260.0" prefHeight="34.0" prefWidth="274.0" style="-fx-border-color: white; -fx-background-color: #B0B5D6; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" stylesheets="@style.css" />
             <TextField fx:id="prenom" layoutX="254.0" layoutY="150.0" prefHeight="34.0" prefWidth="274.0" style="-fx-border-color: white; -fx-background-color: #B0B5D6; -fx-background-insets: 0; -fx-border-radius: 20;" styleClass="text-input" stylesheets="@style.css" />
+            <ComboBox fx:id="fonction" layoutX="254.0" layoutY="203.0" prefHeight="34.0" prefWidth="274.0" style="-fx-background-color: #B0B5D6; -fx-border-radius: 20; -fx-border-color: white;" />
          </children>
       </Pane>
       <Label layoutX="218.0" layoutY="40.0" text="Add new" textFill="WHITE">

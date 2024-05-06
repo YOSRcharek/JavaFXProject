@@ -15,8 +15,14 @@ public class Main extends Application {
     @Override
   public void start(Stage stage) {
          try {
-             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Home.fxml"));
-             Scene scene = new Scene(fxmlLoader.load(), 1700, 800);
+             //frontOffice
+             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("test.fxml"));
+             //backOffice
+             //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Home.fxml"));
+             //Association Profil
+             //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("profil.fxml"));
+
+             Scene scene = new Scene(fxmlLoader.load(), 920, 640);
              stage.setTitle("Hello!");
              stage.setScene(scene);
              stage.show();

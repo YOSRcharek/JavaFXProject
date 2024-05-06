@@ -322,6 +322,147 @@ public class ProjetController{
             e.printStackTrace();
         }
     }
+    public void modifier2(Projet projet, Stage primaryStage) {
+        if (primaryStage == null) {
+            System.out.println("Erreur : primaryStage est null.");
+            return;
+        }
 
+        try {
+            Parent root = FXMLLoader.load(ProjetController.class.getResource("../updateProjet.fxml"));
+            primaryStage.setScene(new Scene(root));
+
+            Button cancel = (Button) root.lookup("#cancel");
+            Button update = (Button) root.lookup("#update");
+
+            TextField nom = (TextField) root.lookup("#nom");
+            ComboBox<String> prenom = (ComboBox) root.lookup("#prenom");
+            prenom.getItems().addAll("En cours", "Terminé");
+
+            DatePicker fonction = (DatePicker) root.lookup("#fonction");
+            DatePicker telephone = (DatePicker) root.lookup("#telephone");
+            TextField description = (TextField) root.lookup("#description");
+
+            nom.setText(projet.getNomProjet());
+            prenom.setValue(projet.getStatus());
+            fonction.setValue(projet.getDateDebut().toLocalDate());
+            telephone.setValue(projet.getDateFin().toLocalDate());
+            description.setText(projet.getDescription());
+
+            Label nomErrorLabel = (Label) root.lookup("#nomErrorLabel");
+            Label prenomErrorLabel = (Label) root.lookup("#prenomErrorLabel");
+            Label fonctionErrorLabel = (Label) root.lookup("#fonctionErrorLabel");
+            Label telephoneErrorLabel = (Label) root.lookup("#telephoneErrorLabel");
+            Label descriptionErrorLabel = (Label) root.lookup("#descriptionErrorLabel");
+
+            update.setOnAction(event -> {
+                String nomVar = nom.getText();
+                String status = prenom.getValue();
+                LocalDate dateDebut = fonction.getValue();
+                LocalDate dateFin = telephone.getValue();
+                String descriptionVar = description.getText();
+
+                // Reset error labels
+                nomErrorLabel.setText("");
+                prenomErrorLabel.setText("");
+                fonctionErrorLabel.setText("");
+                telephoneErrorLabel.setText("");
+                descriptionErrorLabel.setText("");
+
+                // Validation
+                if (nomVar.isEmpty() || status == null || dateDebut == null || dateFin == null || descriptionVar.isEmpty()) {
+                    if (nomVar.isEmpty()) {
+                        nomErrorLabel.setText("Veuillez remplir ce champ.");
+                    }
+                    if (status == null) {
+                        prenomErrorLabel.setText("Veuillez sélectionner un statut.");
+                    }
+                    if (dateDebut == null) {
+                        fonctionErrorLabel.setText("Veuillez sélectionner une date de début.");
+                    }
+                    if (dateFin == null) {
+                        telephoneErrorLabel.setText("Veuillez sélectionner une date de fin.");
+                    }
+                    if (descriptionVar.isEmpty()) {
+                        descriptionErrorLabel.setText("Veuillez remplir ce champ.");
+                    }
+                } else {
+                    // Pas d'erreur, effectuer la modification du projet
+                    Date dateDebutParsed = java.sql.Date.valueOf(dateDebut);
+                    Date dateFinParsed = java.sql.Date.valueOf(dateFin);
+
+                    projetRepo.modifierProjet(projet.getId(), nomVar, dateDebutParsed, dateFinParsed, status, descriptionVar);
+                    primaryStage.close();
+                    refreshMainScene2(primaryStage);
+                }
+            });
+
+            cancel.setOnAction(event -> {
+                primaryStage.close();
+            });
+
+            root.setOnMousePressed(event -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+            root.setOnMouseDragged(event -> {
+                primaryStage.setX(event.getScreenX() - x);
+                primaryStage.setY(event.getScreenY() - y);
+            });
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void supprimer2(Projet projet,Stage primaryStage) {
+
+
+        if (primaryStage == null) {
+            System.out.println("Erreur : primaryStage est null.");
+            return;
+        }
+
+        try {
+            Parent root = FXMLLoader.load(ProjetController.class.getResource("../Settings.fxml"));
+            primaryStage.setScene(new Scene(root));
+            Label nomLabel = (Label) root.lookup("#nomLabel");
+
+            Button cancel = (Button) root.lookup("#cancel");
+            Button delete = (Button) root.lookup("#delete");
+            nomLabel.setText("Êtes-vous sûr de vouloir supprimer ce projet ?");
+            delete.setOnAction(event -> {
+                projetRepo.supprimerProjet(projet.getId());
+                primaryStage.close();
+                refreshMainScene2(primaryStage);
+            });
+            cancel.setOnAction(event -> {
+                primaryStage.close();
+            });
+
+            root.setOnMousePressed(event -> {
+                x = event.getSceneX();
+                y = event.getSceneY();
+            });
+            root.setOnMouseDragged(event -> {
+                primaryStage.setX(event.getScreenX() - x);
+                primaryStage.setY(event.getScreenY() - y);
+            });
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+
+
+    }
+    private static void refreshMainScene2(Stage primaryStage) {
+        try {
+            Parent root = FXMLLoader.load(AssociationController.class.getResource("../test.fxml"));
+            primaryStage.setScene(new Scene(root));
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

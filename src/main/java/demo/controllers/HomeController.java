@@ -1,28 +1,37 @@
 package demo.controllers;
 
 
+import demo.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import java.io.IOException;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -50,8 +59,6 @@ public class HomeController {
 
     @FXML
     private Pane pnlDons;
-    @FXML
-    private Pane pnlTypeDons;
 
     @FXML
     private Pane pnlEvents;
@@ -66,8 +73,6 @@ public class HomeController {
 
     @FXML
     private Button btnDons;
-    @FXML
-    private Button btnTypeDons;
     @FXML
     private Button btnOverview;
 
@@ -175,7 +180,8 @@ public class HomeController {
     private final AssociationController associationController = new AssociationController();
     private final ProjetController projetController = new ProjetController();
 
-
+    
+    
     @FXML
     public void initialize() {
     	   sideBar.setOnMousePressed(mouseEvent -> {
@@ -211,36 +217,32 @@ public class HomeController {
          series3.getData().add(new XYChart.Data("4",9));
 
          lineChart.getData().addAll(series1,series2,series3);
-       // Populate pie chart with sample data 
-          ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-              new PieChart.Data("Category A", 30),
-              new PieChart.Data("Category B", 20),
-              new PieChart.Data("Category C", 50)
-          );
 
-          // Setting data to PieChart
+        int projetsTermines = projetRepo.nbProjetTermine();
+        int projetsEnCours = projetRepo.nbProjetEnCours();
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Terminé", projetsTermines),
+                new PieChart.Data("En cours", projetsEnCours)
+        );
+
           pieChart.setData(pieChartData);
 
-          // Customizing slice colors and text styles
           int i = 0;
           for (PieChart.Data data : pieChartData) {
               String color = "";
-              if (data.getName().equals("Category A")) {
+              if (data.getName().equals("Terminé")) {
                   color = "#9CCBD6";
-              } else if (data.getName().equals("Category B")) {
+              } else if (data.getName().equals("En cours")) {
                   color = "#FFAB91";
-              } else if (data.getName().equals("Category C")) {
-                  color = "#29647C";
               }
               pieChartData.get(i).getNode().setStyle("-fx-pie-color:" + color + "';'");
               i++;
           }
 
-pieChart.setLegendVisible(false);
-          // Removing labels
-          pieChart.setLabelLineLength(10); // Adjust label line length
-          pieChart.setLabelsVisible(false); // Hide labels
-
+         pieChart.setLegendVisible(false);
+          pieChart.setLabelLineLength(10);
+          pieChart.setLabelsVisible(false);
 
 	    Stage primaryStage = new Stage();
         loadDemandeFromDatabase(primaryStage);
@@ -257,7 +259,6 @@ pieChart.setLegendVisible(false);
 	    btnOrders.setStyle("-fx-background-color:    #DDE6E8");
 	    btnMembers.setStyle("-fx-background-color:    #DDE6E8");
 	    btnDons.setStyle("-fx-background-color: #DDE6E8 ");
-        btnTypeDons.setStyle("-fx-background-color: #DDE6E8 ");
         btnEvents.setStyle("-fx-background-color: #DDE6E8 ");
         btnOffres.setStyle("-fx-background-color: #DDE6E8");
 		    if (actionEvent.getSource() == btnCustomers) {
@@ -293,36 +294,15 @@ pieChart.setLegendVisible(false);
 		    }else if (actionEvent.getSource() == btnEvents) {
                 btnEvents.setStyle("-fx-background-color:  #9CCBD6");
                 pnlEvents.setStyle("-fx-background-color:  #EFFCFF");
+                loadEventFromDatabase();
                 pnlEvents.toFront();
 
-            }
-            else if (actionEvent.getSource() == btnTypeDons) {
-                btnTypeDons.setStyle("-fx-background-color:  #9CCBD6");
-                pnlTypeDons.setStyle("-fx-background-color:  #EFFCFF");
-                pnlTypeDons.toFront();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/typeDons.fxml"));
-                try {
-                    Parent root = loader.load();
-                    pnlTypeDons.getChildren().clear();
-                    pnlTypeDons.getChildren().add(root);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
             else if (actionEvent.getSource() == btnDons) {
                 btnDons.setStyle("-fx-background-color:  #9CCBD6");
                 pnlDons.setStyle("-fx-background-color:  #EFFCFF");
                 pnlDons.toFront();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dons.fxml"));
-                try {
-                    Parent root = loader.load();
-                    pnlDons.getChildren().clear();
-                    pnlDons.getChildren().add(root);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
-
             else if (actionEvent.getSource() == btnOffres) {
                 btnOffres.setStyle("-fx-background-color:  #9CCBD6");
                 pnlOffres.setStyle("-fx-background-color:  #EFFCFF");
@@ -654,6 +634,21 @@ pieChart.setLegendVisible(false);
 		       exampleTable3.setItems(data);     
 		       MemberController.ajouter(ajouterButton2,primaryStage);
 		      }
-  	
+
+    private void loadEventFromDatabase() {
+        pnlEvents.getChildren().clear();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../events.fxml"));
+            Node node = loader.load();
+
+
+            pnlEvents.getChildren().add(node);
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 
 }

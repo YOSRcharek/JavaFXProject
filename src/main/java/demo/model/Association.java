@@ -34,6 +34,10 @@ public class Association {
 		this.adresse=adresse;
 	}
 
+	public Association() {
+
+	}
+
 	public String getNom() {
         return nom;
     }
@@ -120,5 +124,9 @@ public class Association {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	@Override
+	public String toString() {
+		return nom;
 	}
 }
