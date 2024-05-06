@@ -127,6 +127,6 @@
             </ImageView>
          </graphic></Button>
       <Button fx:id="btnChart" layoutX="364.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleShowChart" text="Chart" />
-      <Button fx:id="btnPieChart" layoutX="471.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleShowPieChart" text="Pie-chart" />
+      <Button fx:id="btnPieChart" layoutX="433.0" layoutY="454.0" mnemonicParsing="false" onAction="#handleShowPieChart" text="Pie-chart" />
    </children>
 </AnchorPane>
