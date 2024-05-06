@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="770.0" prefWidth="1599.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.profilController">
+   <children>
+      <ScrollPane fx:id="itemMembre" hbarPolicy="NEVER" layoutX="263.0" layoutY="207.0" prefHeight="503.0" prefWidth="926.0" style="-fx-background-color: #fff;" vbarPolicy="NEVER">
+         <content>
+            <VBox fx:id="pnl_scroll1" prefHeight="303.0" prefWidth="865.0" spacing="20.0" style="-fx-background-color: #fff;" />
+         </content>
+      </ScrollPane>
+      <VBox layoutX="-1.0" layoutY="116.0" prefHeight="503.0" prefWidth="252.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="4.0" AnchorPane.topAnchor="116.0">
+         <children>
+            <Label prefHeight="0.0" prefWidth="252.0" textFill="#171717">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+            </Label>
+            <JFXButton fx:id="projets" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#handleButtonAction" prefHeight="58.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Projets" textFill="#5b5858">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView accessibleText="Project List" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/files-and-folder1.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="membres" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#handleButtonAction" prefHeight="58.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Membres" textFill="#5b5858">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/group_226847.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton fx:id="events" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#handleButtonAction" prefHeight="58.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Events" textFill="#5b5858">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/banner.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="58.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Dons" textFill="#5b5858">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView accessibleText="Project List" fitHeight="33.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/donation.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="58.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Profil" textFill="#5b5858">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView accessibleText="Project List" fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/verified.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="58.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Setting" textFill="#5b5858">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/setting.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="58.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Deconnecter" textFill="#5b5858">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/logout.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </JFXButton>
+         </children>
+      </VBox>
+      <Pane layoutX="-2.0" prefHeight="145.0" prefWidth="1062.0" style="-fx-background-color: #B0B5D6;" styleClass="head-background" stylesheets="@style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="183.0" fitWidth="1606.0" layoutX="-2.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/header.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nomAssoc" layoutX="224.0" layoutY="57.0" prefHeight="38.0" prefWidth="297.0" textFill="WHITE">
+               <font>
+                  <Font name="Andalus" size="29.0" />
+               </font>
+            </Label>
+            <Label fx:id="domaineAssoc" layoutX="227.0" layoutY="103.0" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="71.0" layoutY="44.0" prefHeight="131.0" prefWidth="142.0" style="-fx-background-color: #fff; -fx-background-radius: 50;">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="139.0" layoutX="11.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/jimmy-fallon.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="10.0" radius="4.5" width="10.0" />
+         </effect>
+      </Pane>
+      <ScrollPane fx:id="itemProjet" hbarPolicy="NEVER" layoutX="262.0" layoutY="208.0" prefHeight="341.0" prefWidth="920.0" style="-fx-background-color: white;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="412.0" AnchorPane.topAnchor="208.0">
+         <content>
+            <VBox fx:id="pnl_scroll" prefHeight="303.0" prefWidth="865.0" spacing="20.0" style="-fx-background-color: #fff;">
+
+            </VBox>
+            </content>
+      </ScrollPane>
+      <ScrollPane fx:id="itemEvent" hbarPolicy="NEVER" layoutX="262.0" layoutY="208.0" prefHeight="341.0" prefWidth="920.0" style="-fx-background-color: white;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="412.0" AnchorPane.topAnchor="208.0">
+         <content>
+            <VBox fx:id="pnl_scroll2" prefHeight="303.0" prefWidth="865.0" spacing="20.0" style="-fx-background-color: #fff;">
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Button fx:id="calendrier" layoutX="1371.0" layoutY="244.0" mnemonicParsing="false" onAction="#AfficherCalendrier" prefHeight="19.0" prefWidth="160.0" text="Calendrier" />
+      <Button fx:id="typeEvent" layoutX="1371.0" layoutY="281.0" mnemonicParsing="false" onAction="#AfficherType" prefHeight="19.0" prefWidth="160.0" text="Add new type " />
+      <Button fx:id="newEvent" layoutX="1373.0" layoutY="324.0" mnemonicParsing="false" onAction="#newType" prefHeight="19.0" prefWidth="160.0" text="Add new event " />
+
+   </children>
+</AnchorPane>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.ListView?>
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="866.0" prefWidth="1602.0" style="-fx-margin: 0; -fx-padding: 0; -fx-box-sizing: border-box;" styleClass="root" stylesheets="@login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.loginController">
+   <children>
+      <Pane fx:id="Associations" layoutX="-1.0" layoutY="90.0" prefHeight="785.0" prefWidth="1614.0">
+         <SplitPane fx:id="splitPane" dividerPositions="0.5" layoutY="-1.0" prefHeight="786.0" prefWidth="1602.0">
+            <Pane fx:id="pane1">
+
+            </Pane>
+            <Pane fx:id="pane2">
+            </Pane>
+         </SplitPane>
+      </Pane>
+      <Pane fx:id="inscrire" layoutX="-1085.0" layoutY="90.0" prefHeight="786.0" prefWidth="3618.0">
+         <children>
+            <ImageView fx:id="imageView2" fitHeight="731.0" fitWidth="1614.0" layoutX="1076.0">
+               <image>
+                  <Image url="@images/4.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="connect" layoutX="-1085.0" layoutY="90.0" prefHeight="786.0" prefWidth="3618.0">
+
+      </Pane>
+
+         <VBox alignment="CENTER" layoutY="-1.0" prefHeight="96.0" prefWidth="1602.0" spacing="10" style="-fx-background-color: white; -fx-effect: dropshadow(gaussian, black, 5, 0, 0.5, 0);" stylesheets="@login.css">
+            <children>
+               <HBox alignment="CENTER" prefHeight="53.0" prefWidth="1602.0" spacing="10" style="-fx-spacing: 100;">
+                  <children>
+                  <HBox prefHeight="54.0" prefWidth="103.0" spacing="10" style="-fx-spacing: 15;" />
+                     <HBox prefHeight="54.0" prefWidth="615.0" spacing="10" style="-fx-spacing: 15;">
+                        <children>
+                           <Label onMouseClicked="#navHome" prefHeight="46.0" prefWidth="94.0" styleClass="menu-item" text="Home" textFill="#cfba91">
+                           <font>
+                              <Font name="Times New Roman" size="17.0" />
+                           </font>
+                        </Label>
+                           <Label onMouseClicked="#navAsso" prefHeight="44.0" prefWidth="140.0" styleClass="menu-item" text="Associations" textFill="#cfba91">
+                           <font>
+                              <Font name="Times New Roman" size="17.0" />
+                           </font>
+                        </Label>
+                           <Label onMouseClicked="#navNews" prefHeight="42.0" prefWidth="115.0" styleClass="menu-item" text="News" textFill="#cfba91">
+                              <font>
+                                 <Font name="Times New Roman" size="17.0" />
+                              </font>
+                           </Label>
+
+                           <Label prefHeight="42.0" prefWidth="122.0" styleClass="menu-item" text="About" textFill="#cfba91">
+                           <font>
+                              <Font name="Times New Roman" size="17.0" />
+                           </font>
+                        </Label>
+                        </children>
+                     </HBox>
+                  <HBox prefHeight="54.0" prefWidth="0.0" spacing="10" style="-fx-spacing: 15;" />
+                     <HBox prefHeight="54.0" prefWidth="438.0" spacing="10">
+                        <children>
+                           <Button fx:id="loginBtn1" onAction="#signIn" prefHeight="38.0" prefWidth="232.0" style="-fx-background-color: #F5F2E0; -fx-background-radius: 20;" text="Sign In" textFill="#cfba91">
+                           <font>
+                              <Font name="Times New Roman" size="15.0" />
+                           </font>
+                        </Button>
+                           <Button fx:id="registerBtn1" onAction="#signUp" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #F5F2E0; -fx-background-radius: 20;" text="Sign Up" textFill="#cfba91">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Button>
+                        <ImageView fx:id="profil" fitHeight="41.0" fitWidth="59.0" onMouseClicked="#navProfil" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/jimmy-fallon.png" />
+                           </image>
+                        </ImageView>
+                        </children>
+                     </HBox>
+                  </children>
+               </HBox>
+              </children>
+
+         </VBox>
+      <ImageView fitHeight="96.0" fitWidth="124.0" layoutX="59.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="newsPane" layoutX="-1.0" layoutY="101.0" prefHeight="775.0" prefWidth="1614.0">
+         <children>
+            <ScrollPane fx:id="ScrollPaneNews" prefHeight="775.0" prefWidth="1602.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="profilPane" layoutX="-1085.0" layoutY="90.0" prefHeight="786.0" prefWidth="3618.0">
+
+      </Pane>
+      <Pane fx:id="Home" layoutX="10.0" layoutY="105.0" prefHeight="775.0" prefWidth="1602.0">
+         <children>
+            <ImageView fx:id="imageView" fitHeight="775.0" fitWidth="1602.0" layoutX="-14.0" layoutY="-14.0">
+               <image>
+                  <Image url="@images/2.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="378.0" layoutY="257.0" prefHeight="109.0" prefWidth="797.0" style="-fx-background-color: #F5F2E0; -fx-background-radius: 30; -fx-opacity: 0.9;">
+               <children>
+                  <HBox fx:id="hboxSearch" layoutX="63.0" layoutY="34.0" prefHeight="42.0" prefWidth="682.0">
+                     <children>
+                        <TextField fx:id="searchAssoc" prefHeight="34.0" prefWidth="180.0" promptText="Association" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #cfba91; -fx-background-color: transparant;" />
+                        <HBox prefHeight="42.0" prefWidth="44.0" spacing="10" style="-fx-spacing: 15;" />
+                        <TextField fx:id="adresseSearch" prefHeight="34.0" prefWidth="192.0" promptText="Adresse" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #cfba91; -fx-background-color: transparant;" />
+                        <HBox prefHeight="42.0" prefWidth="72.0" spacing="10" style="-fx-spacing: 15;" />
+                        <Button fx:id="searchBtn" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: #cfba91; -fx-background-radius: 20;" text="Search" textFill="#f5f2e0">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fx:id="imageView1" fitHeight="22.0" fitWidth="23.0" opacity="0.85">
+                                 <image>
+                                    <Image url="@images/recherche.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <VBox fx:id="root" layoutX="71.0" layoutY="67.0" prefHeight="85.0" prefWidth="163.0" style="-fx-background-color: #F5F2E0;" />
+                  <ListView fx:id="associationsListView" layoutX="71.0" layoutY="67.0" prefHeight="85.0" prefWidth="163.0" style="-fx-background-color: #F5F2E0;"/>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+
+      </children>
+   </AnchorPane>

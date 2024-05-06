@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="539.0" style="-fx-background-color: #B0B5D6;"  xmlns:fx="http://javafx.com/fxml" fx:controller="demo.controllers.MemberController">
+   <children>
+      <Pane layoutY="75.0" prefHeight="570.0" prefWidth="539.0">
+         <children>
+            <Label fx:id="nomLabel" layoutX="53.0" layoutY="93.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="prenomLabel" layoutX="53.0" layoutY="153.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="fonctionLabel" layoutX="53.0" layoutY="210.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="emailLabel" layoutX="53.0" layoutY="265.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="telephoneLabel" layoutX="53.0" layoutY="315.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+             <Label fx:id="descriptionLabel" layoutX="53.0" layoutY="365.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Separator layoutX="54.0" layoutY="420.0" opacity="0.57" prefHeight="3.0" prefWidth="423.0" />
+            <Separator layoutX="54.0" layoutY="36.0" opacity="0.53" prefHeight="3.0" prefWidth="423.0" />
+            <Label fx:id="nom" layoutX="253.0" layoutY="93.0" prefHeight="20.0" prefWidth="232.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="prenom" layoutX="253.0" layoutY="153.0" prefHeight="20.0" prefWidth="202.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="fonction" layoutX="253.0" layoutY="210.0" prefHeight="20.0" prefWidth="202.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="email" layoutX="253.0" layoutY="265.0" prefHeight="20.0" prefWidth="202.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="telephone" layoutX="253.0" layoutY="315.0" prefHeight="20.0" prefWidth="202.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="description" layoutX="253.0" layoutY="365.0" prefHeight="20.0" prefWidth="202.0" text="" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+          
+         </children>
+      </Pane>
+      <Label layoutX="218.0" layoutY="40.0" text="Details" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
