@@ -128,23 +128,12 @@ private  static String userEmaill;
         String newPassword = newPasswordField.getText();
 
         // Check if the email exists in the database
-        User user = userRepository.getUserByEmail(userEmaill);
+        boolean passwordUpdated = userRepository.updatePassword(userEmaill, newPassword);
 
-        if (user != null) {
-            // Update the user's password
-            user.setPassword(newPassword);
-
-            // Save the updated user information to the database
-            boolean updated = userRepository.updateUser(user);
-
-            if (updated) {
-                showAlert("Password Reset Successful", "Your password has been reset successfully!");
-                // Optionally, you can navigate the user to another screen or perform other actions
-            } else {
-                showAlert("Error", "Failed to reset password. Please try again.");
-            }
+        if (passwordUpdated) {
+            showAlert("Password Reset Successful", "Your password has been reset successfully!");
         } else {
-            showAlert("User Not Found", "No user found with the provided email address.");
+            showAlert("Error", "Failed to reset password. Please try again.");
         }
     }
 

@@ -12,6 +12,8 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.application.controllers.RegisterCont">
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="261.0" style="-fx-background-color: #404040;" BorderPane.alignment="CENTER">
@@ -42,6 +44,8 @@
             <PasswordField fx:id="password" layoutX="49.0" layoutY="219.0" prefHeight="25.0" prefWidth="202.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
             <PasswordField fx:id="confirmPassword" layoutX="49.0" layoutY="254.0" prefHeight="25.0" prefWidth="202.0" promptText="Confirm Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
             <TextField fx:id="verificationCodeField" visible="false" promptText="verify your code here" />
+            <TextField fx:id="captchaTextField" layoutX="49.0" layoutY="289.0" prefHeight="25.0" prefWidth="202.0" promptText="Enter CAPTCHA Code" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+
             <Button fx:id="verifyButton" text="Verify" visible="false" onAction="#verify" layoutX="49.0" layoutY="302.0" prefHeight="32.0" prefWidth="76.0" style="-fx-background-color: #404040; -fx-background-radius: 0px; -fx-text-fill: WHITE;">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -59,10 +63,18 @@
             </Hyperlink>
             <VBox xmlns="http://javafx.com/javafx"
                   xmlns:fx="http://javafx.com/fxml"
-                  prefWidth="10" prefHeight="20">
+                  prefWidth="150" prefHeight="200">
+
+
+               <!-- Add ImageView for displaying CAPTCHA image -->
+               <ImageView fx:id="captchaImageView" layoutX="49.0" layoutY="100.0" fitWidth="150" fitHeight="50" />
+
 
                <!-- Add WebView for the chatbot -->
-               <WebView fx:id="chatbotWebView" prefWidth="10" prefHeight="20" />
+<!--               <WebView fx:id="chatbotWebView" prefWidth="20" prefHeight="30" />-->
+
+<!--               &lt;!&ndash; CAPTCHA WebView &ndash;&gt;-->
+<!--               <WebView fx:id="captchaWebView" prefHeight="400" prefWidth="500" />-->
 
             </VBox>
          </children>

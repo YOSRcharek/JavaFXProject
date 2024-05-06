@@ -3,18 +3,21 @@ package com.example.application.controllers;
 import com.example.application.model.User;
 import com.example.application.repository.UserRepository;
 import com.example.application.services.SendMail;
+import com.mewebstudio.captcha.Captcha;
+import com.mewebstudio.captcha.GeneratedCaptcha;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
@@ -33,6 +36,9 @@ public class RegisterCont {
     @FXML
     private Button registerButton;
 
+
+    @FXML
+    private TextField captchaTextField;
     @FXML
     private TextField verificationCodeField;
 
@@ -41,6 +47,15 @@ public class RegisterCont {
     @FXML
     private WebView chatbotWebView;
 
+    @FXML
+    private ImageView captchaImageView; // Add ImageView to display CAPTCHA image
+
+
+
+
+//    @FXML
+//    private WebView captchaWebView;
+//
 
     private UserRepository userRepository;
     private String verificationCode; // Temporary storage for verification code
@@ -49,9 +64,40 @@ public class RegisterCont {
 
 
 
+
+private String captchavercode;
+
+
+
     public void initialize() {
+        generateAndDisplayCaptcha();
+//        WebEngine webEngine = captchaWebView.getEngine();
+//        webEngine.load("https://www.google.com/recaptcha/api/fallback?k=6LdZk9EpAAAAAMjHvpFQzThkZQ4KBgTh0dtHWarG");
         // Load the chatbot interface URL
-        chatbotWebView.getEngine().load("https://console.dialogflow.com/api-client/demo/embedded/3b6bf03e-8a2c-40a5-8b63-03aba37653d5");
+//        chatbotWebView.getEngine().load("https://console.dialogflow.com/api-client/demo/embedded/3b6bf03e-8a2c-40a5-8b63-03aba37653d5");
+    }
+
+
+
+
+
+
+    private void generateAndDisplayCaptcha() {
+        Captcha captcha = new Captcha();
+        captcha.getConfig().setDark(true);
+
+        // Generate a captcha image
+        GeneratedCaptcha generatedCaptcha = captcha.generate();
+        BufferedImage captchaImage = generatedCaptcha.getImage();
+        String captchaCode = generatedCaptcha.getCode();
+
+        // Display the captcha code and image
+        Image image = SwingFXUtils.toFXImage(captchaImage, null);
+        captchaImageView.setImage(image);
+
+        // Store captcha code for verification
+        this.captchavercode = captchaCode;
+        System.out.println(captchavercode);
     }
     public RegisterCont() {
         this.userRepository = new UserRepository();
@@ -65,6 +111,8 @@ public class RegisterCont {
 
     @FXML
     private void register() {
+        String enteredCaptchaCode = captchaTextField.getText(); // Get the entered CAPTCHA code
+
         String userEmail = email.getText();
         String userPassword = password.getText();
         String userConfirmPassword = confirmPassword.getText();
@@ -72,6 +120,10 @@ public class RegisterCont {
         // Validate email format
         if (!isValidEmail(userEmail)) {
             showAlert("Invalid Email", "Please enter a valid email address.");
+            return;
+        }
+        if (!enteredCaptchaCode.equals(captchavercode)) {
+            showAlert("Invalid CAPTCHA", "The entered CAPTCHA code is incorrect.");
             return;
         }
 
@@ -110,6 +162,8 @@ public class RegisterCont {
             confirmPassword.setVisible(false);
             email.setVisible(false);
             registerButton.setVisible(false);
+            captchaTextField.setVisible(false);
+            captchaImageView.setVisible(false);
 
 
 

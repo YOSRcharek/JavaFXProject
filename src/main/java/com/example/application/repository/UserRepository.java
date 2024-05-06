@@ -104,6 +104,27 @@
             }
         }
 
+        public boolean updatePassword(String userEmail, String newPassword) {
+            String sql = "UPDATE user SET password = ? WHERE email = ?";
+
+            // Hash the new password
+            String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                preparedStatement.setString(1, hashedPassword);
+                preparedStatement.setString(2, userEmail);
+
+                int rowsUpdated = preparedStatement.executeUpdate();
+
+                preparedStatement.close();
+
+                return rowsUpdated > 0;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
 
         // Method to delete an existing user by ID
         public boolean deleteUser(int userId) {
