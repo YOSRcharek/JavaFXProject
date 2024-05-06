@@ -122,6 +122,21 @@
           <artifactId>itextpdf</artifactId>
           <version>5.5.13</version> <!-- ou la dernière version disponible -->
       </dependency>
+      <dependency>
+          <groupId>org.apache.httpcomponents</groupId>
+          <artifactId>httpclient</artifactId>
+          <version>4.5.13</version>
+      </dependency>
+      <dependency>
+          <groupId>com.stripe</groupId>
+          <artifactId>stripe-java</artifactId>
+          <version>25.5.0</version>
+      </dependency>
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>8.0.33</version>
+      </dependency>
   </dependencies>
 
   <build>
@@ -141,10 +156,9 @@
         <version>0.0.8</version>
         <executions>
           <execution>
-            <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.example.demo/com.example.demo.HelloApplication</mainClass>
+              <mainClass>demo.Main</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
