@@ -218,15 +218,16 @@ public class HomeController {
 
          lineChart.getData().addAll(series1,series2,series3);
 
-          ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-              new PieChart.Data("Category A", 30),
-              new PieChart.Data("Category B", 20)
-          );
+        int projetsTermines = projetRepo.nbProjetTermine();
+        int projetsEnCours = projetRepo.nbProjetEnCours();
 
-          // Setting data to PieChart
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Terminé", projetsTermines),
+                new PieChart.Data("En cours", projetsEnCours)
+        );
+
           pieChart.setData(pieChartData);
 
-          // Customizing slice colors and text styles
           int i = 0;
           for (PieChart.Data data : pieChartData) {
               String color = "";
@@ -239,11 +240,9 @@ public class HomeController {
               i++;
           }
 
-pieChart.setLegendVisible(false);
-          // Removing labels
-          pieChart.setLabelLineLength(10); // Adjust label line length
-          pieChart.setLabelsVisible(false); // Hide labels
-
+         pieChart.setLegendVisible(false);
+          pieChart.setLabelLineLength(10);
+          pieChart.setLabelsVisible(false);
 
 	    Stage primaryStage = new Stage();
         loadDemandeFromDatabase(primaryStage);

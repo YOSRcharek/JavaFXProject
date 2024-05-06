@@ -136,13 +136,38 @@ public class projetRepo {
 		return projets;
 	}
 
-	/*public int nbProjetTermine(){
-
+	public static int nbProjetTermine() {
+		int count = 0;
 		try (Connection connection = DatabaseConnection.getConnection()) {
-			String query = "SELECT count(*) FROM projet where status="terminé";
-			PreparedStatement statement = connection.prepareStatement(query);
-			ResultSet resultSet = statement.executeQuery();
+			String query = "SELECT count(*) FROM projet WHERE status='termine'";
+			try (PreparedStatement statement = connection.prepareStatement(query)) {
+				try (ResultSet resultSet = statement.executeQuery()) {
+					if (resultSet.next()) {
+						count = resultSet.getInt(1);
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	public static int nbProjetEnCours() {
+		int count = 0;
+		try (Connection connection = DatabaseConnection.getConnection()) {
+			String query = "SELECT count(*) FROM projet WHERE status='en cours'";
+			try (PreparedStatement statement = connection.prepareStatement(query)) {
+				try (ResultSet resultSet = statement.executeQuery()) {
+					if (resultSet.next()) {
+						count = resultSet.getInt(1);
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 
-		}*/
 }
 

@@ -33,7 +33,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -94,14 +96,11 @@ public class loginController {
     @FXML
     public void initialize() {
         Home.setVisible(true);
-
-
-
         root.setVisible(false);
         associationsListView.setVisible(false);
         root.setLayoutX(71);
         root.setLayoutY(67);
-
+        initMap();
         searchAssoc.setOnKeyReleased(event -> {
             String searchTerm = searchAssoc.getText();
             List<Association> associations = getAssociations(searchTerm);
@@ -194,7 +193,6 @@ public class loginController {
 
     @FXML
     private void navAsso(MouseEvent event) throws IOException {
-
         profilPane.setVisible(false);
         newsPane.setVisible(false);
         inscrire.setVisible(false);
@@ -206,62 +204,66 @@ public class loginController {
         splitPane.setOrientation(Orientation.HORIZONTAL);
         splitPane.setDividerPosition(0, 0.5);
 
+        // Initialiser la carte une seule fois
+        initMap();
+
+        // Créer une seule instance de WebView
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
-
         webEngine.load(getClass().getResource("../map.html").toExternalForm());
-        List<Association> Adresses =associationRepo.getAssociations();
 
-        webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
-            if (newState == Worker.State.SUCCEEDED) {
-
-                for (Association association : Adresses){
-                   /* String[] latLng = getAddressLatLng(association.getAdresse());
-                    if (latLng[0] != null && latLng[1] != null) {
-                        System.out.println("Latitude: " + latLng[0] + ", Longitude: " + latLng[1]);
-                        JSObject window = (JSObject) webEngine.executeScript("window");
-                        window.call("updateMapEvent", latLng[0], latLng[1]);
-                    } else {
-                        System.out.println("Coordonnées introuvables pour cette adresse.");
-                    }
-*/
-                }}
-        });
-        pane2.getChildren().add(webView);
+        // Afficher les informations des associations
         ScrollPane sp = new ScrollPane();
         VBox content = new VBox();
         pane1.getChildren().clear(); // Effacez le contenu précédent de pane1
 
-        for (Association association : Adresses) {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("../associationsItem.fxml"));
-             Node node = loader.load();
-             Label nom = (Label) node.lookup("#nomAssoc");
-             Label domaine = (Label) node.lookup("#domaine");
-             Label telephoneLabel = (Label) node.lookup("#telephone");
-             Label descrip = (Label) node.lookup("#descrip");
-             Label emailLabel = (Label) node.lookup("#email");
-             Label adresseLabel = (Label) node.lookup("#adresse");
+        List<Association> associations = associationRepo.getAssociations();
+        for (Association association : associations) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../associationsItem.fxml"));
+            Node node = loader.load();
+            Label nom = (Label) node.lookup("#nomAssoc");
+            Label domaine = (Label) node.lookup("#domaine");
+            Label telephoneLabel = (Label) node.lookup("#telephone");
+            Label descrip = (Label) node.lookup("#descrip");
+            Label emailLabel = (Label) node.lookup("#email");
+            Label adresseLabel = (Label) node.lookup("#adresse");
 
-             domaine.setText(String.valueOf(association.getDomaineActivite()));
-             telephoneLabel.setText(String.valueOf(association.getTelephone()));
-             emailLabel.setText(association.getEmail());
-             adresseLabel.setText(association.getAdresse());
-             descrip.setText(association.getDescription());
-             nom.setText(association.getNom());
+            domaine.setText(String.valueOf(association.getDomaineActivite()));
+            telephoneLabel.setText(String.valueOf(association.getTelephone()));
+            emailLabel.setText(association.getEmail());
+            adresseLabel.setText(association.getAdresse());
+            descrip.setText(association.getDescription());
+            nom.setText(association.getNom());
 
-             content.getChildren().add(node);
-
-            System.out.println(association.getNom());
+            content.getChildren().add(node);
+            content.setOnMouseClicked(e -> {
+                // Attendre que la carte soit chargée avant de zoomer sur le marqueur
+                webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+                    if (newState == Worker.State.SUCCEEDED) {
+                        // Récupérer les coordonnées de l'adresse
+                        String[] latLng = getAddressLatLng(association.getAdresse());
+                        // Zoom sur la position sur la carte
+                        if (latLng != null && latLng.length == 2) {
+                            zoomToMarker(Double.parseDouble(latLng[0]), Double.parseDouble(latLng[1]), webView);
+                        }
+                    }
+                });
+            });
         }
+
         content.setPrefSize(900, 900);
         sp.setContent(content);
 
-        sp.setContent(content); // Mettez à jour le contenu du ScrollPane avec les nouvelles données
+        sp.setContent(content);
         pane1.getChildren().add(sp);
 
         Associations.getChildren().add(splitPane);
-
     }
+
+    private void zoomToMarker(double latitude, double longitude, WebView map) {
+        map.getEngine().executeScript("map.setView([" + latitude + ", " + longitude + "], 15)");
+    }
+
 
 
     @FXML
@@ -387,7 +389,7 @@ public class loginController {
                 latLng[0] = result.getString("lat");
                 latLng[1] = result.getString("lon");
             } else {
-                System.out.println("Aucune coordonnée trouvée pour cette adresse.");
+                System.out.println("Aucune coordonnée trouvée pour cette adresse: " + address);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -395,6 +397,37 @@ public class loginController {
         return latLng;
     }
 
+
+    private void initMap() {
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+
+        webEngine.load(getClass().getResource("../map.html").toExternalForm());
+        List<Association> associations = associationRepo.getAssociations();
+        Set<String> addressesProcessed = new HashSet<>();
+
+        webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+            if (newState == Worker.State.SUCCEEDED) {
+                for (Association association : associations) {
+                    String address = association.getAdresse();
+                    if (!addressesProcessed.contains(address)) {
+                        addressesProcessed.add(address);
+                        String[] latLng = getAddressLatLng(address);
+                        if (latLng[0] != null && latLng[1] != null) {
+                            System.out.println("Latitude: " + latLng[0] + ", Longitude: " + latLng[1]);
+                            JSObject window = (JSObject) webEngine.executeScript("window");
+                            window.call("updateMapEvent", latLng[0], latLng[1], association.getNom());
+
+                        } else {
+                            System.out.println("Coordonnées introuvables pour cette adresse: " + address);
+                        }
+                    }
+                }
+            }
+        });
+
+        pane2.getChildren().add(webView);
+    }
 
 
 }
