@@ -2,8 +2,11 @@ package demo.controllers;
 
 
 import demo.DatabaseConnection;
+import demo.model.User;
+import demo.repository.UserRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,6 +65,8 @@ public class HomeController {
 
     @FXML
     private Pane pnlEvents;
+    @FXML
+    private Pane pnlUsers;
 
     @FXML
     private Pane pnlOffres;
@@ -105,6 +110,22 @@ public class HomeController {
     public  TableColumn<Association, Integer> orderIdColumn;
     public TableColumn<Association, String> nameColumn;
     public TableColumn<Association, String> domainColumn;
+    @FXML
+    private TableColumn<User, String> actionsColumn;
+    @FXML
+    private Button btnUsers;
+
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField searchemail;
+
+    @FXML
+    private CheckBox chkVerified;
+
+
+    @FXML
+    private Button btnSignout;
 
     public TableColumn<Association, String> dateDemandeColumn;
 
@@ -115,7 +136,7 @@ public class HomeController {
 
     public TableColumn<Association, String> email1Column;
     public TableColumn<Association, String> adresseColumn;
-    public TableColumn<Association, Void> actionsColumn;
+    public TableColumn<Association, Void> actionsColumnAmir;
     
     @FXML
     private TableColumn<Association, Void> pdfColumn;
@@ -166,6 +187,25 @@ public class HomeController {
 
 	  @FXML
 	  private TableColumn<Membre, Void> modifierMembreColumn;
+    @FXML
+    private TableView<User> userTable;
+
+    @FXML
+    private TableColumn<User, Integer> idColumn;
+
+    @FXML
+    private TableColumn<User, String> emailColumnAmir;
+
+    @FXML
+    private TableColumn<User, Boolean> verifiedColumn;
+
+
+    private UserRepository userRepository;
+
+    public HomeController() {
+        userRepository = new UserRepository(); // Instantiate your UserRepository
+    }
+
     private double x = 0,y = 0;
 
     @FXML
@@ -247,7 +287,38 @@ public class HomeController {
           pieChart.setLabelLineLength(10);
           pieChart.setLabelsVisible(false);
 
-	    Stage primaryStage = new Stage();
+          //amir
+        List<User> userList =  userRepository.getAllUsers();
+        userTable.getItems().addAll(userList);
+
+        // Set up a filtered list to filter based on email
+        FilteredList<User> filteredList = new FilteredList<>(userTable.getItems());
+
+        // Bind the filtered list to the TableView
+        userTable.setItems(filteredList);
+
+        // Add listener to the text field to filter based on email
+        txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(user -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                // Filter based on email
+                String lowerCaseFilter = newValue.toLowerCase();
+                return user.getEmail().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        emailColumnAmir.setCellValueFactory(new PropertyValueFactory<>("email"));
+        verifiedColumn.setCellValueFactory(new PropertyValueFactory<>("verified"));
+
+
+
+
+
+        //amir
+        Stage primaryStage = new Stage();
         loadDemandeFromDatabase(primaryStage);
         loadStatistique();
         btnOverview.setStyle("-fx-background-color:   #9CCBD6");
@@ -264,6 +335,7 @@ public class HomeController {
 	    btnDons.setStyle("-fx-background-color: #DDE6E8 ");
         btnEvents.setStyle("-fx-background-color: #DDE6E8 ");
         btnOffres.setStyle("-fx-background-color: #DDE6E8");
+        btnUsers.setStyle("-fx-background-color : #DDE6E8");
 		    if (actionEvent.getSource() == btnCustomers) {
 		        btnCustomers.setStyle("-fx-background-color:  #9CCBD6");
 		        pnlCustomer.setStyle("-fx-background-color: #EFFCFF");
@@ -300,6 +372,9 @@ public class HomeController {
                 loadEventFromDatabase();
                 pnlEvents.toFront();
 
+            }else if (actionEvent.getSource() == btnUsers) {
+            pnlUsers.setStyle("-fx-background-color : #53639F");
+            pnlUsers.toFront();
             }
 
             else if (actionEvent.getSource() == btnTypeDons) {
@@ -675,6 +750,169 @@ public class HomeController {
         }
 
     }
+    @FXML
+    public void handleDeleteUser(ActionEvent actionEvent) {
+        // Get the selected user from the TableView
+        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+
+        if (selectedUser == null) {
+            // If no user is selected, show an error message
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a user to delete.");
+            alert.showAndWait();
+            return;
+        }
+
+        // Confirm with the user before deleting
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirm Deletion");
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setContentText("Are you sure you want to delete the selected user?");
+
+        confirmationAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // User confirmed deletion, proceed with deletion
+                boolean deleted = userRepository.deleteUser(selectedUser.getId());
+                if (deleted) {
+                    // User successfully deleted, remove from TableView
+                    userTable.getItems().remove(selectedUser);
+                    // Show success message
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Success");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("User deleted successfully.");
+                    successAlert.showAndWait();
+                } else {
+                    // Show error message if deletion fails
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("Error");
+                    errorAlert.setHeaderText(null);
+                    errorAlert.setContentText("Failed to delete user. Please try again.");
+                    errorAlert.showAndWait();
+                }
+            }
+        });
+    }
+
+
+
+    @FXML
+    public void handleUpdate(ActionEvent event) {
+        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+
+        if (selectedUser != null) {
+            // Populate the update fields with the selected user's data
+            txtEmail.setText(selectedUser.getEmail());
+            chkVerified.setSelected(selectedUser.isVerified());
+        } else {
+            // If no user is selected, show an error message
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a user to update.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    public void handleUpdateConfirm(ActionEvent event) {
+        User selectedUser = userTable.getSelectionModel().getSelectedItem();
+
+        if (selectedUser != null) {
+            // Get updated data from the fields
+            String updatedEmail = txtEmail.getText();
+            boolean updatedVerified = chkVerified.isSelected();
+
+            // Validate the email format
+            if (!isValidEmail(updatedEmail)) {
+                // Show an error message if the email format is invalid
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Please enter a valid email address.");
+                alert.showAndWait();
+                return;
+            }
+
+            // Update the selected user's data
+            selectedUser.setEmail(updatedEmail);
+            selectedUser.setVerified(updatedVerified);
+
+            // Call UserRepository.updateUser(selectedUser) to update the user in the database
+            boolean success = userRepository.updateUser(selectedUser);
+
+            if (success) {
+                // If update is successful, show a success message
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("User updated successfully.");
+                alert.showAndWait();
+
+                // Clear the update fields
+                txtEmail.clear();
+                chkVerified.setSelected(false);
+
+                // Refresh the TableView to reflect the changes
+                refreshUserTable();
+            } else {
+                // If update fails, show an error message
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Failed to update user.");
+                alert.showAndWait();
+            }
+        } else {
+            // If no user is selected, show an error message
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a user to update.");
+            alert.showAndWait();
+        }
+    }
+
+    // Method to validate email format
+    private boolean isValidEmail(String email) {
+        // Regular expression for email validation
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(emailRegex);
+    }
+
+    // Method to refresh the TableView with updated data
+    private void refreshUserTable() {
+        userTable.getItems().clear();
+        userTable.getItems().addAll(userRepository.getAllUsers());
+    }
+
+
+    @FXML
+    private void signOut() {
+        // Clear any session-related data (if applicable)
+        // For example, if you're storing authentication status, clear it here
+
+        // Navigate to the sign-in screen
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SignIn.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) btnSignout.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
 
 
 }

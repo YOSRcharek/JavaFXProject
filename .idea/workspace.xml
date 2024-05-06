@@ -4,84 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39ad3a2a-e762-415d-849c-4a7e224bc6ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/AjouterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/CategorieController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/DetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/ModifierService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/ServiceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/model/Categorie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/model/Commentaire.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/model/Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/repository/CategorieRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/repository/CommentaireRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/repository/Icategorie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/repository/Iservice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo/repository/ServiceRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/ModifierService2.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/Serviceview.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/addservice.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/ajouter service.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/ajouter.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/categorieview.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/datailsService.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="39ad3a2a-e762-415d-849c-4a7e224bc6ff" name="Changes" comment="firas services">
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/ForgetPasswordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/RegisterCont.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/SignInController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/demo/service/SendMail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/forgetpassword.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/resetpassword.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/signIn.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/signUp.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/model/Association.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/model/Association.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/repository/associationRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/repository/associationRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/DatabaseConnection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/MyData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/AddTypeEventController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/AssoDetails.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/AssociationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/CalendarActivity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/CalendarController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/DetailEventController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/EventController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/EventController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/EventFormController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/HomeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/MapboxGeocodingService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/MemberController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/ModifyEventController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/NewsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/ProjetController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/RegisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/SignInAssoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/SignUpAssoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/loginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/controllers/profilController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/model/Article.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/model/Association.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/model/Events.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/model/Membre.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/model/PDFViewer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/model/Projet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/model/TypeEvent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/repository/EventRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/repository/TypeEventRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/repository/associationRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/repository/memberRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/repository/projetRepo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/service/NewsAPIService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/service/mailService$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/service/mailService$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/service/mailService$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/service/mailService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/demo/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/Home.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,12 +70,13 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/yosry/Downloads/JavaFXProject-services",
+    "last_opened_file_path": "C:/Users/yosry/Downloads/JavaFXProject-usermanagement",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/walid/IdeaProjects/PiJava/src/main/java/org/example/Main.java",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
@@ -156,10 +96,11 @@
       <recent name="C:\Users\walid\IdeaProjects\PiJava\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\yosry\eclipse-workspace\IDE_2024\demo\src\main\resources\demo" />
-      <recent name="C:\Users\yosry\eclipse-workspace\IDE_2024\demo\src\main\java\demo\repository" />
       <recent name="C:\Users\yosry\eclipse-workspace\IDE_2024\demo\src\main\java\demo\controllers" />
+      <recent name="C:\Users\yosry\eclipse-workspace\IDE_2024\demo\src\main\java\demo\service" />
+      <recent name="C:\Users\yosry\eclipse-workspace\IDE_2024\demo\src\main\java\demo\repository" />
       <recent name="C:\Users\yosry\eclipse-workspace\IDE_2024\demo\src\main\java\demo\model" />
+      <recent name="C:\Users\yosry\eclipse-workspace\IDE_2024\demo\src\main\resources\demo" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -252,7 +193,7 @@
       <workItem from="1714014219366" duration="14848000" />
       <workItem from="1714029121394" duration="13532000" />
       <workItem from="1714513836735" duration="297000" />
-      <workItem from="1715005823210" duration="1254000" />
+      <workItem from="1715005823210" duration="4927000" />
     </task>
     <task id="LOCAL-00001" summary="ba3ed sadma">
       <option name="closed" value="true" />
@@ -270,7 +211,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715005363090</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="firas services">
+      <option name="closed" value="true" />
+      <created>1715007418673</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715007418673</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,7 +228,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ba3ed sadma" />
     <MESSAGE value="ba3ed sadma2" />
-    <option name="LAST_COMMIT_MESSAGE" value="ba3ed sadma2" />
+    <MESSAGE value="firas services" />
+    <option name="LAST_COMMIT_MESSAGE" value="firas services" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
