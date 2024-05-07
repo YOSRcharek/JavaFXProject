@@ -11,6 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.PasswordField?>
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="559.0" style="-fx-background-color: transparant; -fx-background-radius: 20; -fx-border-radius: 20;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.SignUpAssoController">
    <children>
       <VBox alignment="CENTER" prefHeight="74.0" prefWidth="559.0" spacing="5.0" style="-fx-background-color: transparant;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -44,11 +45,11 @@
                </font>
             </TextField>
             <Label fx:id="emailErrorLabel" prefHeight="10.0" prefWidth="440.0" textFill="darkred" />
-            <TextField fx:id="password" maxHeight="57.0" maxWidth="440.0" prefHeight="43.0" prefWidth="440.0" promptText="Password" styleClass="text-field">
+            <PasswordField fx:id="password" maxHeight="57.0" maxWidth="440.0" prefHeight="43.0" prefWidth="440.0" promptText="Password" styleClass="text-field">
                <font>
                   <Font size="14.0" />
                </font>
-            </TextField>
+            </PasswordField >
             <Label fx:id="passwordErrorLabel" prefHeight="5.0" prefWidth="408.0" textFill="darkred" />
             <HBox alignment="CENTER" prefHeight="43.0" prefWidth="498.0" spacing="5.0">
                <children>

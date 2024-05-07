@@ -17,6 +17,7 @@
 
 <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="866.0" prefWidth="1602.0" style="-fx-margin: 0; -fx-padding: 0; -fx-box-sizing: border-box;" styleClass="root" stylesheets="@login.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.loginController">
    <children>
+      <Pane fx:id="signUp" layoutY="91.0" prefHeight="695.0" prefWidth="1602.0" />
       <Pane fx:id="donsPane" layoutY="91.0" prefHeight="684.0" prefWidth="1614.0" />
       <Pane fx:id="Associations" layoutX="-1.0" layoutY="90.0" prefHeight="785.0" prefWidth="1614.0">
          <SplitPane fx:id="splitPane" dividerPositions="0.5" layoutY="-1.0" prefHeight="786.0" prefWidth="1602.0">
@@ -44,8 +45,10 @@
             <children>
                <HBox alignment="CENTER" prefHeight="53.0" prefWidth="1602.0" spacing="10" style="-fx-spacing: 100;">
                   <children>
+                  <HBox prefHeight="54.0" prefWidth="0.0" spacing="10" style="-fx-spacing: 15;" />
                   <HBox prefHeight="54.0" prefWidth="103.0" spacing="10" style="-fx-spacing: 15;" />
                      <HBox prefHeight="54.0" prefWidth="615.0" spacing="10" style="-fx-spacing: 15;">
+
                         <children>
                            <Label onMouseClicked="#navHome" prefHeight="46.0" prefWidth="94.0" styleClass="menu-item" text="Home" textFill="#cfba91">
                            <font>
@@ -70,29 +73,31 @@
                         </Label>
                         </children>
                      </HBox>
-                  <HBox prefHeight="54.0" prefWidth="0.0" spacing="10" style="-fx-spacing: 15;" />
-                     <HBox prefHeight="54.0" prefWidth="558.0" spacing="10">
+                     <HBox prefHeight="54.0" prefWidth="893.0" spacing="10">
                         <children>
-                           <Button fx:id="loginBtn1" onAction="#signIn" prefHeight="38.0" prefWidth="232.0" style="-fx-background-color: #F5F2E0; -fx-background-radius: 20;" text="Sign In" textFill="#cfba91">
+                       <HBox fx:id="buttonBox">
+                        <Button fx:id="loginBtn1" onAction="#signIn" prefHeight="38.0" prefWidth="232.0" style="-fx-background-color: #F5F2E0; -fx-background-radius: 20;" text="Sign In" textFill="#cfba91">
                            <font>
                               <Font name="Times New Roman" size="15.0" />
                            </font>
                         </Button>
-                           <Button fx:id="registerBtn1" onAction="#signUp" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #F5F2E0; -fx-background-radius: 20;" text="Sign Up Association" textFill="#cfba91">
+                        <Button fx:id="registerBtn1" onAction="#signUp" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #F5F2E0; -fx-background-radius: 20;" text="Sign Up Association" textFill="#cfba91">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Button>
-                        <Button fx:id="registerBtn11" onAction="#signUp" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #F5F2E0; -fx-background-radius: 20;" text="Sign Up volonteer" textFill="#cfba91">
+                        <Button fx:id="registerBtn11" onAction="#signUpVol" prefHeight="40.0" prefWidth="213.0" style="-fx-background-color: #F5F2E0; -fx-background-radius: 20;" text="Sign Up volonteer" textFill="#cfba91">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font>
                         </Button>
-                        <ImageView fx:id="profil" fitHeight="41.0" fitWidth="59.0" onMouseClicked="#navProfil" pickOnBounds="true" preserveRatio="true">
+                     </HBox>
+                           <ImageView fx:id="profil" fitHeight="41.0" fitWidth="59.0" onMouseClicked="#afficherOuCacherVBox" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/jimmy-fallon.png" />
                            </image>
                         </ImageView>
+                        <HBox prefHeight="54.0" prefWidth="149.0" spacing="10" style="-fx-spacing: 15;" />
                         </children>
                      </HBox>
                   </children>
@@ -149,6 +154,21 @@
             <WebView fx:id="chatBotWebView" layoutX="44.0" layoutY="312.0" prefHeight="369.0" prefWidth="282.0" />
          </children>
       </Pane>
+         <VBox fx:id="root1" layoutX="1300.0" layoutY="63.0" prefHeight="54.0" prefWidth="163.0" style="-fx-background-color: #F5F2E0;" visible="false">
+            <children>
+               <HBox prefHeight="100.0" prefWidth="200.0">
+                  <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                           <Label fx:id="name2" onMouseClicked="#signOut" prefHeight="44.0" prefWidth="165.0" text="SignOut" textFill="#180909" />
+                           <Label fx:id="name1" onMouseClicked="#navProfil" prefHeight="44.0" prefWidth="218.0" text="Profil" textFill="#180909" />
+                     </children>
+                  </VBox>
+
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
 
       </children>
    </AnchorPane>

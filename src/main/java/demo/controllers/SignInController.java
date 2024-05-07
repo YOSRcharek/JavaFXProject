@@ -33,18 +33,17 @@ public class SignInController {
     private void signIn() {
         String userEmail = emailField.getText();
         String userPassword = passwordField.getText();
-
-        // Attempt to authenticate the user
+        System.out.println(userEmail);
+        System.out.println(userPassword);
         authenticatedUser = userRepository.authenticateUser(userEmail, userPassword);
 
         if (authenticatedUser != null) {
-            // Authentication successful
             String roles = authenticatedUser.getRoles();
             System.out.println("User authenticated successfully! Role: " + roles);
 
-            // Check if the user has the role admin
+            // Vérifiez si l'utilisateur a le rôle admin
             if (roles.contains("ROLE_ADMIN")) {
-                // Load the home page FXML file
+                // Charge le fichier FXML de la page d'accueil
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Home.fxml"));
                     Parent root = loader.load();
@@ -53,7 +52,7 @@ public class SignInController {
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); // Imprime la trace de la pile de l'exception
                 }
             } else if (roles.contains("ROLE_ASSOCIATION")) {
                 try {
@@ -64,9 +63,9 @@ public class SignInController {
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); // Imprime la trace de la pile de l'exception
                 }
-            }else {
+            } else {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../test.fxml"));
                     Parent root = loader.load();
@@ -75,24 +74,19 @@ public class SignInController {
                     stage.setScene(scene);
                     stage.show();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); // Imprime la trace de la pile de l'exception
                 }
             }
 
         } else {
-            // Authentication failed, handle the error (e.g., show an error message)
             System.out.println("Authentication failed. Please check your credentials.");
         }
+
     }
 
     @FXML
     private void forgetPassword() {
         try {
-
-
-
-
-
 
 
 

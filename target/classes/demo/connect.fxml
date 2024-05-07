@@ -11,7 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="559.0" style="-fx-background-color: transparant; -fx-background-radius: 20; -fx-border-radius: 20;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.SignInAssoController">
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.Cursor?>
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="559.0" style="-fx-background-color: transparant; -fx-background-radius: 20; -fx-border-radius: 20;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.SignInController">
    <children>
       <VBox alignment="CENTER" prefHeight="74.0" prefWidth="559.0" spacing="5.0" style="-fx-background-color: transparant;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -38,23 +40,28 @@
       </VBox>
       <VBox alignment="CENTER" layoutX="45.0" layoutY="111.0" prefHeight="269.0" prefWidth="469.0" spacing="10.0" style="-fx-background-color: transparant;" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="44.60000000000002">
          <children>
-            <TextField fx:id="email" maxHeight="57.0" maxWidth="440.0" prefHeight="45.0" prefWidth="408.0" promptText="E-mail" styleClass="text-field">
+            <TextField fx:id="emailField" maxHeight="57.0" maxWidth="440.0" prefHeight="45.0" prefWidth="408.0" promptText="E-mail" styleClass="text-field">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
             <Label fx:id="emailErrorLabel" prefHeight="10.0" prefWidth="440.0" textFill="darkred" />
-            <TextField fx:id="password" maxHeight="57.0" maxWidth="440.0" prefHeight="43.0" prefWidth="440.0" promptText="Password" styleClass="text-field">
+            <PasswordField fx:id="passwordField" maxHeight="57.0" maxWidth="440.0" prefHeight="43.0" prefWidth="440.0" promptText="Password" styleClass="text-field">
                <font>
                   <Font size="14.0" />
                </font>
-            </TextField>
+            </PasswordField>
             <Label fx:id="passwordErrorLabel" prefHeight="5.0" prefWidth="408.0" textFill="darkred" />
-            <Button fx:id="btnSignUp" maxHeight="62.0" maxWidth="436.0" mnemonicParsing="false" onAction="#connect" prefHeight="47.0" prefWidth="426.0" style="-fx-background-color: #cfba91;" text="Sign In" textFill="#cfba91">
+            <Button fx:id="signInButton" maxHeight="62.0" maxWidth="436.0" mnemonicParsing="false" onAction="#signIn" prefHeight="47.0" prefWidth="426.0" style="-fx-background-color: #cfba91;" text="Sign In" textFill="#cfba91">
                <font>
                   <Font name="Arial Narrow" size="12.0" />
                </font>
             </Button>
+            <Hyperlink layoutX="66.0" layoutY="358.0"  text="forget password?" onAction="#forgetPassword">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Hyperlink>
             <HBox alignment="TOP_CENTER" prefHeight="42.0" prefWidth="498.0" />
          </children>
          <padding>

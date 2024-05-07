@@ -67,6 +67,8 @@ public class loginController {
     @FXML
     private Pane inscrire;
     @FXML
+    private Pane signUp;
+    @FXML
     private Pane Associations;
     @FXML
     private ScrollPane ScrollPaneNews;
@@ -92,17 +94,25 @@ public class loginController {
     private HBox hboxSearch;
     @FXML
     private VBox root;
-
-
+    @FXML
+    private HBox buttonBox;
+    private boolean isConnected = false;
+    @FXML
+    private VBox root1;
     @FXML
     private WebView chatBotWebView;
+
+    @FXML
+    private ImageView profil;
     private final ObservableList<Association> associationsList = FXCollections.observableArrayList();
     @FXML
     ListView<Association> associationsListView = new ListView<>();
     @FXML
     public void initialize() {
+        updateVisibility();
         Home.setVisible(true);
         root.setVisible(false);
+        signUp.setVisible(false);
         associationsListView.setVisible(false);
         root.setLayoutX(71);
         root.setLayoutY(67);
@@ -155,6 +165,10 @@ public class loginController {
 
     }
 
+    private void updateVisibility() {
+        buttonBox.setVisible(!isConnected); // Afficher les boutons si l'utilisateur n'est pas connecté
+        profil.setVisible(isConnected); // Afficher l'image de profil si l'utilisateur est connecté
+    }
 
 
     @FXML
@@ -166,6 +180,7 @@ public class loginController {
         Home.setVisible(true);
        connect.setVisible(false);
         donsPane.setVisible(false);
+        signUp.setVisible(false);
 
    }
     public List<Association> getAssociations(String searchTerm) {
@@ -190,6 +205,7 @@ public class loginController {
         Home.setVisible(false);
         connect.setVisible(false);
         donsPane.setVisible(false);
+        signUp.setVisible(false);
         profilPane.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../profil.fxml"));
         Node node = loader.load();
@@ -200,6 +216,7 @@ public class loginController {
 
     @FXML
     private void navAsso(MouseEvent event) throws IOException {
+        root1.setVisible(false);
         profilPane.setVisible(false);
         newsPane.setVisible(false);
         inscrire.setVisible(false);
@@ -208,6 +225,7 @@ public class loginController {
         connect.setVisible(false);
         Associations.getChildren().clear();
         donsPane.setVisible(false);
+        signUp.setVisible(false);
         splitPane.setOrientation(Orientation.HORIZONTAL);
         splitPane.setDividerPosition(0, 0.5);
 
@@ -275,7 +293,7 @@ public class loginController {
 
     @FXML
    private void navNews(MouseEvent event) {
-       // Effacer le contenu actuel de newsPane
+        signUp.setVisible(false);
        newsPane.setVisible(true);
         profilPane.setVisible(false);
        inscrire.setVisible(false);
@@ -340,6 +358,7 @@ public class loginController {
        connect.setVisible(false);
        inscrire.setVisible(true);
        profilPane.setVisible(false);
+       signUp.setVisible(false);
        inscrire.getChildren().clear();
        donsPane.setVisible(false);
        BackgroundImage backgroundImage = new BackgroundImage(imageView2.snapshot(null, null),
@@ -363,6 +382,7 @@ public class loginController {
         Home.setVisible(false);
         inscrire.setVisible(false);
         connect.setVisible(true);
+        signUp.setVisible(false);
         profilPane.setVisible(false);
         connect.getChildren().clear();
         donsPane.setVisible(false);
@@ -444,12 +464,50 @@ public class loginController {
         Associations.setVisible(false);
         Home.setVisible(false);
         connect.setVisible(false);
+        signUp.setVisible(false);
         donsPane.setVisible(true);
         donsPane.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../DonsFront.fxml"));
         Node node = loader.load();
         donsPane.getChildren().add(node);
 
+    }
+
+    public void signUpVol(ActionEvent actionEvent) throws IOException {
+        newsPane.setVisible(false);
+        Associations.setVisible(false);
+        Home.setVisible(false);
+        connect.setVisible(false);
+        inscrire.setVisible(false);
+        profilPane.setVisible(false);
+        signUp.setVisible(true);
+        inscrire.getChildren().clear();
+        donsPane.setVisible(false);
+        BackgroundImage backgroundImage = new BackgroundImage(imageView2.snapshot(null, null),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+        Background background = new Background(backgroundImage);
+        signUp.setBackground(background);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../signUp.fxml"));
+        Node node = loader.load();
+
+        node.setLayoutX(790);
+        node.setLayoutY(10);
+
+        signUp.getChildren().add(node);
+    }
+    private boolean vboxVisible = false;
+
+    @FXML
+    private void afficherOuCacherVBox() {
+        vboxVisible = !vboxVisible;
+        root1.setVisible(vboxVisible);
+    }
+
+    public void signOut(MouseEvent mouseEvent) {
+        Stage stage = (Stage) root1.getScene().getWindow();
+        stage.close();
     }
 }
 

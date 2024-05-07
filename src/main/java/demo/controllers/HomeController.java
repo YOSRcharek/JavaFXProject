@@ -22,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,6 +45,7 @@ import demo.model.Projet;
 import demo.repository.associationRepo;
 import demo.repository.memberRepo;
 import demo.repository.projetRepo;
+
 
 public class HomeController {
     
@@ -208,7 +210,8 @@ public class HomeController {
     @FXML
     private TableColumn<User, Boolean> verifiedColumn;
 
-
+    @FXML
+    private VBox root1;
     private UserRepository userRepository;
 
     public HomeController() {
@@ -228,11 +231,16 @@ public class HomeController {
     private Label nbDemande;
 
     private Stage stage;
+    @FXML
+    private ListView<String> optionsListView;
+
 
     private final AssociationController associationController = new AssociationController();
     private final ProjetController projetController = new ProjetController();
 
-    
+
+    @FXML
+    private ImageView profilImage2;
     
     @FXML
     public void initialize() {
@@ -250,6 +258,11 @@ public class HomeController {
         if (authenticatedUser != null) {
             name.setText(authenticatedUser.getEmail());
         }
+
+
+
+
+
 //        System.out.println("Authenticated user email: " + authenticatedUser.getEmail());
 
          XYChart.Series series1 = new XYChart.Series();
@@ -339,8 +352,17 @@ public class HomeController {
         pnlOverview.setStyle("-fx-background-color : #EFFCFF");
         pnlOverview.toFront();
     }
-    
-    public void handleClicks(ActionEvent actionEvent) {
+    private boolean vboxVisible = false;
+
+    @FXML
+    private void afficherOuCacherVBox() {
+        vboxVisible = !vboxVisible;
+        root1.setVisible(vboxVisible);
+    }
+
+
+
+        public void handleClicks(ActionEvent actionEvent) {
 	    btnCustomers.setStyle("-fx-background-color:    #DDE6E8");
 	    btnMenus.setStyle("-fx-background-color:    #DDE6E8");
 	    btnOverview.setStyle("-fx-background-color:    #DDE6E8");
@@ -929,12 +951,12 @@ public class HomeController {
 
     @FXML
     private void signOut() {
-        // Clear any session-related data (if applicable)
-        // For example, if you're storing authentication status, clear it here
+        Stage stage = (Stage) root1.getScene().getWindow();
 
-        // Navigate to the sign-in screen
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SignIn.fxml"));
+        // Fermez la scène
+        stage.close();
+       /* try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../SignIn.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) btnSignout.getScene().getWindow();
@@ -942,7 +964,7 @@ public class HomeController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 

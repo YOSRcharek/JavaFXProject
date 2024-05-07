@@ -32,7 +32,7 @@
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="866.0" prefWidth="1602.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.HomeController">
   
    <children>
-      <StackPane layoutX="257.0" prefHeight="830.0" prefWidth="1260.0" style="-fx-background-color: #02030A;">
+     <StackPane layoutX="257.0" prefHeight="830.0" prefWidth="1260.0" style="-fx-background-color: #02030A;">
          <children>
             <Pane fx:id="pnlBlog" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;" />
              <Pane fx:id="pnlUsers" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css">
@@ -635,12 +635,15 @@
          </children>
       </StackPane>
       <Accordion layoutX="309.0" layoutY="-3.0" prefHeight="55.0" prefWidth="1293.0" style="-fx-background-color: #DDE6E8;" styleClass="shadowed-accordion" stylesheets="@style.css" />
-      <ImageView fitHeight="42.0" fitWidth="52.0" layoutX="1429.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/jimmy-fallon.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="name" layoutX="1294.0" layoutY="9.0" prefHeight="23.0" prefWidth="124.0" text="Jimmy@Fallon.com" textFill="#100000" />
+       <ImageView fx:id="profilImage2" fitHeight="42.0" fitWidth="52.0" layoutX="1429.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#afficherOuCacherVBox">
+           <image>
+               <Image url="@images/jimmy-fallon.png" />
+           </image>
+       </ImageView>
+
+
+
+       <Label fx:id="name" layoutX="1294.0" layoutY="9.0" prefHeight="23.0" prefWidth="124.0" text="Jimmy@Fallon.com" textFill="#100000" />
       <VBox alignment="TOP_CENTER" prefHeight="866.0" prefWidth="310.0" style="-fx-background-color:  #DDE6E8;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
@@ -707,7 +710,7 @@
                               <Shadow />
                            </bumpInput>
 
-                        </Lighting>
+                                                </Lighting>
                      </effect>
                   </ImageView>
                </graphic>
@@ -848,6 +851,16 @@
             <Separator prefWidth="200.0" />
          </children>
       </VBox>
+       <VBox fx:id="root1" layoutX="1300.0" layoutY="45.0" prefHeight="37.0" prefWidth="163.0" style="-fx-background-color: #F5F2E0;" visible="false">
+           <children>
+               <HBox prefHeight="100.0" prefWidth="200.0">
+                   <children>
+                       <Label fx:id="name1" prefHeight="44.0" prefWidth="165.0" text="SignOut" textFill="#180909" onMouseClicked="#signOut" />
+                   </children>
+               </HBox>
+           </children>
+       </VBox>
+
    </children>
    <effect>
       <DropShadow color="#1b1eeb" />

@@ -8,61 +8,59 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.RegisterCont">
-   <left>
-      <AnchorPane prefHeight="400.0" prefWidth="261.0" style="-fx-background-color: #404040;" BorderPane.alignment="CENTER">
-         <children>
-            <Text fill="WHITE" layoutX="12.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TuniCollab" wrappingWidth="241.91168212890625">
-               <font>
-                  <Font name="System Bold" size="41.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="63.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Company Slogan">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-   </left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: Transparant;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.RegisterCont">
    <right>
-      <AnchorPane prefHeight="600.0" prefWidth="655.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="655.0" style="-fx-background-color: Transparant;" stylesheets="@main.css" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="#404040" layoutX="47.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" wrappingWidth="206.24869537353516">
-               <font>
-                  <Font name="Wingdings 3" size="27.0" />
-               </font>
-            </Text>
 
-            <TextField fx:id="email" layoutX="49.0" layoutY="186.0" prefHeight="28.0" prefWidth="334.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField fx:id="password" layoutX="49.0" layoutY="219.0" prefHeight="28.0" prefWidth="338.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField fx:id="confirmPassword" layoutX="49.0" layoutY="254.0" prefHeight="28.0" prefWidth="342.0" promptText="Confirm Password" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="email" layoutX="49.0" layoutY="139.0" prefHeight="46.0" prefWidth="334.0" promptText="Email" stylesheets="@main.css" />
+            <PasswordField fx:id="password" layoutX="49.0" layoutY="199.0" prefHeight="44.0" prefWidth="338.0" promptText="Password" />
+            <PasswordField fx:id="confirmPassword" layoutX="49.0" layoutY="253.0" prefHeight="42.0" prefWidth="342.0" promptText="Confirm Password" />
             <TextField fx:id="verificationCodeField" layoutX="125.0" layoutY="160.0" promptText="verify your code here" visible="false" />
-            <TextField fx:id="captchaTextField" layoutX="150.0" layoutY="300.0" prefHeight="28.0" prefWidth="132.0" promptText="Enter CAPTCHA Code" style="-fx-background-color: transparent; -fx-border-color: #404040; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="captchaTextField" layoutX="150.0" layoutY="307.0" prefHeight="30.0" prefWidth="140.0" promptText="Enter CAPTCHA Code" />
 
             <Button fx:id="verifyButton" layoutX="319.0" layoutY="157.0" onAction="#verify" prefHeight="32.0" prefWidth="76.0" style="-fx-background-color: #404040; -fx-background-radius: 0px; -fx-text-fill: WHITE;" text="Verify" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="registerButton" layoutX="187.0" layoutY="345.0" mnemonicParsing="false" onAction="#register" prefHeight="32.0" prefWidth="76.0" style="-fx-background-color: #404040; -fx-background-radius: 0px;" text="Signup" textFill="WHITE">
+            <Button fx:id="registerButton" layoutX="117.0" layoutY="408.0" mnemonicParsing="false" onAction="#register" prefHeight="40.0" prefWidth="226.0" style="-fx-background-color: #cfba91;" text="Signup" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Hyperlink layoutX="150.0" layoutY="457.0" onAction="#navigateToSignIn" text="Already have an account? Login">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Hyperlink>
    
          
                   <!-- Add ImageView for displaying CAPTCHA image -->
-            <ImageView fx:id="captchaImageView" fitHeight="50" fitWidth="150" layoutX="150.0" layoutY="389.0" />
+            <ImageView fx:id="captchaImageView" fitHeight="50" fitWidth="150" layoutX="150.0" layoutY="347.0" />
+            <VBox alignment="CENTER" layoutX="41.0" layoutY="17.0" prefHeight="74.0" prefWidth="338.0" spacing="5.0" style="-fx-background-color: transparant;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Create account" wrappingWidth="231.82373046875">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="CENTER" prefHeight="15.0" prefWidth="559.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sub-title" text="Alredy have account?">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <Hyperlink onAction="#navigateToSignIn" text="Already have an account? Login">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Hyperlink>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </right>

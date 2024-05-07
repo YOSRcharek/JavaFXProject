@@ -16,8 +16,6 @@
                     <TextField fx:id="searchField" onKeyReleased="#rechercherEvenements" promptText="Rechercher un événement" />
                     <Button fx:id="triAlphabetiqueButton" onAction="#trierParOrdreAlphabetique" text="Trier par ordre alphabétique" />
 
-
-
                     <ListView fx:id="eventListView" prefHeight="600.0" prefWidth="950.0" stylesheets="@style.css" />
 
                <AnchorPane prefHeight="200.0" prefWidth="200.0" />

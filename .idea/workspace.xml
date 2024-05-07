@@ -5,24 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39ad3a2a-e762-415d-849c-4a7e224bc6ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/demo/DonsFront.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dons/Controller/DonsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dons/Controller/DonsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/ForgetPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/ForgetPasswordController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/RegisterCont.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/RegisterCont.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/SignInController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/SignUpAssoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/SignUpAssoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/loginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Dons.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Dons.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/demo/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/Home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/demo/connect.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/connect.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/demo/datailsService.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/datailsService.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/demo/events.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/events.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/demo/inscrire.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/inscrire.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/demo/signUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/signUp.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/demo/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/test.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/demo/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/connect.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/connect.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/events.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/events.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/test.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/test.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +192,7 @@
       <workItem from="1714014219366" duration="14848000" />
       <workItem from="1714029121394" duration="13532000" />
       <workItem from="1714513836735" duration="297000" />
-      <workItem from="1715005823210" duration="21366000" />
+      <workItem from="1715005823210" duration="28049000" />
     </task>
     <task id="LOCAL-00001" summary="ba3ed sadma">
       <option name="closed" value="true" />
@@ -238,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715017703765</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="nos lil">
+      <option name="closed" value="true" />
+      <created>1715038890203</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715038890204</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +254,8 @@
     <MESSAGE value="firas services" />
     <MESSAGE value="amir cbon" />
     <MESSAGE value="aziz cbon" />
-    <option name="LAST_COMMIT_MESSAGE" value="aziz cbon" />
+    <MESSAGE value="nos lil" />
+    <option name="LAST_COMMIT_MESSAGE" value="nos lil" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -267,12 +272,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java</url>
-          <line>791</line>
+          <line>813</line>
           <properties class="demo.controllers.HomeController" method="handleDeleteUser">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/demo/controllers/loginController.java</url>
+          <line>174</line>
+          <properties class="demo.controllers.loginController" method="navHome">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

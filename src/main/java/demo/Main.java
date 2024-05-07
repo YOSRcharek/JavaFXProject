@@ -18,7 +18,7 @@ public class Main extends Application {
              //frontOffice
              FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("test.fxml"));
              //backOffice
-//             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("signUp.fxml"));
+            // FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Home.fxml"));
              //Association Profil
              //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("profil.fxml"));
 

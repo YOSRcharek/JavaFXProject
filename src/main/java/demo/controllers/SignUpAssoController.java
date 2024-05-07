@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -58,7 +59,7 @@ public class SignUpAssoController implements Initializable {
     @FXML
     private TextField nom;
     @FXML
-    private TextField password;
+    private PasswordField password;
     @FXML
     private TextField telephone;
     @FXML
