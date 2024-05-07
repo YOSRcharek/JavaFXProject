@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 public class SignInController {
     @FXML
     private TextField emailField;
@@ -30,6 +32,7 @@ public class SignInController {
     }
 
     @FXML
+
     private void signIn() {
         String userEmail = emailField.getText();
         String userPassword = passwordField.getText();
@@ -41,47 +44,39 @@ public class SignInController {
             String roles = authenticatedUser.getRoles();
             System.out.println("User authenticated successfully! Role: " + roles);
 
-            // Vérifiez si l'utilisateur a le rôle admin
-            if (roles.contains("ROLE_ADMIN")) {
-                // Charge le fichier FXML de la page d'accueil
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Home.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) signInButton.getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace(); // Imprime la trace de la pile de l'exception
+            // Afficher une alerte de succès
+            Alert successAlert = new Alert(AlertType.INFORMATION);
+            successAlert.setTitle("Authentication Success");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Welcome, " + authenticatedUser.getEmail() + "!");
+            successAlert.showAndWait();
+
+            // Charger le fichier FXML correspondant au rôle de l'utilisateur
+            try {
+                FXMLLoader loader;
+                if (roles.contains("ROLE_ADMIN")) {
+                    loader = new FXMLLoader(getClass().getResource("../Home.fxml"));
+                } else if (roles.contains("ROLE_ASSOCIATION")) {
+                    loader = new FXMLLoader(getClass().getResource("../profil.fxml"));
+                } else {
+                    loader = new FXMLLoader(getClass().getResource("../test.fxml"));
                 }
-            } else if (roles.contains("ROLE_ASSOCIATION")) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../profil.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) signInButton.getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace(); // Imprime la trace de la pile de l'exception
-                }
-            } else {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../test.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) signInButton.getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace(); // Imprime la trace de la pile de l'exception
-                }
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) signInButton.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace(); // Imprime la trace de la pile de l'exception
             }
-
         } else {
-            System.out.println("Authentication failed. Please check your credentials.");
+            // Afficher une alerte d'échec
+            Alert failAlert = new Alert(AlertType.ERROR);
+            failAlert.setTitle("Authentication Failed");
+            failAlert.setHeaderText(null);
+            failAlert.setContentText("Authentication failed. Please check your credentials.");
+            failAlert.showAndWait();
         }
-
     }
 
     @FXML

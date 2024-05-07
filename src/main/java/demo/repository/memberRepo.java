@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import demo.DatabaseConnection;
+import demo.model.Association;
 import demo.model.Membre;
 import demo.model.Projet;
 
@@ -89,11 +90,13 @@ public class memberRepo {
 
 	    }
 
-	public static List<Membre> getMembersProfil() {
+	public static List<Membre> getMembersProfil(String email) {
 		List<Membre> membres = new ArrayList<>();
+		Association asso=associationRepo.getAssociationByEmail(email);
 		try (Connection connection = DatabaseConnection.getConnection()) {
-			String query = "SELECT * FROM membre where association_id=8;";
+			String query = "SELECT * FROM membre where association_id=?;";
 			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1,asso.getId());
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {

@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXButton;
 import demo.model.Association;
 import demo.model.Membre;
 import demo.model.Projet;
+import demo.model.User;
 import demo.repository.associationRepo;
 import demo.repository.memberRepo;
 import demo.repository.projetRepo;
@@ -20,10 +21,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import javax.swing.text.html.ImageView;
 
 
 /**
@@ -32,7 +38,8 @@ import javafx.stage.Stage;
  */
 public class profilController {
 
-
+@FXML
+   private AnchorPane AnchorPane;
     @FXML
     private VBox pnl_scroll;
     @FXML
@@ -54,11 +61,14 @@ public class profilController {
     @FXML
     private Label nomAssoc;
     @FXML
+    private Label emailAssoc;
+    @FXML
     private Label domaineAssoc;
     @FXML
     private Label nomMembre;
-
-
+   @FXML
+   private ImageView homeBack;
+private String email="";
     private final ProjetController projetController = new ProjetController();
     private final MemberController memberController = new MemberController();
 
@@ -88,6 +98,13 @@ public class profilController {
     }
 
     public void initialize() throws IOException {
+
+        User authenticatedUser = SignInController.getAuthenticatedUser();
+        if (authenticatedUser != null) {
+          //  nomAssoc.setText(authenticatedUser.getEmail());
+            email=authenticatedUser.getEmail();
+
+        }
         loadAssociation();
         loadProject();
         loadMember();
@@ -98,12 +115,12 @@ public class profilController {
 
 
     private void loadAssociation() {
-        Association myAsso = associationRepo.getOneAssociation(); // Fetch association data
+        Association myAsso = associationRepo.getAssociationByEmail(String.valueOf(email)); // Fetch association data
 
         if (myAsso != null) {
             // Set association data to labels
             nomAssoc.setText(myAsso.getNom());
-
+            emailAssoc.setText(String.valueOf(email));
             domaineAssoc.setText(myAsso.getDomaineActivite());
         } else {
             // Handle case where association data is not found
@@ -113,7 +130,7 @@ public class profilController {
 
     private void loadProject() {
         pnl_scroll.getChildren().clear();
-        List<Projet> projets = projetRepo.getProjetsProfil();
+        List<Projet> projets = projetRepo.getProjetsProfil(email);
 
         for (Projet projet : projets) {
             try {
@@ -170,7 +187,7 @@ public class profilController {
 
     private void loadMember() {
         pnl_scroll1.getChildren().clear();
-        List<Membre> membres = memberRepo.getMembersProfil();
+        List<Membre> membres = memberRepo.getMembersProfil(email);
 
         for (Membre membre : membres) {
             try {
@@ -255,6 +272,29 @@ public class profilController {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    public void signOut(ActionEvent actionEvent) {
+        Button button = (Button) actionEvent.getSource();
+
+        Stage stage = (Stage) button.getScene().getWindow();
+
+        // Fermer la fenêtre
+        stage.close();
+    }
+
+    @FXML
+    public void homeBack(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../profil.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Imprime la trace de la pile de l'exception
+        }
     }
 }
 

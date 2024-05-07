@@ -3,7 +3,8 @@ package demo.repository;
 
 import demo.DatabaseConnection;
 import demo.model.Association;
-
+import demo.model.User;
+import demo.repository.UserRepository;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 public class associationRepo {
     private static Connection connection;
 
+    private UserRepository userRepository;
     public associationRepo() {
         connection = DatabaseConnection.getConnection();
     }
@@ -20,11 +22,11 @@ public class associationRepo {
     public static List<Association> getDemandes() {
         List<Association> associations = new ArrayList<>();
         try (Connection connection = DatabaseConnection.getConnection()) {
-        	/* String query = "SELECT a.* FROM association a\r\n"
+        	 String query = "SELECT a.* FROM association a\r\n"
 	            		+ "JOIN user u ON a.email = u.email\r\n"
-	            		+ "WHERE u.is_verified = 1 and a.status=false\r\n"
+	            		+ "WHERE a.status=false\r\n"
 	            		+ "AND u.roles = '[\"ROLE_ASSOCIATION\"]';";
-           */String query = "SELECT * FROM association WHERE status=false;";
+           //String query = "SELECT * FROM association WHERE status=false;";
            PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
 
@@ -47,34 +49,44 @@ public class associationRepo {
 
     public static void approveAssociation(int associationId) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String query = "UPDATE association SET status = true WHERE id = ?";
+           String query = "UPDATE association SET status = true WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, associationId);
             statement.executeUpdate();
+            String updateSql = "UPDATE user SET is_verified = true WHERE email IN (SELECT email FROM association WHERE id = ?)";
+            PreparedStatement updateStatement = connection.prepareStatement(updateSql);
+            updateStatement.setInt(1, associationId);
+            updateStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     public static void disapproveAssociation(int associationId) {
         try (Connection connection = DatabaseConnection.getConnection()) {
-            String query = "DELETE FROM association WHERE id = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, associationId);
-            statement.executeUpdate();
+            String associationQuery = "DELETE FROM association WHERE id = ?";
+            PreparedStatement associationStatement = connection.prepareStatement(associationQuery);
+            associationStatement.setInt(1, associationId);
+            associationStatement.executeUpdate();
+
+            String userQuery = "DELETE FROM user WHERE email IN (SELECT email FROM association WHERE id = ?)";
+            PreparedStatement userStatement = connection.prepareStatement(userQuery);
+            userStatement.setInt(1, associationId);
+            userStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-	public static List<Association> getAssociations() {
+    public static List<Association> getAssociations() {
 		 List<Association> associations = new ArrayList<>();
 	        try (Connection connection = DatabaseConnection.getConnection()) {
-	        	/* String query = "SELECT a.* FROM association a\r\n"
+	        	 String query = "SELECT a.* FROM association a\r\n"
 		            		+ "JOIN user u ON a.email = u.email\r\n"
 		            		+ "WHERE u.is_verified = 1 and a.status=true\r\n"
 		            		+ "AND u.roles = '[\"ROLE_ASSOCIATION\"]';";
-                        */String query = "SELECT * FROM association WHERE status=true;";
+                        //String query = "SELECT * FROM association WHERE status=true;";
 	            PreparedStatement statement = connection.prepareStatement(query);
 	            ResultSet resultSet = statement.executeQuery();
 
@@ -131,7 +143,9 @@ public class associationRepo {
     public static void ajouterAssociation(String nom, String domaine, String email, String password, Blob document, String adresse, String description, Integer telephone) {
         try (Connection connection = DatabaseConnection.getConnection()) {
              LocalDate dateDemande = LocalDate.now();
-
+            String roles = "[\"ROLE_ASSOCIATION\"]";
+            User newUser = new User(email, password, roles, false);
+            UserRepository.createUser1(newUser);
             String query = "INSERT INTO association(nom, password,domaine_activite, adresse, email, description, telephone, date_demande, document, status,active_compte) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, nom);
@@ -297,7 +311,10 @@ public class associationRepo {
 
     public List<String> getAllNomAssociations() {
         List<String> associations = new ArrayList<>();
-        String sql = "SELECT nom FROM association";
+        String sql= "SELECT a.nom FROM association a\r\n"
+                + "JOIN user u ON a.email = u.email\r\n"
+                + "WHERE u.is_verified = 1 and a.status=true\r\n"
+                + "AND u.roles = '[\"ROLE_ASSOCIATION\"]';";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
              ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -345,6 +362,30 @@ public class associationRepo {
         return association;
     }
 
+    public static Association getAssociationByEmail(String email) {
+        Association association = null;
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "SELECT * FROM association WHERE email = ?;";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1,email); // Définir le paramètre de l'ID
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                association = new Association();
+                association.setId(resultSet.getInt("id"));
+                association.setNom(resultSet.getString("nom"));
+                association.setDomaineActivite(resultSet.getString("domaine_activite"));
+                association.setEmail(resultSet.getString("email"));
+                association.setAdresse(resultSet.getString("adresse"));
+                association.setStatus(resultSet.getBoolean("status"));
+                association.setDescription(resultSet.getString("description"));
+                association.setTelephone(resultSet.getInt("telephone"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return association;
+    }
 
 }
 

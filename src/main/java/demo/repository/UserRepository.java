@@ -14,9 +14,10 @@
 
     public class UserRepository {
         private Connection connection;
-
+        private static Connection connection2;
         public UserRepository() {
             connection = DatabaseConnection.getConnection();
+            connection2 = DatabaseConnection.getConnection();
         }
 
         // Method to create a new user
@@ -42,7 +43,27 @@
             }
         }
 
+        public static boolean createUser1(User user) {
+            String sql = "INSERT INTO user (email, password, roles, is_verified) VALUES (?, ?, ?, ?)";
 
+            try {
+                PreparedStatement preparedStatement = connection2.prepareStatement(sql);
+                preparedStatement.setString(1, user.getEmail());
+                user.setPassword(user.getPassword()); // Hash the password before storing
+                preparedStatement.setString(2, user.getPassword());
+                preparedStatement.setString(3, user.getRoles()); // Store roles directly as JSON string
+                preparedStatement.setBoolean(4, user.isVerified());
+
+                int rowsInserted = preparedStatement.executeUpdate();
+
+                preparedStatement.close();
+
+                return rowsInserted > 0;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
 
 
         public User authenticateUser(String email, String password) {

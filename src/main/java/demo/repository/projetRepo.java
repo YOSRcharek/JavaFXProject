@@ -1,6 +1,7 @@
 // Repository Package
 	package demo.repository;
 	import demo.DatabaseConnection;
+	import demo.model.Association;
 	import demo.model.Projet;
 
 	import java.sql.Connection;
@@ -87,11 +88,14 @@ public class projetRepo {
 
 	    }
 
-	public static List<Projet> getProjetsProfil() {
+	public static List<Projet> getProjetsProfil(String email) {
 		List<Projet> projets = new ArrayList<>();
+		Association asso=associationRepo.getAssociationByEmail(email);
 		try (Connection connection = DatabaseConnection.getConnection()) {
-			String query = "SELECT * FROM projet where association_id=8;";
+			String query = "SELECT * FROM projet where association_id=?;";
+
 			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1,asso.getId());
 			ResultSet resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
