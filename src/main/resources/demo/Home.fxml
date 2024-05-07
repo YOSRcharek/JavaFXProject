@@ -289,6 +289,9 @@
              <Pane fx:id="pnlDons" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;">
              </Pane>
              <Pane fx:id="pnlTypeDons" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;" />
+
+             <Pane fx:id="pnlOffres" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;">
+             </Pane>
              
                                                     
             <Pane fx:id="pnlOverview" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;">
@@ -389,7 +392,7 @@
                               <Insets left="20.0" top="30.0" />
                            </VBox.margin>
                            <children>
-                              <Label fx:id="fruitNameLable" prefHeight="44.0" prefWidth="170.0" text="Pie Chart" textAlignment="RIGHT" textFill="WHITE">
+                              <Label fx:id="fruitNameLable" prefHeight="44.0" prefWidth="385.0" text="Pie Chart des projets" textAlignment="RIGHT" textFill="WHITE">
                                  <font>
                                     <Font name="Cambria Bold Italic" size="36.0" />
                                  </font>
@@ -629,13 +632,10 @@
                   </HBox>
                </children>
          </Pane>
-
-             <Pane fx:id="pnlOffres" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1346.0" style="-fx-background-color: #EFFCFF;">
-             </Pane>
          </children>
       </StackPane>
       <Accordion layoutX="309.0" layoutY="-3.0" prefHeight="55.0" prefWidth="1293.0" style="-fx-background-color: #DDE6E8;" styleClass="shadowed-accordion" stylesheets="@style.css" />
-       <ImageView fx:id="profilImage2" fitHeight="42.0" fitWidth="52.0" layoutX="1429.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#afficherOuCacherVBox">
+       <ImageView fx:id="profilImage2" fitHeight="42.0" fitWidth="52.0" layoutX="1429.0" layoutY="4.0" onMouseClicked="#afficherOuCacherVBox" pickOnBounds="true" preserveRatio="true">
            <image>
                <Image url="@images/jimmy-fallon.png" />
            </image>
@@ -801,7 +801,7 @@
                      <Font size="15.0" />
                  </font>
              </Button>  <Separator prefWidth="200.0" />
-            <Button fx:id="btnOffres" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="54.0" prefWidth="327.0" stylesheets="@style.css" text="Offres " textFill="#868181">
+            <Button fx:id="btnOffres" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="54.0" prefWidth="327.0" stylesheets="@style.css" text="Services" textFill="#868181">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -855,7 +855,7 @@
            <children>
                <HBox prefHeight="100.0" prefWidth="200.0">
                    <children>
-                       <Label fx:id="name1" prefHeight="44.0" prefWidth="165.0" text="SignOut" textFill="#180909" onMouseClicked="#signOut" />
+                       <Label fx:id="name1" onMouseClicked="#signOut" prefHeight="44.0" prefWidth="165.0" text="SignOut" textFill="#180909" />
                    </children>
                </HBox>
            </children>

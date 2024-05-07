@@ -295,23 +295,29 @@ public class HomeController {
                 new PieChart.Data("En cours", projetsEnCours)
         );
 
-          pieChart.setData(pieChartData);
+        pieChart.setData(pieChartData);
 
-          int i = 0;
-          for (PieChart.Data data : pieChartData) {
-              String color = "";
-              if (data.getName().equals("Terminé")) {
-                  color = "#9CCBD6";
-              } else if (data.getName().equals("En cours")) {
-                  color = "#FFAB91";
-              }
-              pieChartData.get(i).getNode().setStyle("-fx-pie-color:" + color + "';'");
-              i++;
-          }
+        int i = 0;
+        for (PieChart.Data data : pieChartData) {
+            String color = "";
+            if (data.getName().equals("Terminé")) {
+                color = "#9CCBD6";
+            } else if (data.getName().equals("En cours")) {
+                color = "#FFAB91";
+            }
+            pieChartData.get(i).getNode().setStyle("-fx-pie-color:" + color + "';'");
+            i++;
+        }
 
-         pieChart.setLegendVisible(false);
-          pieChart.setLabelLineLength(10);
-          pieChart.setLabelsVisible(false);
+        pieChart.setLegendVisible(false);
+        pieChart.setLabelLineLength(10);
+        pieChart.setLabelsVisible(true); // Affichage des noms de tranche
+
+// Remplacement des noms par les pourcentages
+        for (PieChart.Data data : pieChartData) {
+            double percent = (data.getPieValue() / (projetsTermines + projetsEnCours)) * 100;
+            data.setName(String.format("%.1f%%", percent));
+        }
 
           //amir
 //        List<User> userList =  userRepository.getAllUsers();
@@ -369,6 +375,7 @@ public class HomeController {
 	    btnOrders.setStyle("-fx-background-color:    #DDE6E8");
 	    btnMembers.setStyle("-fx-background-color:    #DDE6E8");
 	    btnDons.setStyle("-fx-background-color: #DDE6E8 ");
+        btnTypeDons.setStyle("-fx-background-color: #DDE6E8 ");
         btnEvents.setStyle("-fx-background-color: #DDE6E8 ");
         btnOffres.setStyle("-fx-background-color: #DDE6E8");
         btnUsers.setStyle("-fx-background-color : #DDE6E8");

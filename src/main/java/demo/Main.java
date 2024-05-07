@@ -16,6 +16,23 @@ public class Main extends Application {
   public void start(Stage stage) {
          try {
              //frontOffice
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
              FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("test.fxml"));
              //backOffice
              //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Home.fxml"));

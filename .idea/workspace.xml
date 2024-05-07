@@ -7,14 +7,14 @@
     <list default="true" id="39ad3a2a-e762-415d-849c-4a7e224bc6ff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/SignInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/loginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/profilController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/profilController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/repository/associationRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/repository/associationRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/repository/memberRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/repository/memberRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/repository/projetRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/repository/projetRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DonsFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DonsFront.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/demo/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/Home.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/demo/profil.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/profil.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/inscrire.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/inscrire.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/Home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/profil.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/profil.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +188,7 @@
       <workItem from="1714014219366" duration="14848000" />
       <workItem from="1714029121394" duration="13532000" />
       <workItem from="1714513836735" duration="297000" />
-      <workItem from="1715005823210" duration="33844000" />
+      <workItem from="1715005823210" duration="41757000" />
     </task>
     <task id="LOCAL-00001" summary="ba3ed sadma">
       <option name="closed" value="true" />
@@ -246,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715060916463</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="modiff sbeh2">
+      <option name="closed" value="true" />
+      <created>1715066616286</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715066616288</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,7 +268,8 @@
     <MESSAGE value="aziz cbon" />
     <MESSAGE value="nos lil" />
     <MESSAGE value="modiff sbeh" />
-    <option name="LAST_COMMIT_MESSAGE" value="modiff sbeh" />
+    <MESSAGE value="modiff sbeh2" />
+    <option name="LAST_COMMIT_MESSAGE" value="modiff sbeh2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -282,7 +291,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java</url>
-          <line>813</line>
+          <line>820</line>
           <properties class="demo.controllers.HomeController" method="handleDeleteUser">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -291,7 +300,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/demo/controllers/loginController.java</url>
-          <line>174</line>
+          <line>186</line>
           <properties class="demo.controllers.loginController" method="navHome">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

@@ -5,6 +5,7 @@ import demo.Main;
 import demo.model.Article;
 import demo.model.Association;
 import demo.model.Membre;
+import demo.model.User;
 import demo.repository.associationRepo;
 import demo.repository.memberRepo;
 import demo.service.NewsAPIService;
@@ -109,6 +110,9 @@ public class loginController {
     ListView<Association> associationsListView = new ListView<>();
     @FXML
     public void initialize() {
+
+
+
         updateVisibility();
         Home.setVisible(true);
         root.setVisible(false);
@@ -166,8 +170,16 @@ public class loginController {
     }
 
     private void updateVisibility() {
-        buttonBox.setVisible(!isConnected); // Afficher les boutons si l'utilisateur n'est pas connecté
-        profil.setVisible(isConnected); // Afficher l'image de profil si l'utilisateur est connecté
+
+        User authenticatedUser = SignInController.getAuthenticatedUser();
+        if (authenticatedUser == null) {
+
+            buttonBox.setVisible(true);
+            profil.setVisible(false);
+        } else {
+            buttonBox.setVisible(false);
+            profil.setVisible(true);
+        }
     }
 
 
@@ -198,6 +210,7 @@ public class loginController {
 
     @FXML
     private void navProfil(MouseEvent event) throws IOException {
+        root.setVisible(false);
         newsPane.setVisible(false);
         profilPane.setVisible(true);
         inscrire.setVisible(false);

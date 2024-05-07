@@ -7,9 +7,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="531.0" prefWidth="982.0" style="-fx-background-image: url('images/background.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dons.Controller.DonsFrontController">
+<AnchorPane prefHeight="838.0" prefWidth="1918.0" style="-fx-background-image: url('images/background.jpg'); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dons.Controller.DonsFrontController">
    <children>
-      <Button layoutX="839.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleGoToBack" prefHeight="40.0" prefWidth="130.0" text="Back-Office" />
       <Button fx:id="btnDonate1" layoutX="430.0" layoutY="445.0" mnemonicParsing="false" onAction="#handleGoToForm" prefHeight="52.0" prefWidth="155.0" text="Faire un don" />
       <ImageView fitHeight="27.0" fitWidth="45.0" layoutX="203.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>

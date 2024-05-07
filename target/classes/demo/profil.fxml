@@ -133,7 +133,7 @@
                   <Insets left="50.0" />
                </padding>
             </JFXButton>
-            <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="58.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Deconnecter" textFill="#5b5858">
+            <JFXButton fx:id="decon" alignment="BASELINE_LEFT" graphicTextGap="10.0" onAction="#signOut" prefHeight="58.0" prefWidth="252.0" ripplerFill="#bfadf8" text="Deconnecter" textFill="#5b5858">
                <font>
                   <Font name="System Italic" size="18.0" />
                </font>
@@ -160,16 +160,26 @@
                   <Image url="@images/header.png" />
                </image>
             </ImageView>
-            <Label fx:id="nomAssoc" layoutX="224.0" layoutY="57.0" prefHeight="38.0" prefWidth="297.0" textFill="WHITE">
+            <Label fx:id="nomAssoc" layoutX="224.0" layoutY="59.0" prefHeight="26.0" prefWidth="195.0" textFill="WHITE">
                <font>
-                  <Font name="Andalus" size="29.0" />
+                  <Font name="Andalus" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="domaineAssoc" layoutX="227.0" layoutY="103.0" textFill="WHITE">
+            <Label fx:id="domaineAssoc" layoutX="227.0" layoutY="103.0" prefHeight="19.0" prefWidth="171.0" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
+            <Label fx:id="emailAssoc" layoutX="224.0" layoutY="130.0" prefHeight="19.0" prefWidth="171.0" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="homeBack" fitHeight="39.0" fitWidth="54.0" layoutX="14.0" layoutY="8.0" onMouseClicked="#homeBack" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8_Home_32px.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane layoutX="71.0" layoutY="44.0" prefHeight="131.0" prefWidth="142.0" style="-fx-background-color: #fff; -fx-background-radius: 50;">
@@ -197,9 +207,9 @@
             </VBox>
          </content>
       </ScrollPane>
-      <Button fx:id="calendrier" layoutX="1371.0" layoutY="244.0" mnemonicParsing="false" onAction="#AfficherCalendrier" prefHeight="19.0" prefWidth="160.0" text="Calendrier" />
-      <Button fx:id="typeEvent" layoutX="1371.0" layoutY="281.0" mnemonicParsing="false" onAction="#AfficherType" prefHeight="19.0" prefWidth="160.0" text="Add new type " />
-      <Button fx:id="newEvent" layoutX="1373.0" layoutY="324.0" mnemonicParsing="false" onAction="#newType" prefHeight="19.0" prefWidth="160.0" text="Add new event " />
+      <Button fx:id="calendrier" layoutX="1371.0" layoutY="244.0" mnemonicParsing="false" onAction="#AfficherCalendrier" prefHeight="19.0" prefWidth="160.0" stylesheets="@../../../../../TuniCollab/target/classes/application/view/style.css" text="Calendrier" />
+      <Button fx:id="typeEvent" layoutX="1371.0" layoutY="285.0" mnemonicParsing="false" onAction="#AfficherType" prefHeight="19.0" prefWidth="160.0" stylesheets="@../../../../../TuniCollab/target/classes/application/view/style.css" text="Add new type " />
+      <Button fx:id="newEvent" layoutX="1373.0" layoutY="324.0" mnemonicParsing="false" onAction="#newType" prefHeight="19.0" prefWidth="160.0" stylesheets="@../../../../../TuniCollab/target/classes/application/view/style.css" text="Add new event " />
 
    </children>
 </AnchorPane>
