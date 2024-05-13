@@ -33,7 +33,7 @@ public class Main extends Application {
 
 
 
-             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("test.fxml"));
+             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("home.fxml"));
              //backOffice
              //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Home.fxml"));
              //Association Profil

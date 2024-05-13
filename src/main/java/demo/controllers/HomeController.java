@@ -447,11 +447,16 @@ public class HomeController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }else if (actionEvent.getSource() == btnBlog) {
+
+
+            }
+            else if (actionEvent.getSource() == btnBlog) {
                 btnBlog.setStyle("-fx-background-color:  #9CCBD6");
                 pnlBlog.setStyle("-fx-background-color:  #EFFCFF");
                 pnlBlog.toFront();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Admin/Comment.fxml"));
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin/Posts.fxml"));
+
                 try {
                     Parent root = loader.load();
                     pnlBlog.getChildren().clear();
@@ -460,6 +465,7 @@ public class HomeController {
                     e.printStackTrace();
                 }
             }
+
             else if (actionEvent.getSource() == btnOffres) {
                 btnOffres.setStyle("-fx-background-color:  #9CCBD6");
                 pnlOffres.setStyle("-fx-background-color:  #EFFCFF");

@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39ad3a2a-e762-415d-849c-4a7e224bc6ff" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/DatabaseConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/loginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/profilController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/profilController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DonsFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DonsFront.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/demo/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/Home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/demo/profil.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/demo/profil.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/Home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/demo/profil.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/demo/profil.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/PosteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/PosteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/UserPoste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/UserPoste.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +38,12 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -59,11 +56,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/yosry/eclipse-workspace/IDE_2024/demo/src/main/resources/demo",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -103,6 +102,7 @@
       <option name="MAIN_CLASS_NAME" value="demo.Main" />
       <module name="demo" />
       <option name="PROGRAM_PARAMETERS" value=" --module-path &quot;C:\Users\yosry\Downloads\openjfx-22_windows-x64_bin-sdk\javafx-sdk-22\lib&quot; --add-modules javafx.controls,javafx.fxml,javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.web" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Games\javafx-sdk-22.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml " />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.*" />
@@ -132,8 +132,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.MainClass" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
@@ -141,6 +141,14 @@
         <item itemvalue="Application.MainClass" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -189,6 +197,10 @@
       <workItem from="1714029121394" duration="13532000" />
       <workItem from="1714513836735" duration="297000" />
       <workItem from="1715005823210" duration="41757000" />
+      <workItem from="1715551044022" duration="1041000" />
+      <workItem from="1715552293224" duration="1244000" />
+      <workItem from="1715595679359" duration="5000" />
+      <workItem from="1715595709851" duration="2886000" />
     </task>
     <task id="LOCAL-00001" summary="ba3ed sadma">
       <option name="closed" value="true" />
@@ -288,15 +300,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/demo/controllers/profilController.java</url>
           <line>76</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java</url>
-          <line>820</line>
-          <properties class="demo.controllers.HomeController" method="handleDeleteUser">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/demo/controllers/loginController.java</url>

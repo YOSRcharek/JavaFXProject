@@ -57,7 +57,7 @@ public class PosteController {
                     Scene scene1 = tableView.getScene();
                     Stage stage1 = (Stage) scene1.getWindow();
                     stage1.close();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin/Comment.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Admin/Comment.fxml"));
                     Parent root = null;
                     try {
 

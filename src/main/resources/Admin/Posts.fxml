@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demo.controllers.PosteController">
+   <children>
+      <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/jimmy-fallon.png" />
+         </image>
+         <VBox.margin>
+            <Insets bottom="10.0" top="50.0" />
+         </VBox.margin>
+      </ImageView>
+      <Label text="Jimmy Fallon" textFill="#130303">
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+      </Label>
+      <Separator layoutY="181.0" prefWidth="200.0" />
+      <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="310.0" textFill="#868181">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/accueil.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="50.0" />
+         </padding>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Separator layoutY="239.0" prefWidth="200.0" />
+      <!-- Other buttons and separators -->
+      <TableView fx:id="tableView" layoutX="350.0" layoutY="127.0" prefHeight="562.0" prefWidth="811.0" />
+   </children>
+</AnchorPane>

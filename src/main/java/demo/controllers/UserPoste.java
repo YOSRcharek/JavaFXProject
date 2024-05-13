@@ -41,16 +41,23 @@ public class UserPoste {
     public void initialize() {
         loadPosts(choix);
     }
+
+
+
     @FXML
     void loaAllPoste(){
       choix=1;
       loadPosts(choix);
     }
+
+
     @FXML
     void loaUserPoste(){
         choix=2;
         loadPosts(choix);
     }
+
+
     private void loadPosts(int choix) {
         FlowPane reclamationFlowPane = new FlowPane();
         reclamationFlowPane.setStyle("-fx-pref-width: 950px; " +
