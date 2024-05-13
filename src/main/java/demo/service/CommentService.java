@@ -17,6 +17,7 @@ public class CommentService implements IService<Comment> {
         connection = DatabaseConnection.getConnection();
     }
 
+
     @Override
     public void ajouter(Comment comment) throws SQLException {
         String req = "INSERT INTO comment (idpost_id, username_id, contentcomment, upvotes, createdatcomment) " +
@@ -109,5 +110,10 @@ public class CommentService implements IService<Comment> {
             comments.add(comment);
         }
         return comments;
+    }
+
+    @Override
+    public void updateVisibility(int postId, boolean isVisible) throws SQLException {
+
     }
 }

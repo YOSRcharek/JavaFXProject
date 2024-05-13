@@ -1,14 +1,14 @@
 package demo.controllers;
-
 import demo.HelloApplication;
-import demo.model.Comment;
+import  demo.model.Comment;
 import demo.model.Post;
 import demo.service.CommentService;
 import demo.service.PostService;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -19,58 +19,93 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 
 public class UserPoste {
+    private static final String API_URL = "https://neutrinoapi.net/bad-word-filter";
+    private static final String API_KEY = "9eOCO78zUJQOFaJcnz63ULfe79SZmrJfaeGvFo5r1iasXllt";
     @FXML
     ScrollPane ScrollePan;
+    @FXML
+    private TextField recherchefld;
+
     int choix=1;
+   int iduser=1;
 
     private final PostService postService=new PostService();
     private final CommentService commentService=new CommentService();
+
     @FXML
     public void initialize() {
-        loadPosts(choix);
+        recherchefld.textProperty().addListener((ChangeListener<String>) (observable, oldValue, newValue) -> {
+            if(recherchefld.getText().isEmpty()){loadPosts(getposte(choix));}
+            else{List<Post> posts;
+                posts=rechercher(getposte(choix),newValue);
+                loadPosts(posts);}
+        });
+        loadPosts(getposte(choix));    }
+
+
+
+    public static List<Post> rechercher(List<Post> liste, String recherche) {
+        List<Post> resultats = new ArrayList<>();
+
+        for (Post element : liste) {
+            if (element.getTitle().contains(recherche) ||element.getContent().contains(recherche)) {
+                resultats.add(element);
+            }
+        }
+
+        return resultats;
     }
 
+   List<Post> getposte(int choix){
+       List<Post> postList = null;
+       try {if (choix==1){
+           postList = postService.getAll();}
+       else{postList = postService.getByIdUser(1);}
+
+       } catch (SQLException e) {
+           throw new RuntimeException(e);
+       }
+       return postList;
+   }
 
 
     @FXML
     void loaAllPoste(){
       choix=1;
-      loadPosts(choix);
+      loadPosts(getposte(choix));
     }
-
 
     @FXML
     void loaUserPoste(){
         choix=2;
-        loadPosts(choix);
+        loadPosts(getposte(choix));
     }
-
-
-    private void loadPosts(int choix) {
+    private void loadPosts(List<Post> postList) {
         FlowPane reclamationFlowPane = new FlowPane();
         reclamationFlowPane.setStyle("-fx-pref-width: 950px; " +
                 "-fx-pref-height: 547px;");
-
-        List<Post> postList = null;
-        try {if (choix==1){
-            postList = postService.getAll();}
-        else{postList = postService.getByIdUser(1);}
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
         for (Post post : postList) {
             VBox cardContainer = createPostVBox(post,choix);
             reclamationFlowPane.getChildren().add(cardContainer);
@@ -83,20 +118,21 @@ public class UserPoste {
         String imagepth = post.getImage();
         String viseopth = post.getVideo();
         VBox cardContainer = new VBox();
-        cardContainer.setStyle("-fx-padding: 20px 20px 20px 20px;");
         cardContainer.setStyle(
-                "-fx-background-color: #EFFCFF; " +
+                "-fx-padding: 15px 15px 15px 15px; " +
+                        "-fx-background-color: #EFFCFF; " +
                         "-fx-border-radius: 5px; " +
                         "-fx-border-color: #9CCBD6; " +
                         "-fx-background-radius: 5px; " +
                         "-fx-border-width: 1px; ");
 
-
         Pane pane = new Pane();
         pane.setLayoutX(403.0);
         pane.setLayoutY(130.0);
-        pane.setPrefHeight(513.0);
+        pane.setPrefHeight(543.0);
         pane.setPrefWidth(631.0);
+        pane.setStyle(
+                "-fx-padding: 10px;");
 
         MediaView mediaView = new MediaView();
         mediaView.setFitWidth(400.0);
@@ -113,6 +149,8 @@ public class UserPoste {
         imageView.setPickOnBounds(true);
         imageView.setPreserveRatio(true);
         imageView.setVisible(false);
+
+
 
         Button jouerbtn = new Button();
         jouerbtn.setLayoutX(512.0);
@@ -140,7 +178,7 @@ public class UserPoste {
         arreterbtn.setPrefWidth(52.0);
         arreterbtn.setText("Areet");
         arreterbtn.setVisible(false);
-
+/********************************************************************************************/
         Button videoBtn = new Button();
         videoBtn.setLayoutX(14.0);
         videoBtn.setLayoutY(175.0);
@@ -157,6 +195,38 @@ public class UserPoste {
         imageBtn.setPrefWidth(81.0);
         imageBtn.setText("Image");
 
+
+
+        if (imagepth != null) {
+            File imageFile = new File(imagepth);
+            if (imageFile.exists()) {
+                String imageUrl = imageFile.toURI().toString();
+                imageView.setImage(new Image(imageUrl));
+                imageView.setVisible(true);
+            } else {
+                System.out.println("Fichier d'image introuvable : " + imagepth);
+            }
+        } else {
+            imageBtn.setVisible(false);
+        }
+        videoBtn.setOnAction(actionEvent -> {
+            imageView.setVisible(false);
+            mediaView.setVisible(true);
+            jouerbtn.setVisible(true);
+            pausebtn.setVisible(true);
+            arreterbtn.setVisible(true);
+            File file1 = new File(viseopth);
+            Media video = new Media(file1.toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(video);
+            mediaView.setMediaPlayer(mediaPlayer);
+
+            jouerbtn.setOnAction(event -> mediaPlayer.play());
+            pausebtn.setOnAction(event -> mediaPlayer.pause());
+            arreterbtn.setOnAction(event -> mediaPlayer.stop());
+        });
+
+
+/****************************************************************************************************/
         Label userLabel = new Label();
         userLabel.setLayoutX(43.0);
         userLabel.setLayoutY(14.0);
@@ -186,58 +256,85 @@ public class UserPoste {
 
         Label commentLabel = new Label();
         commentLabel.setLayoutX(103.0);
-        commentLabel.setLayoutY(354.0);
+        commentLabel.setLayoutY(371.0);
         commentLabel.setPrefHeight(17.0);
         commentLabel.setPrefWidth(490.0);
 
-
         Label commentDataLabel = new Label();
         commentDataLabel.setLayoutX(114.0);
-        commentDataLabel.setLayoutY(371.0);
+        commentDataLabel.setLayoutY(381.0);
         commentDataLabel.setPrefHeight(42.0);
         commentDataLabel.setPrefWidth(490.0);
         if(c!=null){commentLabel.setText("Lasted comment at "+String.valueOf(c.getCreatedatcomment()));commentDataLabel.setText("Comment data : "+c.getContentcomment());}
 
-
         TextArea commentTextArea = new TextArea();
         commentTextArea.setLayoutX(114.0);
-        commentTextArea.setLayoutY(425.0);
+        commentTextArea.setLayoutY(445.0);
         commentTextArea.setPrefHeight(59.0);
         commentTextArea.setPrefWidth(410.0);
         commentTextArea.setPromptText("New Comment");
 
         Label CheckComment = new Label("*Insert a Comment");
         CheckComment.setLayoutX(114.0);
-        CheckComment.setLayoutY(484.0);
+        CheckComment.setLayoutY(504.0);
         CheckComment.setTextFill(Color.RED);
         CheckComment.setVisible(false);
 
         Button addBtn = new Button();
         addBtn.setLayoutX(538.0);
-        addBtn.setLayoutY(442.0);
+        addBtn.setLayoutY(462.0);
         addBtn.setMnemonicParsing(false);
         addBtn.setPrefHeight(25.0);
         addBtn.setPrefWidth(81.0);
         addBtn.setText("ADD");
-
         addBtn.setOnAction(actionEvent -> {
             if (commentTextArea.getText()!=""){
-                Comment comment=new Comment();
-                comment.setIdpost_id(post.getId());
-                comment.setUsername_id(1);
-                comment.setContentcomment(commentTextArea.getText());
-                comment.setCreatedatcomment(Date.valueOf(LocalDate.now()));
-                loadPosts(choix);
-                try {
-                    commentService.ajouter(comment);
-                    showSuccessAlert("Comment added successfully");
-                } catch (SQLException e) {
-                    showErrorAlert("Error adding the Comment : " + e.getMessage());
-                }
+                if (!containsBadWords(commentTextArea.getText())){
+                    Comment comment=new Comment();
+                    comment.setIdpost_id(post.getId());
+                    comment.setUsername_id(iduser);
+                    comment.setContentcomment(commentTextArea.getText());
+                    comment.setCreatedatcomment(Date.valueOf(LocalDate.now()));
+                    try {
 
+                        commentService.ajouter(comment);
+                        showSuccessAlert("Comment added successfully");
+                        String body = "Dear " + postService.getusermail(post.getUsername_id()) + ",\n\n" +
+                                postService.getusermail(iduser) + " has commented on your post" + ".\n\n" +
+                                "The comment was made on " + LocalDateTime.now() +".\n\n" +
+                                "Post content: " + post.getContent() +".\n\n" +
+                                "Comment: "+commentTextArea.getText()+".\n\n" +
+                                "Thank you for your trust.";
+                        System.out.println(body);
+                        sendEmail(postService.getusermail(post.getUsername_id()), "Notification", body);
+
+
+                        loadPosts(getposte(choix));
+
+                    } catch (SQLException e) {
+                        showErrorAlert("Error adding the Comment : " + e.getMessage());
+                    }
+
+                }
+                else showErrorAlert("Vous avez utiliser de movaise maux interdit ");
             }
             else{CheckComment.setVisible(true);}
         });
+        ImageView like = new ImageView(new Image(getClass().getResourceAsStream("/image/like.png")));
+        like.setFitHeight(30.0);
+        like.setFitWidth(30.0);
+        like.setLayoutX(578.0);
+        like.setLayoutY(10.0);
+        like.setPickOnBounds(true);
+        like.setPreserveRatio(true);
+
+        ImageView dislike = new ImageView(new Image(getClass().getResourceAsStream("/image/dislike.png")));
+        dislike.setFitHeight(30.0);
+        dislike.setFitWidth(30.0);
+        dislike.setLayoutX(519.0);
+        dislike.setLayoutY(10.0);
+        dislike.setPickOnBounds(true);
+        dislike.setPreserveRatio(true);
 
         ImageView editImageView = new ImageView(new Image(getClass().getResourceAsStream("/image/edit.png")));
         editImageView.setFitHeight(42.0);
@@ -275,46 +372,55 @@ public class UserPoste {
             }
         });
 
-        if (imagepth != null) {
-            File imageFile = new File(imagepth);
-            if (imageFile.exists()) {
-                String imageUrl = imageFile.toURI().toString();
-                imageView.setImage(new Image(imageUrl));
-                imageView.setVisible(true);
-            } else {
-                System.out.println("Fichier d'image introuvable : " + imagepth);
-            }
-        } else {
-            imageBtn.setVisible(false);
+        // Afficher le nombre de likes et dislikes
+        Label likeCountLabel = new Label();
+        likeCountLabel.setLayoutX(610.0);
+        likeCountLabel.setLayoutY(10.0);
+        try {
+            likeCountLabel.setText(String.valueOf(postService.getNumberOfLikesOrDislikes(post.getId(), "like")));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
-        videoBtn.setOnAction(actionEvent -> {
-            imageView.setVisible(false);
-            mediaView.setVisible(true);
-            jouerbtn.setVisible(true);
-            pausebtn.setVisible(true);
-            arreterbtn.setVisible(true);
-            File file1 = new File(viseopth);
-            Media video = new Media(file1.toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(video);
-            mediaView.setMediaPlayer(mediaPlayer);
+        Label dislikeCountLabel = new Label();
+        dislikeCountLabel.setLayoutX(549.0);
+        dislikeCountLabel.setLayoutY(10.0);
+        try {
+            dislikeCountLabel.setText(String.valueOf(postService.getNumberOfLikesOrDislikes(post.getId(), "dislike")));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        // Mettre à jour le nombre de likes et dislikes
+        like.setOnMouseClicked(event -> {
 
-            jouerbtn.setOnAction(event -> mediaPlayer.play());
-            pausebtn.setOnAction(event -> mediaPlayer.pause());
-            arreterbtn.setOnAction(event -> mediaPlayer.stop());
-        });
+            try {
+                postService.AddLikesOrDislikes(post.getId(),iduser,"like");
+                likeCountLabel.setText(String.valueOf(postService.getNumberOfLikesOrDislikes(post.getId(), "like")));
+                dislikeCountLabel.setText(String.valueOf(postService.getNumberOfLikesOrDislikes(post.getId(), "dislike")));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }        });
 
-        imageBtn.setOnAction(actionEvent -> {
-            imageView.setVisible(true);
-            mediaView.setVisible(false);
-        });
+        dislike.setOnMouseClicked(event -> {
 
+            try {
+                postService.AddLikesOrDislikes(post.getId(),iduser,"dislike");
+                likeCountLabel.setText(String.valueOf(postService.getNumberOfLikesOrDislikes(post.getId(), "like")));
+                dislikeCountLabel.setText(String.valueOf(postService.getNumberOfLikesOrDislikes(post.getId(), "dislike")));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }        });
+
+        Separator separator = new Separator();
+        separator.setOrientation(Orientation.HORIZONTAL);
         if (choix == 1) {
-            pane.getChildren().addAll(mediaView, imageView, jouerbtn, pausebtn, arreterbtn, videoBtn, imageBtn, userLabel,
-                    dateLabel, contentLabel, commentLabel, commentDataLabel, commentTextArea, addBtn,CheckComment);
+            pane.getChildren().addAll(mediaView, imageView, jouerbtn, pausebtn, arreterbtn, videoBtn, imageBtn, userLabel, like, dislike,
+                    dateLabel, contentLabel, separator, commentLabel, commentDataLabel, commentTextArea, addBtn, CheckComment,
+                    likeCountLabel, dislikeCountLabel);
         } else {
-            pane.getChildren().addAll(mediaView, imageView, jouerbtn, pausebtn, arreterbtn, videoBtn, imageBtn, userLabel,
-                    dateLabel, contentLabel, commentLabel, commentDataLabel, commentTextArea, addBtn, editImageView, deleteImageView,CheckComment);
+            pane.getChildren().addAll(mediaView, imageView, jouerbtn, pausebtn, arreterbtn, videoBtn, imageBtn, userLabel, editImageView, deleteImageView,
+                    dateLabel, contentLabel, separator, commentLabel, commentDataLabel, commentTextArea, addBtn, CheckComment,
+                    likeCountLabel, dislikeCountLabel);
         }
 
         cardContainer.getChildren().add(pane);
@@ -362,5 +468,74 @@ public class UserPoste {
         stage.setTitle("");
         stage.setScene(scene);
         stage.show();
+    }
+    public static boolean containsBadWords(String text) {
+        try {
+            URL url = new URL(API_URL + "?content=" + text);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("User-ID", "IsmailChouikhi");
+            connection.setRequestProperty("API-Key", API_KEY);
+            int responseCode = connection.getResponseCode();
+            System.out.println(responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = in.readLine()) != null) {
+                    response.append(line);
+                }
+                in.close();
+                JSONObject jsonResponse = new JSONObject(response.toString());
+                boolean isBad = jsonResponse.getBoolean("is-bad");
+                return isBad;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void sendEmail(String recipient, String subject, String body) {
+        // Paramètres SMTP
+        String host = "smtp.gmail.com";
+        String port = "587";
+        String username = "issmailchouikhi6@gmail.com";
+        String password = "xreo usju fqar hvqi";
+
+        // Propriétés de la session
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", port);
+
+        // Créer une session
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            // Créer un message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+            message.setSubject(subject);
+
+            // Ajouter les détails de la réservation dans le corps de l'e-mail
+            message.setText(body);
+
+            // Envoyer le message
+            Transport.send(message);
+
+            System.out.println("E-mail envoyé avec succès.");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }

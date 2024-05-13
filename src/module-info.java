@@ -7,9 +7,8 @@ module demo {
     requires org.apache.pdfbox;
     requires javafx.swing;
     requires javafx.graphics;
+   
 
 
-    opens demo to javafx.fxml;
-    exports demo;
 
 }

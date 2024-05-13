@@ -455,7 +455,7 @@ public class HomeController {
                 pnlBlog.setStyle("-fx-background-color:  #EFFCFF");
                 pnlBlog.toFront();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Admin/Posts.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/Posts.fxml"));
 
                 try {
                     Parent root = loader.load();

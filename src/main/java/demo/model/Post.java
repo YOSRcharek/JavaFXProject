@@ -125,4 +125,11 @@ public class Post {
                 '}';
     }
 
+    public boolean isVisible() {
+        return visible == 1;
+    }
+
+    public void toggleVisibility() {
+        visible = (visible == 1) ? 0 : 1;
+    }
 }

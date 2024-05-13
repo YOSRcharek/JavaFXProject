@@ -15,9 +15,14 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -58,6 +63,8 @@ public class AddPostController {
     private String imgpath;
     private String videopath;
     private final PostService postService=new PostService();
+    private static final String API_URL = "https://neutrinoapi.net/bad-word-filter";
+    private static final String API_KEY = "9eOCO78zUJQOFaJcnz63ULfe79SZmrJfaeGvFo5r1iasXllt";
     boolean checkTilte( ){
         if(TitleF.getText()!=""){
 
@@ -82,9 +89,6 @@ public class AddPostController {
             checkContent.setVisible(true);
             return false;
         }}
-
-
-
     @FXML
     void addimg(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -158,8 +162,9 @@ public class AddPostController {
     @FXML
     void ajouter(){
         checkTilte();checkQuote( );checkContent( );
-        if(checkTilte() && checkQuote() && checkContent()){
-            Post post=new Post();
+        if(checkTilte() && checkQuote() && checkContent()) {
+            if (!containsBadWords(TitleF.getText()) && !containsBadWords(contentf.getText()) &&!containsBadWords(quoteF.getText())){
+                Post post = new Post();
             post.setUsername_id(1);
             post.setTitle(TitleF.getText());
             post.setContent(contentf.getText());
@@ -184,9 +189,10 @@ public class AddPostController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-
         }
+
+        } else showErrorAlert("Vous avez utiliser de movaise maux interdit ");
+
     }
 
     private void showErrorAlert(String message) {
@@ -202,5 +208,30 @@ public class AddPostController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
+    public static boolean containsBadWords(String text) {
+        try {
+            URL url = new URL(API_URL + "?content=" + text);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("User-ID", "IsmailChouikhi");
+            connection.setRequestProperty("API-Key", API_KEY);
+            int responseCode = connection.getResponseCode();
+            System.out.println(responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = in.readLine()) != null) {
+                    response.append(line);
+                }
+                in.close();
+                JSONObject jsonResponse = new JSONObject(response.toString());
+                boolean isBad = jsonResponse.getBoolean("is-bad");
+                return isBad;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

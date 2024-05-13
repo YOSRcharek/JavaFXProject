@@ -5,13 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39ad3a2a-e762-415d-849c-4a7e224bc6ff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/demo/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/AddPostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/AddPostController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/PosteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/PosteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo/controllers/UserPoste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/controllers/UserPoste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/model/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/model/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/service/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo/service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AddPosts.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Admin/Comment.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Admin/Comment.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ModifierPost.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Posts.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/Posts.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/Posts.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/copier.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +54,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -56,14 +67,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.HelloApplication.executor": "Run",
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/yosry/eclipse-workspace/IDE_2024/demo/src/main/resources/demo",
+    "last_opened_file_path": "C:/Users/DELL/Desktop/inetgration/JavaFXProject/src/main/resources",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -85,6 +97,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\DELL\Desktop\inetgration\JavaFXProject\src\main\resources" />
       <recent name="C:\Users\yosry\eclipse-workspace\IDE_2024\demo\src\main\resources\demo" />
       <recent name="C:\Users\walid\IdeaProjects\PiJava\src\main\resources\images" />
       <recent name="C:\Users\walid\IdeaProjects\PiJava\src\main\resources" />
@@ -98,11 +111,25 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="demo.HelloApplication" />
+      <module name="demo" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Games\javafx-sdk-22.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml " />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demo.Main" />
       <module name="demo" />
       <option name="PROGRAM_PARAMETERS" value=" --module-path &quot;C:\Users\yosry\Downloads\openjfx-22_windows-x64_bin-sdk\javafx-sdk-22\lib&quot; --add-modules javafx.controls,javafx.fxml,javafx.swing,javafx.graphics,javafx.fxml,javafx.media,javafx.web" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Games\javafx-sdk-22.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml " />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Games\javafx-sdk-22.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml,javafx.media" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.example.*" />
@@ -132,12 +159,14 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.HelloApplication" />
       <item itemvalue="Application.MainClass" />
       <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.HelloApplication" />
         <item itemvalue="Application.MainClass" />
       </list>
     </recent_temporary>
@@ -200,7 +229,7 @@
       <workItem from="1715551044022" duration="1041000" />
       <workItem from="1715552293224" duration="1244000" />
       <workItem from="1715595679359" duration="5000" />
-      <workItem from="1715595709851" duration="2886000" />
+      <workItem from="1715595709851" duration="13984000" />
     </task>
     <task id="LOCAL-00001" summary="ba3ed sadma">
       <option name="closed" value="true" />
